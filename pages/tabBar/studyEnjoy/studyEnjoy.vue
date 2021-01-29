@@ -87,7 +87,7 @@
 		<view class="circle">
 			<view class="header_content">
 				<view class="header">
-					<text :class="!circleIdx ? 'active':''" @tap.stop="tabCircleIdx(0)">推荐</text>
+					<text :class="!circleIdx ? 'active':''" @tap.stop="tabCircleIdx(0)">圈子</text>
 					<text :class="circleIdx ? 'active':''" @tap.stop="tabCircleIdx(1)">关注</text>
 				</view>
 			</view>
