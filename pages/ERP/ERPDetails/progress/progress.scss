@@ -1,0 +1,189 @@
+.progress_content{
+	font-size: 24upx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #B3B3B3;
+	line-height: 24upx;
+	box-sizing: border-box;
+	padding: 20upx;
+}
+.status_box{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 12upx;
+	margin-bottom: 20upx;
+	border-radius: 16upx;
+	background: #FFFFFF;
+	font-size: 28upx;
+	line-height: 28upx;
+	.top{
+		width: 100%;
+		box-sizing: border-box;
+		padding: 40upx 24upx 34upx;
+		border-bottom: 1upx solid #F5F5F5;
+		display: flex;
+		flex-direction: column;
+		.title{
+			font-size: 36upx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: #333333;
+			line-height: 36upx;
+		}
+		.subTiele{
+			margin-top: 24upx;
+		}
+	}
+	.bot{
+		width: 100%;
+		height: 92upx;
+		box-sizing: border-box;
+		padding: 0 10upx 0 24upx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: #666666;
+		.btn{
+			width: 144upx;
+			height: 56upx;
+			border-radius: 26upx;
+			border: 1upx solid #979797;
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24upx;
+			
+			line-height: 24upx;
+		}
+	}
+}
+.progress_box{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 32upx 0 32upx 44upx;
+	margin-bottom: 20upx;
+	border-radius: 16upx;
+	background: #FFFFFF;
+	.progress_list{
+		width: 100%;
+		box-sizing: border-box;
+		border-left: 2upx solid #E5E5E5;
+		padding-left: 42upx;
+		padding-bottom: 60upx;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		.icon{
+			width: 40upx;
+			height: 40upx;
+			position: absolute;
+			top: 0;
+			left: -20upx;
+		}
+		.title{
+			margin-top: 4upx;
+			font-size: 32upx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			line-height: 32upx;
+		}
+		.main{
+			width: 100%;
+			margin-top: 24upx;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			.logistics_box{
+				width: 560upx;
+				height: 56upx;
+				background: #F5F5F5;
+				border-radius: 8upx;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				box-sizing: border-box;
+				padding: 0 20upx 0 16upx;
+				color: #666666;
+				.name{
+					width: 120upx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+				.exp{
+					width: 220upx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+				.look{
+					color: #000000;
+					padding-right: 20upx;
+					position: relative;
+					display: flex;
+					align-items: center;
+					&::after{
+						content: "";
+						width: 0upx;
+						height: 0upx;
+						position: absolute;
+						right: -10upx;
+						border: 10upx solid transparent;
+						border-left-color: #000000;
+					}
+				}
+			}
+			.progressBar_box{
+				width: 100%;
+				display: flex;
+				align-items: center;
+				.progressBar{
+					width: 496upx;
+					height: 24upx;
+					border-radius: 12upx;
+					background: #F5F5F5;
+					margin-right: 22upx;
+					overflow: hidden;
+					.speed{
+						width: 0%;
+						height: 100%;
+						background: #E5E5E5;
+					}
+				}
+			}
+			.text{
+				width: 100%;
+				margin-top: 16upx;
+			}
+			.time{
+				width: 100%;
+				margin-top: 16upx;
+				color: #B3B3B3;
+			}
+		}
+		&:first-of-type{
+			color: #333333;
+			.progressBar_box{
+				.progressBar{
+					.speed{
+						background: #F8B500;
+					}
+				}
+			}
+			.logistics_box{
+				background: rgba(248,181,0,0.12);
+				.look{
+					color: #F8B500;
+					&::after{
+						border-left-color: #F8B500;
+					}
+				}
+			}
+		}
+		&:last-of-type{
+			border-left: 2upx solid #FFFFFF;
+			padding-bottom: 0;
+		}
+	}
+}

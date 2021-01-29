@@ -1,0 +1,90 @@
+page{
+	width: 100%;
+}
+.successfulRegistration_warp{
+	
+	.content{
+		padding: 0 24upx;
+		box-sizing: border-box;
+		.top{
+			margin-top: 48upx;
+			text-align: center;
+			.check{
+				width: 96upx;
+				height: 96upx;
+				margin: 0;
+			}
+			.signupSuccess{
+				margin-top: 24upx;
+				font-size: 36upx;
+				font-family: PingFangSC-Medium, PingFang SC;
+				font-weight: 700;
+				color: #F8B500;
+				margin-bottom: 64upx;
+			}
+		}
+		.center{
+			text-align: center;
+			font-size: 24upx;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #999999;
+			line-height: 32upx;
+		}
+		.btn{
+			margin-top: 48upx;
+			display: flex;
+			justify-content: space-around;
+			.copy{
+				display: inline-block;
+				width: 280upx;
+				height: 76upx;
+				text-align: center;
+				line-height: 76upx;
+				font-size: 28upx;
+				font-family: PingFangSC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #F8B500;
+				border-radius:38upx;
+				border: 2upx solid #F8B500;
+			}
+			.goback{
+				display: inline-block;
+				width: 280upx;
+				height: 76upx;
+				text-align: center;
+				line-height: 76upx;
+				background: #F8B500;
+				border-radius: 38upx;
+				font-size: 28upx;
+				font-family: PingFangSC-Medium, PingFang SC;
+				font-weight: 500;
+				color: #FFFFFF;
+			}
+		}
+		.Qrcode{
+			margin-top: 120upx;
+			text-align: center;
+			image{
+				width: 240upx;
+				height: 240upx;
+			}
+			.text{
+				margin-top: 16upx;
+				text{
+					display: inline-block;
+					width: 280upx;
+					height: 48upx;
+					text-align: center;
+					border-radius: 38upx;
+					line-height: 48upx;
+					background: #F5F5F5;
+					font-size: 24upx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #999999;
+				}
+			}
+		}
+	}
+}

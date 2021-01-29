@@ -1,0 +1,122 @@
+page{
+	background: #F5F5F5;
+}
+.quest_content{
+	font-size: 28upx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #666666;
+	line-height: 28upx;
+}
+.tips_content{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 32upx 30upx 40upx;
+	background: #FFFFFF;
+	.tips{
+		font-size: 28upx;
+		font-family: PingFangSC-Light, PingFang SC;
+		font-weight: 300;
+		line-height: 36upx;
+	}
+	.red{
+		color: #F75C50;
+		margin-top: 32upx;
+	}
+}
+.quest_ul{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.quest_list{
+		width: 100%;
+		margin-top: 16upx;
+		background: #FFFFFF;
+		.title{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 40upx 30upx;
+			border-bottom: 1upx solid #F5F5F5;
+			font-size: 32upx;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #333333;
+			line-height: 38upx;
+			.red{
+				color: #F75C50;
+			}
+			.grey{
+				color: #999999;
+			}
+		}
+		.options_ul{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 38upx 30upx;
+			.options_list{
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 44upx;
+				.line{
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					image{
+						width: 32upx;
+						height: 32upx;
+					}
+				}
+				textarea{
+					width: 100%;
+					height: 176upx;
+					box-sizing: border-box;
+					padding: 16upx ;
+					margin-top: 22upx;
+					border-radius: 8upx;
+					border: 1px solid #E5E5E5;
+					font-size: 28upx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #666666;
+					line-height: 36upx;
+				}
+				.textarea-placeholder{
+					font-size: 28upx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #E5E5E5;
+					line-height: 36upx;
+				}
+			}
+			
+			.options_list:last-of-type{
+				margin-bottom: 0
+			}
+		}
+	}
+}
+.btn_content{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin: 72upx 0;
+	.btn{
+		width: 690upx;
+		height: 96upx;
+		background: #F8B500;
+		border-radius: 48upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 32upx;
+		font-family: PingFangSC-Medium, PingFang SC;
+		font-weight: 500;
+		color: #FFFFFF;
+		line-height: 32upx;
+	}
+}
+
+

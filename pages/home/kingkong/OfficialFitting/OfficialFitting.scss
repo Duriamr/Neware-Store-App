@@ -1,0 +1,103 @@
+page{
+	background-color: rgba(245,245,245,1);
+}
+.na_content{
+	width: 100%;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:#111111;
+	position: relative;
+	padding-bottom: 60upx;
+}
+.na_header{
+	width: 100%;
+	height: 590upx;
+	box-sizing: border-box;
+	// margin-bottom: 16upx;
+	image{
+		width: 100%;
+	}
+}
+.na_ul{
+	width: 100%;
+	padding: 0 16upx;
+	box-sizing: border-box;
+	position: relative;
+	margin-top: -130upx;
+	.na_list{
+		width: 100%;
+		padding-bottom:8upx;
+		.grid_list{
+			width:100%;
+			height:264upx;
+			background:rgba(255,255,255,1);
+			border-radius:16upx;
+			display: flex;
+			margin-bottom: 20upx;
+			padding: 32upx;
+			box-sizing: border-box;
+			img{
+				width: 200upx;
+				margin-right: 36upx;
+			}
+			.productDetaile{
+				width: 418upx;
+				.name{
+					font-size:32upx;
+					font-family:PingFangSC-Regular,PingFang SC;
+					font-weight:400;
+					color:rgba(51,51,51,1);
+					margin-bottom: 24upx;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+				.sellingPoints{
+					width: 418upx;
+					font-size:24upx;
+					height: 63upx;
+					font-family:PingFangSC-Regular,PingFang SC;
+					font-weight:400;
+					color:rgba(179,179,179,1);
+					margin-bottom: 26upx;
+				    text-overflow: -o-ellipsis-lastline;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
+				}
+				.money{
+					display: flex;
+					justify-content: space-between;
+					.bot{
+						.currency{
+							font-size:28upx;
+							font-family:DINAlternate-Bold,DINAlternate;
+							font-weight:bold;
+							color:rgba(247,92,80,1);
+						}
+						.price{
+							font-size:40upx;
+							font-family:DINAlternate-Bold,DINAlternate;
+							font-weight:bold;
+							color:rgba(247,92,80,1);
+						}
+					}
+					.clickLook{
+						width:168upx;
+						height:60upx;
+						line-height: 60upx;
+						text-align: center;
+						background:rgba(247,92,80,1);
+						border-radius:26upx;
+						font-size:24upx;
+						font-family:PingFangSC-Medium,PingFang SC;
+						font-weight:500;
+						color:rgba(255,255,255,1)
+					}
+				}
+			}
+		}
+	}
+}

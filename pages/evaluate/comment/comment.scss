@@ -1,0 +1,174 @@
+page{
+	background:rgba(245,245,245,1) !important;
+}
+.evaluate_content{
+	background:rgba(245,245,245,1);
+	font-size:28upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+	line-height:28upx;
+	padding-top:88upx ;
+	/*  #ifdef  APP-PLUS  */
+	padding-top: calc(88upx + var(--status-bar-height));
+	/*  #endif  */
+	box-sizing: border-box;
+	.evaluate_header{
+		width: 100%;
+		margin-bottom: 20upx;
+		background-color: #FFFFFF;
+		position: fixed;
+		top: 0;
+		z-index: 99;
+		.header{
+			width: 100%;
+			height: 88upx;
+			padding: 0 24upx 0 16upx;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.back{
+				width: 48upx;
+				height: 48upx;
+			}
+			.evaluate{
+				font-size:28upx;
+				font-family:PingFangSC-Regular,PingFang SC;
+				font-weight:400;
+				color:rgba(248,181,0,1);
+			}
+			.title{
+				font-size:36upx;
+				font-family:PingFangSC-Medium,PingFang SC;
+				font-weight:500;
+				color:rgba(51,51,51,1);
+			}
+		}
+	}
+	.product_info{
+		background:rgba(255,255,255,1);
+		margin: 20upx;
+		box-sizing: border-box;
+		border-radius:16upx;
+		padding: 20upx 0 32upx 20upx;
+		.top{
+			margin-bottom: 32upx;
+			display: flex;
+			image{
+				width:112upx;
+				height:112upx;
+				margin-right: 16upx;
+			}
+			.product_title{
+				.product_name{
+					font-size:28upx;
+					font-family:PingFangSC-Regular,PingFang SC;
+					font-weight:400;
+					color:rgba(51,51,51,1);
+					margin-bottom: 20upx;
+				}
+				.product_specifications{
+					font-size:24upx;
+					font-family:PingFangSC-Regular,PingFang SC;
+					font-weight:400;
+					color:rgba(179,179,179,1);
+				}
+			}
+		}
+		.product_evalute{
+			.commodity_evaluation{
+				vertical-align: middle;
+				font-size:28upx;
+				font-family:PingFangSC-Regular,PingFang SC;
+				font-weight:400;
+				color:rgba(102,102,102,1);
+			
+			}
+			.select{
+				vertical-align: middle;
+				width: 32upx;
+				height: 32upx;
+				margin-left: 16upx;
+			}
+			.commodity_goods{
+							vertical-align: middle;
+				font-size:24upx;
+				font-family:PingFangSC-Regular,PingFang SC;
+				font-weight:400;
+				color:rgba(179,179,179,1);
+					margin-left: 16upx;
+			}
+		}
+	}
+}
+
+.comment_area{
+		margin: 20upx;
+		background-color: white;
+		.textarea{
+			background: white;
+			width:100%;
+			border-radius:12upx;
+			padding: 20upx;
+			box-sizing: border-box;
+			textarea{
+				font-size:28upx;
+				line-height:38upx;
+				font-size:28upx;
+				height:400upx;
+				width:100%;
+				font-family:PingFangSC-Regular,PingFang SC;
+				font-weight:400;
+				color:rgba(51,51,51,1);
+			}
+		}
+		.textarea-placeholder{
+			font-size:28upx;
+			font-family:PingFangSC-Light,PingFang SC;
+			font-weight:300;
+			color:rgba(179,179,179,1);
+		}
+		.number{
+			text-align: right;
+			font-size:22upx;
+			font-family:PingFangSC-Regular,PingFang SC;
+			font-weight:400;
+			color:rgba(179,179,179,1);
+			margin-bottom:32upx;
+		}
+		.upload_ul{
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			.upload_list{
+				width: 210upx;
+				height: 210upx;
+				background:rgba(245,245,245,1);
+				border-radius:8upx;
+				margin-right: 15upx;
+				margin-bottom: 15upx;
+				position: relative;
+				.upImg{
+					width: 100%;
+					height: 100%;
+					border-radius:8upx;
+					background:rgba(245,245,245,1);
+				}
+				.cancel{
+					width: 35upx;
+					height: 35upx;
+					padding-top: 10upx;
+					padding-right: 10upx;
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+			}
+			.upload_list:nth-of-type(3),
+			.upload_list:nth-of-type(6),
+			.upload_list:nth-of-type(9){
+				margin-right: 0;
+			}
+		}
+	}

@@ -1,0 +1,377 @@
+image{
+	display: block;
+}
+.warp{
+	width: 100%;
+	.discount{
+		width: 100%;
+		.header{
+			position: relative;
+			.headerImg{
+				width: 100%;
+				height: 100%;
+			}
+			.activityrules{
+				position: absolute;
+				top:80upx ;
+				/*  #ifdef  APP-PLUS  */
+				top: calc(80upx + var(--status-bar-height));
+				/*  #endif  */
+				right: 0;
+				width: 150upx;
+				height: 54upx;
+				text-align: center;
+				line-height: 54upx;
+				background: #FF5500;
+				border-radius: 27upx 0px 0px 27upx;
+				font-size: 30upx;
+				font-family: Source Han Sans CN;
+				font-weight: 500;
+				color: #FCEBB8;
+			}
+		}
+		.footer{
+			width: 100%;
+			.footerImg{
+				width: 100%;
+			}
+		}
+		.content{
+			background-color: #FCAD37;
+			padding: 34upx;
+			box-sizing: border-box;
+			padding-top: 0;
+			.anchorPointList{
+				background: #FFFFFF;
+				box-shadow: 0px 12upx 27upx 0px rgba(193, 49, 4, 0.51);
+				border-radius: 20upx;
+				padding: 22upx 26upx;
+				width: 682upx;
+				height: 436upx;
+				box-sizing: border-box;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-around;
+				
+				.item{
+					width: 201upx;
+					height: 188upx;
+					border-radius: 13upx 13upx 13upx 13upx;
+				}
+			}
+			.giftPack{
+				margin-top: 38upx;
+				width: 100%;
+				height: 415upx;
+				.prodcutList{
+					position: relative;
+					width: 100%;
+					height: 415upx;
+					box-shadow: 0px 12upx 27upx 0px rgba(193, 49, 4, 0.51);
+					border-radius: 20upx;
+					.btn{
+						position: absolute;
+						right:35upx ;
+						bottom:41upx;
+						display: inline-block;
+						width: 159upx;
+						height: 45upx;
+						background: linear-gradient(90deg, rgba(251, 190, 84, 0.68), rgba(253, 239, 165, 0.68));
+						border-radius: 23upx;
+						text-align: center;
+						line-height: 45upx;
+						font-size: 22upx;
+						font-family: Source Han Sans CN;
+						font-weight: 400;
+						color: #F24A01;
+					}
+					.active{
+						position: absolute;
+						right:35upx ;
+						bottom:41upx;
+						display: inline-block;
+						width: 159upx;
+						height: 45upx;
+						border-radius: 23upx;
+						text-align: center;
+						line-height: 45upx;
+						font-size: 22upx;
+						font-family: Source Han Sans CN;
+						font-weight: 400;
+						background: #F6EDE8;
+						color: #A29A96;
+					}
+				}
+			}
+			.hotMoney{
+				margin-top: 74upx;
+				width: 100%;
+				.hotMoneyImg{
+					width: 649upx;
+					height: 68upx;
+					background: linear-gradient(0deg, #FEEADF, #FFD966);
+					box-shadow: 0px 12upx 27upx 0px rgba(193, 49, 4, 0.51);
+					border-radius: 34upx;
+					margin: 0 auto;
+				}
+				.prodcutList{
+					width: 100%;
+					.productItem{
+						margin-top: 16upx;
+						width: 100%;
+						border-radius: 20upx;
+						.productTop{
+							width: 100%;
+							height: 289upx;
+						}
+						.productBtm{
+							width: 100%;
+							height: 85upx;
+							padding: 0 25upx;
+							box-sizing: border-box;
+							background: #FFFFFF;
+							border-radius: 0 0 20upx 20upx;
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							.price{
+								.originalprice{
+									font-size: 21upx;
+									font-family: Source Han Sans CN;
+									font-weight: 500;
+									text-decoration: line-through;
+									color: #7F6459;
+									margin-right: 25upx;
+								}
+								.number{
+									font-size: 26upx;
+									font-family: Source Han Sans CN;
+									font-weight: bold;
+									color: #DE622C;
+								}
+								.discountPrice{
+									font-size: 60upx;
+									font-family: Source Han Sans CN;
+									font-weight: bold;
+									color: #DE622C;
+									margin-right: 26upx;
+								}
+							}
+							.btn{
+								display: inline-block;
+								width: 160upx;
+								height: 45upx;
+								background: linear-gradient(90deg, rgba(255, 85, 0, 0.68), rgba(255, 167, 0, 0.68));
+								border-radius: 23upx;
+								text-align: center;
+								line-height: 45upx;
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								color: #FFF1E1;
+								font-weight: 500;
+							}
+							.active{
+								display: inline-block;
+								width: 160upx;
+								height: 45upx;
+								border-radius: 23upx;
+								text-align: center;
+								line-height: 45upx;
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 500;
+								background: #F6EDE8;
+								color: #A29A96;
+							}
+						}
+					}
+				}
+			}
+			.help,.hupeng{
+				margin-top: 74upx;
+				width: 100%;
+				.hotMoneyImg{
+					width: 649upx;
+					height: 68upx;
+					background: linear-gradient(0deg, #FEEADF, #FFD966);
+					box-shadow: 0px 12upx 27upx 0px rgba(193, 49, 4, 0.51);
+					border-radius: 34upx;
+					margin: 0 auto;
+				}
+				.prodcutList{
+					display: flex;
+					justify-content: space-between;
+					flex-wrap: wrap;
+					margin-top: 46upx;
+					.productItem{
+						margin-bottom: 15upx;
+						width: 334upx;
+						box-shadow: 0px 12upx 27upx 0px rgba(193, 49, 4, 0.51);
+						border-radius: 20upx;
+						.productTop{
+							width: 100%;
+							height: 292upx;
+							border-radius: 20upx 20upx 0 0;
+						}
+						.productBtm{
+							padding:24upx 0;
+							box-sizing: border-box;
+							height: 188upx;
+							text-align: center;
+							background: #FFFFFF;
+							border-radius: 0 0 20upx 20upx;
+							display: flex;
+							flex-direction: column;
+							justify-content: space-around;
+							align-items: center;
+							.productSku{
+								position: relative;
+								font-size: 23upx;
+								font-family: Source Han Sans CN;
+								font-weight: 500;
+								color: #7F6459;
+							}
+							.price{
+								display: flex;
+								align-items: center;
+								// margin-top: 8upx;
+								.originalprice{
+									font-size: 21upx;
+									font-family: Source Han Sans CN;
+									font-weight: 500;
+									text-decoration: line-through;
+									color: #7F6459;
+									margin-right: 12upx;
+								}
+								.helpNumber{
+									font-size: 20upx;
+									font-family: Source Han Sans CN;
+									font-weight: 500;
+									color: #DE622C;
+								}
+								.discountPrice{
+									font-size: 32upx;
+									font-family: Source Han Sans CN;
+									font-weight: 500;
+									color: #DE622C;
+									font-weight: Bold;
+								}
+							}
+							.btn{
+								margin-top: 12upx;
+								width: 146upx;
+								height: 38upx;
+								line-height: 38upx;
+								text-align: center;
+								background: linear-gradient(90deg, rgba(255, 85, 0, 0.68), rgba(255, 167, 0, 0.68));
+								border-radius: 18upx;
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 500;
+								color: #FFF1E1;
+							}
+							.active{
+								margin-top: 12upx;
+								width: 146upx;
+								height: 38upx;
+								line-height: 38upx;
+								text-align: center;
+								border-radius: 18upx;
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 500;
+								background: #F6EDE8;
+								color: #A29A96;
+							}
+						}
+					}
+				}
+			}
+			.hupeng{
+				margin-top: 74upx;
+				width: 100%;
+				.hotMoneyImg{
+					width: 649upx;
+					height: 68upx;
+					background: linear-gradient(0deg, #FEEADF, #FFD966);
+					box-shadow: 0px 12upx 27upx 0px rgba(193, 49, 4, 0.51);
+					border-radius: 34upx;
+					margin: 0 auto;
+				}
+				.prodcutList{
+					width: 100%;
+					.oneProductItem{
+						margin-top: 16upx;
+						width: 100%;
+						border-radius: 20upx;
+						.productTop{
+							width: 100%;
+							height: 289upx;
+						}
+						.productBtm{
+							width: 100%;
+							height: 85upx;
+							padding: 0 25upx;
+							box-sizing: border-box;
+							background: #FFFFFF;
+							border-radius: 0 0 20upx 20upx;
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							.originalprice{
+								font-size: 21upx;
+								font-family: Source Han Sans CN;
+								font-weight: 500;
+								text-decoration: line-through;
+								color: #7F6459;
+								margin-right: 25upx;
+							}
+							.price{
+								.number{
+									font-size: 26upx;
+									font-family: Source Han Sans CN;
+									font-weight: bold;
+									color: #DE622C;
+								}
+								.discountPrice{
+									font-size: 60upx;
+									font-family: Source Han Sans CN;
+									font-weight: bold;
+									color: #DE622C;
+									margin-right: 26upx;
+								}
+							}
+							.btn{
+								display: inline-block;
+								width: 160upx;
+								height: 45upx;
+								background: linear-gradient(90deg, rgba(255, 85, 0, 0.68), rgba(255, 167, 0, 0.68));
+								border-radius: 23upx;
+								text-align: center;
+								line-height: 45upx;
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								color: #FFF1E1;
+								font-weight: 500;
+							}
+							.active{
+								display: inline-block;
+								width: 160upx;
+								height: 45upx;
+								border-radius: 23upx;
+								text-align: center;
+								line-height: 45upx;
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 500;
+								background: #F6EDE8;
+								color: #A29A96;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,43 @@
+.goods_header{
+	width: 750rpx;
+	height: 750rpx;
+	position: relative;
+}
+.goods_banner{
+	position: relative;
+	z-index: 10;
+	flex: 1;
+}
+.goods_swiper{
+	flex: 1;
+}
+.goods_swiper_list_iav{
+	width: 750rpx;
+	height: 750rpx;
+}
+.goods_header_indicator{
+	position: absolute;
+	z-index: 10;
+	bottom: 16upx;
+	right: 24upx;
+	width: 64rpx;
+	height: 36rpx;
+	border-radius: 18rpx;
+	background-color: #000000;
+	opacity: 0.2;
+	flex-direction: row;
+	justify-content: center;
+}
+.goods_header_indicator_text{
+	font-size: 18rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 36rpx;
+}
+.goods_header_indicator_fristText{
+	font-size: 24rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	line-height: 36rpx;
+}

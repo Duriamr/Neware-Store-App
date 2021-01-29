@@ -1,0 +1,50 @@
+pages{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.authorization_content{
+	width: 100%;
+	.center{
+		margin-top: 314upx;
+		text-align: center;
+		image{
+			width:260upx;
+			height: 204upx;
+		}
+		.title{
+			margin-top: 64upx;
+			font-size: 32upx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 700;
+			color: #333333;
+			width: 100%;
+			text-align: center;
+		}
+	}
+	.submit{
+		margin-top: 211upx;
+		text-align: center;
+		.btn{
+			display: inline-block;
+			width: 296upx;
+			height: 76upx;
+			background: #F8B500;
+			border-radius: 19px;
+			text-align: center;
+			line-height: 76upx;
+			font-size: 28upx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 600;
+			color: #FFFFFF;
+		}
+	}
+	.cancel{
+		margin-top: 64upx;
+		text-align: center;
+		font-size: 28upx;
+		font-family: PingFangSC-Regular, PingFang SC;
+		font-weight: 400;
+		color: #999999;
+	}
+}

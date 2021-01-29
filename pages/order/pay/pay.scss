@@ -1,0 +1,140 @@
+page{
+	width: 100%;
+	background: #F5F5F5;
+	height: 100%;
+	overflow: hidden;
+}
+.pay_content{
+	font-size: 28upx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 28upx;
+}
+.pay_header{
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	background: #F5F5F5;
+	.header{
+		width: 100%;
+		height: 88upx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 36upx;
+		font-family: PingFangSC-Medium, PingFang SC;
+		font-weight: 500;
+		line-height: 36upx;
+		.back{
+			position: absolute;
+			left: 16upx;
+			width: 48upx;
+			height: 48upx;
+		}
+	}
+}
+
+.main{
+	width: 100%;
+	margin-top: 64upx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #F75C50;
+	.money{
+		font-family: DINAlternate-Bold, DINAlternate;
+		font-weight: bold;
+		.currency{
+			font-size: 42upx;
+			line-height: 42upx;
+		}
+		.price{
+			font-size: 72upx;
+			line-height: 72upx;
+		}
+	}
+	.timer{
+		margin-top: 24upx;
+		font-size: 24upx;
+		line-height: 24upx;
+	}
+}
+
+.pay_method{
+	width: calc(100% - 48upx);
+	margin: 56upx 24upx 0;
+	background-color: #FFFFFF;
+	border-radius: 16upx;
+	.title{
+		width: 100%;
+		height: 88upx;
+		box-sizing: border-box;
+		padding-left: 24upx;
+		border-bottom: 1upx solid #F5F5F5;
+		display: flex;
+		align-items: center;
+		font-family: PingFangSC-Medium, PingFang SC;
+		font-weight: 500;
+	}
+	.pay_ul{
+		width: 100%;
+		.pay_list{
+			width: 100%;
+			height: 88upx;
+			box-sizing: border-box;
+			padding-left: 24upx;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			.logo{
+				width: 48upx;
+				height: 48upx;
+			}
+			.right{
+				width: calc(100% - 48upx - 24upx);
+				height: 100%;
+				box-sizing: border-box;
+				padding-right: 24upx;
+				border-bottom: 1upx solid #F5F5F5;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				image{
+					width: 32upx;
+					height: 32upx;
+				}
+			}
+		}
+		.pay_list:last-of-type .right{
+			border-bottom: 1upx solid #FFFFFF;
+		}
+	}
+}
+
+.pay_footer{
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	bottom:0;
+	background: #FFFFFF;
+	.footer{
+		width: 100%;
+		height: 98upx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		.submit{
+			width: 700upx;
+			height: 76upx;
+			background: #F8B500;
+			border-radius: 38upx;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #FFFFFF;
+		}
+	}
+}
+

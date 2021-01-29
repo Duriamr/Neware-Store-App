@@ -1,0 +1,149 @@
+.signinList{
+	display: flex;
+	flex-direction: column;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+}
+.my_header{
+	width: 100%;
+	height: 320upx;
+	/*  #ifdef  APP-PLUS  */
+	height: calc(320upx + var(--status-bar-height));
+	/*  #endif  */
+	display: flex;
+	flex-direction: column;
+	color:rgba(255,255,255,1);
+	/*  #ifdef  MP  */
+	padding-top: 88upx;
+	background-color: #F75C50;
+	/*  #endif  */
+	background-image: url(../../../../static/activity/signin/background.png);
+	background-size: 100% 100%; 
+	background-repeat: no-repeat;
+	.header{
+		width: 100%;
+		height: 88upx;
+		box-sizing: border-box;
+		padding-left: 24upx;
+		display: flex;
+		align-items: center;
+		.icon{
+			width: 48upx;
+			height: 48upx;
+		}
+	}
+	.infor_content{
+		width: 100%;
+		height: 132upx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		box-sizing: border-box;
+		padding: 0 26upx;
+		margin-top: 28upx;
+		font-size:32upx;
+		line-height:32upx;
+		.left{
+			display: flex;
+			align-items: center;
+			image{
+				width:132upx;
+				height:132upx;
+				border-radius:100%;
+				border: 2upx solid #FFFFFF;
+				margin-right: 22upx;
+				background-image: url(/static/my/avatar.png);
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+			}
+			.infor{
+				display: flex;
+				flex-direction: column;
+				.infor_id{
+					margin-bottom: 22upx;
+				}
+				.infor_allDay{
+					.allDay{
+						font-size:42upx;
+						font-family:DINMittelschriftStd;
+						font-weight:800;
+						line-height:42upx;
+						margin:0 8upx;
+					}
+				}
+			}
+		}
+		.right{
+			.ranking{
+				font-size:96upx;
+				font-family:DINMittelschriftStd;
+				font-weight:800;
+				line-height:96upx;
+			}
+		}
+	}
+}
+.scroll{
+	width: 100%;
+	height: calc(100vh - 320upx);
+	/*  #ifdef  APP-PLUS  */
+	height: calc(100vh - 320upx - var(--status-bar-height));
+	/*  #endif  */
+	.signin_ul{
+		width: 100%;
+		box-sizing: border-box;
+		padding: 24upx 56upx 0;
+		display: flex;
+		flex-direction: column;
+		.signin_list{
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 40upx;
+			.left{
+				display: flex;
+				align-items: center;
+				font-size:28upx;
+				color:rgba(102,102,102,1);
+				line-height:28upx;
+				.no{
+					width: 34upx;
+					height: 42upx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-family:DINMittelschriftStd;
+					color:rgba(51,51,51,1);
+					image{
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.avatarImg{
+					width:64upx;
+					height:64upx;
+					border-radius: 100%;
+					margin: 0 48upx 0 34upx ;
+				}
+			}
+			.right{
+				display: flex;
+				align-items: center;
+				.text{
+					font-size:24upx;
+					color:rgba(179,179,179,1);
+					line-height:24upx;
+					margin-right: 8upx;
+				}
+				.count{
+					width: 56upx;
+					font-size:32upx;
+					color:rgba(51,51,51,1);
+					line-height:32upx;
+				}
+				
+			}
+		}
+	}
+}

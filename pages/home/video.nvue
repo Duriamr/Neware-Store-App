@@ -1,0 +1,63 @@
+<template>
+	<view class="video_content">
+		<image class="bg" src="/static/home/videoBg.png" mode="widthFix"></image>
+		<view class="video_box">
+			<video class="video" :src="'https://file.neware.com.cn/video/xwyxxcp.mp4?data='+date" poster="https://file.neware.com.cn/promotionalactivity/homevideo/42c5a192cd6147649f350de1ec86ae13.png" :show-center-play-btn="false" autoplay object-fit="cover"></video>
+		</view>
+		<view class="skip_box" :style="{top:skipTop}" @tap.stop="toHome()">
+			<text class="ship">跳过</text>
+		</view>
+	</view>
+</template>
+
+<script>    
+	export default {
+		data() {
+			return {
+				date:new Date().getTime(),
+				skipTop:uni.getSystemInfoSync().statusBarHeight+20+'px'
+			};
+		},
+		methods:{
+			toHome(){
+				uni.switchTab({
+					url:"/pages/tabBar/home/home"
+				})
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.video_content{
+		position: relative;
+		align-items: center;
+		background-color: #F39C36;
+	}
+	.bg{
+		width: 750rpx;
+	}
+	.video_box{
+		position: absolute;
+		left: 77rpx;
+		top: 433rpx;
+		width: 596rpx;
+		height: 316rpx;
+		border-radius: 10px;
+		overflow:hidden;
+	}
+	.video{
+		flex: 1;
+	}
+	.skip_box{
+		position: absolute;
+		right: 37rpx;
+	}
+	.ship{
+		font-size: 36rpx;
+		font-family: Source Han Sans SC;
+		font-weight: 400;
+		color: #FF6000;
+		line-height: 36rpx;
+	}
+</style>

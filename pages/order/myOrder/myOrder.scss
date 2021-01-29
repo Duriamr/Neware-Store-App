@@ -1,0 +1,49 @@
+page{
+	background-color: #F5F5F5;
+	height: 100%;
+}
+.myOrder_content{
+	font-size:28upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:#333333;
+	line-height:28upx;
+	height: 100%;
+}
+.nav{
+	background-color: #FFFFFF;
+	height: 88upx;
+	box-sizing: border-box;
+	padding: 0 24upx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20upx;
+	border-radius:0px 0px 16upx 16upx;
+	.nav_list{
+		color:#666666;
+		line-height:68upx;
+		text-align: center;
+		box-sizing: border-box;
+		&.active{
+			font-family:PingFangSC-Medium,PingFang SC;
+			font-weight:500;
+			color: $nwa-theme-color;
+			border-bottom: 4upx solid $nwa-theme-color;
+		}
+	}
+}
+.swiper {
+	width: 100%;
+	height: calc(100% - 108upx);
+	.scroll{
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.myOrder_ul{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 20upx;
+}

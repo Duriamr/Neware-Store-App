@@ -1,0 +1,211 @@
+page{
+	background-color: #F44934;
+}
+.ad_header{
+	width: 100%;
+}
+.ad_content{
+	position: relative;
+	margin-top: -100upx;
+	width: 100%;
+	box-sizing: border-box;
+	padding:0 16upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:#111111;
+}
+
+.ranking{
+	width: 100%;
+	margin-top: 24upx;
+	.rk_list{
+		width: 100%;
+		height:360upx;
+		background-color: #FFFFFF;
+		border-radius:8upx;	
+		margin-bottom: 16upx;
+		display: flex;
+		justify-content: space-between;
+		.list_img{
+			width:360upx;
+			height:360upx;
+			border-radius:8upx 0 0 8upx;
+		}
+		.list_right{
+			width: 358upx;
+			height:360upx;
+			box-sizing: border-box;
+			padding: 48upx 34upx 32upx 28upx;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			.top{
+				.title{
+					width: 296upx;
+					font-size:36upx;
+					font-weight:500;
+					line-height:36upx;
+					margin-bottom: 16upx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+				.subTitle{
+					width: 296upx;
+					font-size:28upx;
+					color: #666666;
+					line-height:34upx;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+				}
+			}
+			.bot{
+				// height: 40upx;
+				display: flex;
+				flex-direction: column;
+				.bot_top{
+					font-weight:500;
+					color:#F75C50;
+					.currency{
+						font-size:24upx;
+						line-height:24upx;
+					}
+					.price{
+						font-size:36upx;
+						line-height:36upx;
+					}
+				}
+				.bot_bot{
+					width:220upx;
+					height:48upx;
+					background:#F75C50;
+					border-radius:4upx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size:24upx;
+					color:#FFFFFF;
+					line-height:24upx;
+					margin-top: 16upx;
+				}
+			}
+		}
+	}
+}
+
+.flow{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.flow_list{
+		width:352upx;
+		height:604upx;
+		background:#FFFFFF;
+		margin-bottom: 24upx;
+		display: flex;
+		flex-direction: column;
+		border-radius:8upx;
+		.list_img{
+			width: 352upx;
+			height: 352upx;
+			border-radius:8upx 8upx 0 0;
+		}
+		.list_bot{
+			width: 352upx;
+			height: 252upx;
+			box-sizing: border-box;
+			padding: 32upx 48upx 24upx 48upx;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			.top{
+				.title{
+					width:220upx;
+					font-size:32upx;
+					font-weight:500;
+					line-height:32upx;
+					margin-bottom: 16upx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+				.subTitle{
+					width:220upx;
+					font-size:24upx;
+					color: #666666;
+					line-height:24upx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+			}
+			.bot{
+				// height: 40upx;
+				display: flex;
+				flex-direction: column;
+				.bot_top{
+					font-weight:500;
+					color:#F75C50;
+					.currency{
+						font-size:24upx;
+						line-height:24upx;
+					}
+					.money{
+						font-size:36upx;
+						line-height:36upx;
+					}
+					.original{
+						font-size:22upx;
+						font-weight:400;
+						color:#B3B3B3;
+						line-height:22upx;
+						text-decoration:line-through;
+						margin-left: 4upx;
+					}
+				}
+				.bot_bot{
+					width:220upx;
+					height:48upx;
+					background:#F75C50;
+					border-radius:4upx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size:24upx;
+					color:#FFFFFF;
+					line-height:24upx;
+					margin-top: 8upx;
+				}
+			}
+		}
+	}
+}
+
+.classTitle{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 40upx 0;
+	.ct_left{
+		width:86upx;
+		height:6upx;
+		background:linear-gradient(to left,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	}
+	.name{
+		font-size:36upx;
+		font-weight:500;
+		color:#FFFFFF;
+		line-height:36upx;
+		margin: 0 24upx;
+	}
+	.ct_right{
+		width:86upx;
+		height:6upx;
+		background:linear-gradient(to right,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	}
+}

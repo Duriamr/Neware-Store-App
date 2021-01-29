@@ -1,0 +1,98 @@
+page{
+	background-color: #FFFFFF;
+	height: 100%;
+}
+.sort2_content{
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:#111111;
+	width: 100%;
+	height: 100%;
+}
+
+.swiper {
+	width: 100%;
+	height: calc(100% - 88upx);
+	.item{
+		width:100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.scroll{
+			height: 100%;
+			background:rgba(245,245,245,1);
+		}
+	}
+}
+.ul{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 24upx 24upx;
+	display: flex;
+	justify-content: space-between;
+	.lefeList,
+	.rightList{
+		width: 342upx;
+		display: flex;
+		flex-direction: column;
+	}
+	.list{
+		width: 342upx;
+		background-color: #FFFFFF;
+		border-radius: 16upx;
+		padding-bottom: 24upx;
+		margin-top: 18upx;
+		display: flex;
+		flex-direction: column;
+		.image{
+			width:100%;
+			height:342upx;
+			border-radius:16upx 16upx 0 0;
+			margin-bottom: 16upx;
+		}
+		.list_bot{
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			.title{
+				max-width: 294upx;
+				font-size:28upx;
+				color:rgba(51,51,51,1);
+				line-height:34upx;
+				margin-left: 24upx;
+				margin-bottom: 16upx;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			.subTitle{
+				max-width: 294upx;
+				height: 24upx;
+				font-size:24upx;
+				color:rgba(179,179,179,1);
+				line-height:24upx;
+				margin-left: 24upx;
+				margin-bottom: 24upx;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			.bot{
+				font-family:DINAlternate-Bold,DINAlternate;
+				font-weight:bold;
+				color:rgba(247,92,80,1);
+				margin-left: 24upx;
+				.currency{
+					font-size:24upx;
+					line-height:24upx;
+				}
+				.price{
+					font-size:32upx;
+					line-height:32upx;
+				}
+			}
+		}
+		
+	}
+}

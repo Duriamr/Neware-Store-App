@@ -1,0 +1,131 @@
+page{
+	background: #F5F5F5;
+}
+.favorites_content{
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	.favorites_header{
+		position: fixed;
+		top: 0;
+		z-index: 99;
+		width: 100%;
+		background: #FFFFFF;
+		.header{
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			height: 88rpx;
+			box-sizing: border-box;
+			padding: 0 150rpx;
+			.back{
+				position: absolute;
+				left: 16rpx;
+				width: 48rpx;
+				height: 48upx;
+			}
+			.header_list{
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 88rpx;
+				font-size: 28upx;
+				color: #666666;
+				line-height: 28upx;
+				&.active{
+					font-family:PingFangSC-Medium,PingFang SC;
+					font-weight:500;
+					color: #F8B500;
+					&::after{
+						content:'';
+						position: absolute;
+						left: 50%;
+						bottom: 0;
+						transform: translateX(-50%);
+						width:56rpx;
+						height:4rpx;
+						background-color: #F8B500;
+						border-radius:4rpx;
+					}
+				}
+			}
+		}
+		.label_bar{
+			display: flex;
+			width: 100%;
+			height: 108rpx;
+			box-sizing: border-box;
+			padding: 24rpx;
+			.label_list{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 144rpx;
+				height: 60rpx;
+				margin-right: 16rpx;
+				background: #F5F5F5;
+				border-radius: 8rpx;
+				font-size: 24rpx;
+				color: #333333;
+				line-height: 24rpx;
+				&.active{
+					background: #F8B500;
+					font-size: 24rpx;
+					font-family: PingFangSC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #FFFFFF;
+					line-height: 24rpx;
+				}
+			}
+		}
+	}
+	.header_placeholder{
+		margin-bottom: 16rpx;
+	}
+	.ul{
+		width: 100%;
+		.slide{
+			width: 100%;
+			min-height: 170upx;
+			position: relative;
+			z-index: 4;
+			overflow: hidden;
+			.main{
+				position: relative;
+				z-index: 3;
+				@keyframes showMenu {
+					0% {transform: translateX(0);}100% {transform: translateX(-128rpx);}
+				}
+				@keyframes closeMenu {
+					0% {transform: translateX(-128rpx);}100% {transform: translateX(0);}
+				}
+				&.open{
+					animation: showMenu 0.25s linear both;
+				}
+				&.close{
+					animation: closeMenu 0.15s linear both;
+				}
+			}
+			.delete{
+				position: absolute;
+				top: 0;
+				right: 0;
+				z-index: 2;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 128rpx;
+				height: 100%;
+				background: #F75C50;
+				text{
+					width: 56rpx;
+					font-size: 28rpx;
+					color: #FFFFFF;
+					line-height: 34rpx;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,108 @@
+page{
+	background: #F5F5F5;
+	height: 100%;
+	overflow: hidden;
+}
+.wantBuy{
+	position: relative;
+	margin-top: 16upx;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background: #F5F5F5;
+	.btn{
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 86upx;
+		width: 700upx;
+		height: 76upx;
+		background: #F8B500;
+		border-radius: 38upx;
+		text-align: center;
+		line-height: 76upx;
+		font-size: 28upx;
+		font-family: PingFangSC-Medium, PingFang SC;
+		font-weight: 500;
+		color: #FFFFFF;
+		margin:auto;
+	}
+	.contactprogram{
+		margin-top: 16upx;
+	}
+	.product{
+		padding-top: 36upx;
+		padding-bottom: 18upx;
+		background: #FFFFFF;
+		padding:0 24upx;
+		.productName{
+			display: flex;
+			align-items: center;
+			padding:36upx 0 34upx 0;
+			border-bottom:1upx solid #F5F5F5;;
+			.text{
+				width: 120upx;
+				font-size: 28upx;
+				font-family: PingFangSC-Light, PingFang SC;
+				font-weight: 300;
+				color: #666666;
+				margin-right: 14upx;
+			}
+			input{
+				width: 500upx;
+			}
+			.input-placeholder{
+				font-size: 28upx;
+				font-family: PingFangSC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #E5E5E5;
+			}
+			.price{
+				display: flex;
+				align-items: center;
+				input{
+					width: 200upx;
+					height: 60upx;
+					border-radius: 4upx;
+					border: 1upx solid #E5E5E5;
+					text-align: center;
+				}
+				.septum{
+					color:#E5E5E5;
+					margin: 0 12upx;
+				}
+				.yuan{
+					margin-left: 12upx;
+					display: inline-block;
+					font-size: 28upx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #333333;
+				}
+			}
+			.schemenotice{
+				display: flex;
+				align-items: center;
+				.select{
+					width: 144upx;
+					height: 60upx;
+					text-align: center;
+					line-height: 60upx;
+					background: #F5F5F5;
+					border-radius: 8upx;
+					font-size: 24upx;
+					font-family: PingFangSC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #B3B3B3;
+					margin-right: 16upx;
+					&.active{
+						background: rgba(248, 181, 0, 0.15);
+						border-radius: 8upx;
+						color: #F8B500;
+						border: 2upx solid #F8B500;
+					}
+				}
+			}
+		}
+	}
+}

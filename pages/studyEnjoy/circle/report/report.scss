@@ -1,0 +1,99 @@
+.report_content{
+	font-size:28upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+	line-height:28upx;
+}
+.report_header{
+	width: 100%;
+	background-color: #FFFFFF;
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	.header{
+		width: 100%;
+		height: 88upx;
+		padding: 0 24upx 0 16upx;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1upx solid #F5F5F5;
+		.back{
+			width: 48upx;
+			height: 48upx;
+		}
+		.report{
+			font-size:36upx;
+			font-family:PingFangSC-Medium,PingFang SC;
+			font-weight:500;
+			line-height:36upx;
+		}
+		.submit{
+			color:rgba(248,181,0,1);
+		}
+	}
+}
+.content{
+	width: 100%;
+	padding: 0 24upx;
+	box-sizing: border-box;
+	.title{
+		font-size:32upx;
+		font-family:PingFangSC-Medium,PingFang SC;
+		font-weight:500;
+		color:rgba(51,51,51,1);
+		line-height:32upx;
+		margin: 32upx 0 48upx;
+	}
+	.reportType{
+		width: 100%;
+		margin-bottom: 8upx;
+		.reportType_ul{
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			.reportType_list{
+				padding: 18upx 24upx;
+				margin: 0 16upx 24upx 0;
+				background:rgba(245,245,245,1);
+				border-radius:8upx;
+				font-size:24upx;
+				font-family:PingFangSC-Medium,PingFang SC;
+				font-weight:500;
+				color:rgba(179,179,179,1);
+				line-height:24upx;
+			}
+			.active{
+				color:#F8B500;
+				background-color: rgba(248,181,0,0.13);
+			}
+		}
+	}
+	
+	.reportMain{
+		width: 100%;
+		textarea{
+			width:100%;
+			height:400upx;
+			background:rgba(245,245,245,1);
+			border-radius:12upx;
+			padding: 20upx;
+			box-sizing: border-box;
+			font-size:28upx;
+			font-family:PingFangSC-Regular,PingFang SC;
+			font-weight:400;
+			color:rgba(51,51,51,1);
+			line-height:38upx;
+		}
+		.textarea-placeholder{
+			font-size:28upx;
+			font-family:PingFangSC-Light,PingFang SC;
+			font-weight:300;
+			color:rgba(179,179,179,1);
+			line-height:38upx;
+		}
+	}
+}

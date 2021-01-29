@@ -1,0 +1,252 @@
+page{
+	background-color: #F8F9FA;
+}
+.circlePage_content{
+	font-size:28upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+	line-height:28upx;
+}
+.fixed_header{
+	width: 100%;
+	height: 88upx;
+	background:rgba(255,255,255,1);
+	position: fixed;
+	top: 0;
+	.header{
+		width: 100%;
+		height: 88upx;
+		background:rgba(255,255,255,1);
+		padding: 0 80upx;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
+		font-family:PingFangSC-Medium,PingFang SC;
+		font-weight:500;
+		.btn{
+			width:128upx;
+			height:48upx;
+			background:rgba(248,181,0,1);
+			border-radius:30upx;
+			font-size:24upx;
+			color:rgba(255,255,255,1);
+			line-height:24upx;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.back{
+			width: 48upx;
+			position: absolute;
+			left: 16upx;
+		}
+		.share{
+			width: 48upx;
+			position: absolute;
+			right: 16upx;
+		}
+	}
+}
+.circlePage_header{
+	width: 100%;
+	height: 550upx;
+	/*  #ifdef  APP-PLUS  */
+	height: calc(550upx + var(--status-bar-height));
+	/*  #endif  */
+	display: flex;
+	flex-direction: column;
+	background-size: 100% 100%; 
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	.glass,
+	.noGlass{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+	.noGlass{
+		z-index: 2;
+		color:rgba(255,255,255,1);
+		background-color: rgba(51,51,51,0.5);
+	}
+	.glass{
+		z-index: 1;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		opacity:0.5;
+		margin-top: -20upx;
+		filter:blur(32upx);
+	}
+	.header{
+		width: 100%;
+		height: 88upx;
+		margin-bottom: 24upx;
+		display: flex;
+		align-items: center;
+		position: relative;
+		.back{
+			width: 48upx;
+			position: absolute;
+			left: 16upx;
+		}
+		.share{
+			width: 48upx;
+			position: absolute;
+			right: 16upx;
+		}
+	}
+	.infor_content{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		font-family:PingFangSC-Medium,PingFang SC;
+		font-weight:500;
+		position: relative;
+		margin-bottom: 48upx;
+		.image{
+			width:104upx;
+			height:104upx;
+			border-radius:16upx;
+			margin: 0 16upx 0 24upx ;
+		}
+		.infor{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			.infor_name{
+				font-size:36upx;
+				line-height:36upx;
+			}
+		}
+		.btn{
+			width: 200upx;
+			position: absolute;
+			right: 24upx;
+			border-radius:32upx;
+		}
+	}
+	.dynamic{
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		padding: 0 24upx;
+		margin-bottom: 16upx;
+		.dynamic_ul{
+			display: flex;
+			align-items: center;
+			margin-right: 8upx;
+			min-width: 40upx;
+			image{
+				width:40upx;
+				height:40upx;
+				box-sizing: border-box;
+				border-radius: 100%;
+				border:1upx solid rgba(255,255,255,1);
+				background-image: url(/static/my/avatar.png);
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+			}
+			image:nth-of-type(2),
+			image:nth-of-type(3){
+				position: relative;
+				left: -16upx;
+			}
+			image:nth-of-type(3){
+				left: -32upx;
+			}
+		}
+		text{
+			font-size:28upx;
+			line-height:28upx;
+			position: relative;
+			left: -32upx;
+		}
+	}
+	.content{
+		height: 60upx;
+		padding: 0 24upx;
+		box-sizing: border-box;
+		font-size:24upx;
+		color:rgba(179,179,179,1);
+		line-height:30upx;
+		margin-bottom: 20upx;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+	}
+}
+
+.main_content{
+	width: 100%;
+	margin-top: -108upx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 4;
+}
+
+.nav{
+	width: 100%;
+	height: 78upx;
+	background-color: #FFFFFF;
+	position: sticky;
+	top: 88upx;
+	/*  #ifdef  APP-PLUS  */
+	top: calc(88upx + var(--status-bar-height));
+	/*  #endif  */
+	z-index: 4;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	padding: 0 212upx;
+	border-bottom: 1upx solid #E5E5E5;
+	.nav_list{
+		height: 78upx;
+		display: flex;
+		align-items: center;
+		justify-content: ceunter;
+		font-size:32upx;
+		font-family:PingFangSC-Medium,PingFang SC;
+		font-weight:500;
+		color:rgba(179,179,179,1);
+		line-height:32upx;
+		position: relative;
+		&.active{
+			color:rgba(51,51,51,1);
+			&:after{
+				content: '';
+				position: absolute;
+				left: 50%;
+				bottom: 0;
+				transform: translateX(-50%);
+				width:64upx;
+				height:6upx;
+				background-color: rgba(248,181,0,1);
+				border-radius:3upx;
+			}
+		}
+	}
+}
+.circle_content{
+	width: 100%;
+}
+.circle_ul{
+	width: 100%;
+}
+
+.baseline{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 24upx;
+	color:rgba(102,102,102,1);
+}

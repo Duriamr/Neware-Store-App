@@ -1,0 +1,466 @@
+image{
+	display: block;
+}
+.discount{
+	width: 100%;
+
+	.headerNav{
+		position: fixed;
+		top: 0;
+		height: 88upx;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 24upx;
+		box-sizing: border-box;
+		width: 100%;
+		z-index: 1;
+		background-color: #FFFFFF;
+		text{
+			font-size: 36upx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: #333333;
+		}
+		.btn{
+			width: 48upx;
+			height: 48upx;
+			image{
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	.header{
+		width: 100%;
+		position: relative;
+		image{
+			display: block;
+			width: 100%;
+			height: 100%;
+			font-size: 0;
+		}
+		.activityrules{
+			position: absolute;
+			top:280upx ;
+			/*  #ifdef  APP-PLUS  */
+			top: calc(280upx + var(--status-bar-height));
+			/*  #endif  */
+			right: 0;
+			width: 162upx;
+			height: 64upx;
+			text-align: center;
+			line-height: 64upx;
+			background: #CA1F37;
+			border-radius: 32upx 0px 0px 32upx;
+			font-size: 30upx;
+			font-family: Source Han Sans CN;
+			font-weight: 500;
+			color: #FEFEFE;
+			box-shadow:5px 5px 20px #aa1328 ;
+		}
+	}
+	.middle{
+		height: 377upx;
+		width: 100%;
+		position: relative;
+		.bj{
+			width: 100%; 
+		}
+		.show{
+			position: absolute;
+		}
+		.rightT{
+			width: 76upx;
+			top: 10upx;
+			right: 0;
+			z-index: 100;
+		}
+		.leftB{
+			width: 268upx;
+			height: 157upx;
+			bottom: -50upx;
+			left: 0;
+			z-index: 100;
+		}
+		.rightB{
+			width: 268upx;
+			height: 157upx;
+			bottom: -50upx;
+			right: 0;
+			z-index: 100;
+		}
+		.leftT{
+			width: 85upx;
+			top: 10upx;
+			left: 0;
+			z-index: 100;
+		}
+		.specialarea{
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			margin:auto;
+			width: 702upx;
+			height: 345upx;
+			display: flex;
+			justify-content:space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			image{
+				width: 220upx;
+				height: 160upx;
+			}
+		}
+	}
+	.content{
+		padding-top:30upx;
+		background: url(/static/activity/discount/bg.png);
+		.specialareaOne{
+			.time{
+				text-align: center;
+				font-size: 22upx;
+				font-family: Source Han Sans CN;
+				font-weight: 300;
+				color: #FE2F39;
+			}
+			image{
+				margin: 0upx auto;
+			}
+			.exclusiveNewePople{
+				margin: 24upx auto;
+				width:calc(100vw - 24upx - 24upx);
+				height: 401upx;
+				background: linear-gradient(180deg, #FFFAF7, #FEE0D6);
+				border: 2upx solid #E3D4CF;
+				border-radius: 40upx;
+				display: flex;
+				padding: 55upx 44upx;
+				box-sizing: border-box;
+				.left{
+					image{
+						width: 290upx;
+						height: 290upx;
+					}
+					margin-right: 30upx;
+				}
+				.right{
+					width: 290upx;
+					display: flex;
+					height: 290upx;
+					flex-direction: column;
+					justify-content: space-between;
+					.detale{
+						font-size: 36upx;
+						font-family: Source Han Sans CN;
+						font-weight: bold;
+						color: #654947;
+						text-overflow: -o-ellipsis-lastline;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+					}
+					.price{
+						display: flex;
+						align-items: flex-end;
+						.monny{
+							.originalprice{
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 300;
+								text-decoration: line-through;
+								color: #E28222;
+							}
+							.num{
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 400;
+								color: #FE2F39;
+							}
+						}
+						.discountPrice{
+							font-size: 46upx;
+							font-family: Impact;
+							font-weight: 400;
+							color: #FE2F39;
+						}
+					}
+					.btn{
+						margin-top: 28upx;
+						width: 235upx;
+						height: 60upx;
+						background: linear-gradient(180deg, #FF9A69, #FD1A47);
+						border-radius: 30upx;
+						font-size: 30upx;
+						font-family: Source Han Sans CN;
+						font-weight: 500;
+						color: #FFFFFF;
+						text-align: center;
+						line-height: 60upx;
+					}
+				}
+			}
+		}
+		.friendsHelp{
+			.time{
+				text-align: center;
+				font-size: 22upx;
+				font-family: Source Han Sans CN;
+				font-weight: 300;
+				color: #FE2F39;
+			}
+			image{
+				margin: 0upx auto;
+			}
+			.productName{
+				margin-top: 26upx;
+				font-size: 30upx;
+				font-family: Source Han Sans CN;
+				font-weight: 500;
+				color: #FF4B3D;
+				text-align: center;
+			}
+			.product{
+				margin: 0 auto;
+				margin-top: 39upx;
+				display: flex;
+				justify-content: space-between;
+				width: calc(100vw - 24upx - 24upx);
+				.productImg{
+					width: 346upx;
+					height: 420upx;
+					position: relative;
+					.searchDetaile{
+						position: absolute;
+						left: 0;
+						right: 0;
+						bottom: 20upx;
+						margin: auto;
+						width: 314upx;
+						height: 64upx;
+						display: flex;
+						justify-content: space-around;
+						align-items: center;
+						background: #FFF6EA;
+						border-radius: 32upx;
+						padding: 15upx 9upx 11upx 19upx;
+						box-sizing: border-box; 
+						.monny{
+							.originalprice{
+								font-size: 18upx;
+								font-family: Source Han Sans CN;
+								font-weight: 300;
+								text-decoration: line-through;
+								color: #E28222;
+							}
+							.num{
+								font-size: 16upx;
+								font-family: Source Han Sans CN;
+								font-weight: 400;
+								color: #FE2F39;
+							}
+						}
+						.discountPrice{
+							font-size:46upx;
+							font-family: Impact;
+							font-weight: 400;
+							color: #FE2F39;
+							letter-spacing:-2upx
+						}
+						.btn{
+							width: 120upx;
+							height: 48upx;
+							text-align: center;
+							line-height: 48upx;
+							background: linear-gradient(180deg, #FF9A69, #FD1A47);
+							border-radius: 24upx;	
+							font-size: 22upx;
+							font-family: Source Han Sans CN;
+							font-weight: 500;
+							color: #FFFFFF;
+						}
+					}
+				}
+			}
+		}
+		.rushPurchase{
+			.time{
+				text-align: center;
+				font-size: 22upx;
+				font-family: Source Han Sans CN;
+				font-weight: 300;
+				color: #FE2F39;
+			}
+			image{
+				margin: 0upx auto;
+			}
+			.product{
+				margin: 0 auto;
+				margin-top: 39upx;
+				display: flex;
+				justify-content: space-between;
+				width: calc(100vw - 24upx - 24upx);
+				.productImg{
+					width: 346upx;
+					height: 480upx;
+					position: relative;
+					.searchDetaile{
+						position: absolute;
+						left: 0;
+						right: 0;
+						bottom: 20upx;
+						margin: auto;
+						width: 314upx;
+						height: 64upx;
+						display: flex;
+						justify-content: space-around;
+						align-items: center;
+						background: #FFF6EA;
+						border-radius: 32upx;
+						padding: 15upx 9upx 11upx 19upx;
+						box-sizing: border-box; 
+						.monny{
+							.originalprice{
+								font-size: 18upx;
+								font-family: Source Han Sans CN;
+								font-weight: 300;
+								text-decoration: line-through;
+								color: #E28222;
+							}
+							.num{
+								font-size: 16upx;
+								font-family: Source Han Sans CN;
+								font-weight: 400;
+								color: #FE2F39;
+							}
+						}
+						.discountPrice{
+							font-size:46upx;
+							font-family: Impact;
+							font-weight: 400;
+							color: #FE2F39;
+							letter-spacing:-2upx
+						}
+						.btn{
+							width: 120upx;
+							height: 48upx;
+							text-align: center;
+							line-height: 48upx;
+							background: linear-gradient(180deg, #FF9A69, #FD1A47);
+							border-radius: 24upx;	
+							font-size: 22upx;
+							font-family: Source Han Sans CN;
+							font-weight: 500;
+							color: #FFFFFF;
+						}
+					}
+				}
+			}
+			.exclusiveNewePople{
+				margin: 24upx auto;
+				width:calc(100vw - 24upx - 24upx);
+				height: 401upx;
+				background: linear-gradient(180deg, #FFFAF7, #FEE0D6);
+				border: 2upx solid #E3D4CF;
+				border-radius: 40upx;
+				display: flex;
+				padding: 55upx 44upx;
+				box-sizing: border-box;
+				.left{
+					image{
+						width: 290upx;
+						height: 290upx;
+					}
+					margin-right: 30upx;
+				}
+				.right{
+					width: 290upx;
+					display: flex;
+					height: 290upx;
+					flex-direction: column;
+					justify-content: space-between;
+					.detale{
+						font-size: 36upx;
+						font-family: Source Han Sans CN;
+						font-weight: bold;
+						color: #654947;
+						text-overflow: -o-ellipsis-lastline;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+					}
+					.price{
+						display: flex;
+						align-items: flex-end;
+						.monny{
+							.originalprice{
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 300;
+								text-decoration: line-through;
+								color: #E28222;
+							}
+							.num{
+								font-size: 24upx;
+								font-family: Source Han Sans CN;
+								font-weight: 400;
+								color: #FE2F39;
+							}
+						}
+						.discountPrice{
+							font-size: 46upx;
+							font-family: Impact;
+							font-weight: 400;
+							color: #FE2F39;
+						}
+					}
+					.btn{
+						margin-top: 28upx;
+						width: 235upx;
+						height: 60upx;
+						background: linear-gradient(180deg, #FF9A69, #FD1A47);
+						border-radius: 30upx;
+						font-size: 30upx;
+						font-family: Source Han Sans CN;
+						font-weight: 500;
+						color: #FFFFFF;
+						text-align: center;
+						line-height: 60upx;
+					}
+				}
+			}
+		}
+	}
+	
+	.activi1{
+		margin-top: 28upx;
+		width: 235upx;
+		height: 60upx;
+		text-align: center;
+		line-height: 60upx;
+		border-radius: 30upx;
+		background: #eacfcf;
+		font-size: 30upx;
+		font-family: PingFangSC-Regular, PingFang SC;
+		font-weight: 400;
+		color: #f9ebeb;
+	}
+	.activi2{
+		width: 120upx;
+		height: 48upx;
+		text-align: center;
+		line-height: 48upx;
+		background: #eacfcf;
+		border-radius: 24upx;	
+		font-size: 22upx;
+		font-family: Source Han Sans CN;
+		font-weight: 500;
+		color: #f9ebeb;
+	}
+}

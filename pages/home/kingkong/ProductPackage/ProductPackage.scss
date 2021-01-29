@@ -1,0 +1,140 @@
+page{
+	background-color: #4AB1D5;
+}
+.pp_header{
+	width: 100%;
+}
+.pp_content{
+	width: 100%;
+	box-sizing: border-box;
+	padding:0 24upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:500;
+	color:#666666;
+}
+.ranking{
+	width: 100%;
+	margin-top: 16upx;
+	.rk_list{
+		width: 100%;
+		height:312upx;
+		background-image: url(../../../../static/home/kingkong/ProductPackage/background.png);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		box-sizing: border-box;
+		padding: 54upx 54upx 0 42upx;
+		margin-bottom: 24upx;
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		z-index: 1;
+		.list_img{
+			width:212upx;
+			height:212upx;
+			box-sizing: border-box;
+			border: 6upx solid #A7E2F5;
+			border-radius: 8upx;
+		}
+		.list_right{
+			width: 376upx;
+			height: 212upx;
+			box-sizing: border-box;
+			padding: 8upx 0 10upx 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			.top{
+				.title{
+					width: 376upx;
+					font-size:32upx;
+					font-weight:700;
+					line-height:32upx;
+					color: #3B85CC;
+					margin-bottom: 24upx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+				.subTitle{
+					width: 376upx;
+					font-size:24upx;
+					line-height:30upx;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+				}
+			}
+			.bot{
+				// height: 40upx;
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				.bot_left{
+					font-weight:600;
+					background: linear-gradient(180deg,rgba(97,213,240,1) 0%,rgba(52,120,209,1) 100%);
+					-webkit-background-clip: text;
+					color: transparent;
+					.currency{
+						font-size:24upx;
+						line-height:24upx;
+					}
+					.price{
+						font-size:42upx;
+						line-height:42upx;
+					}
+				}
+				.bot_right{
+					font-size:28upx;
+					font-weight:500;
+					color:rgba(59,133,204,1);
+					line-height:28upx;
+					display: flex;
+					align-items: center;
+					font-family:PingFangSC-Medium,PingFang SC;
+					.bot_img{
+						width: 22upx;
+					}
+				}
+			}
+		}
+		.vertical{
+			height: 24upx;
+			width: 6upx;
+			background-color: #A7E2F5;
+			position: absolute;
+			bottom: -24upx;
+		}
+		.vertical_left{
+			left: 48upx;
+		}
+		.vertical_right{
+			right: 48upx;
+		}
+	}
+}
+.classTitle{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 24upx;
+	.ct_left{
+		width:240upx;
+		height:6upx;
+		background:linear-gradient(to left,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	}
+	.name{
+		font-size:36upx;
+		font-family:PingFangSC-Semibold,PingFang SC;
+		font-weight:600;
+		color:#FFFFFF;
+		line-height:36upx;
+		letter-spacing:2upx
+	}
+	.ct_right{
+		width:240upx;
+		height:6upx;
+		background:linear-gradient(to right,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	}
+}

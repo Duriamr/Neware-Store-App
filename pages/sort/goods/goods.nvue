@@ -1,0 +1,1295 @@
+<template>
+	<view class="goods_content">
+		<view class="goods_navigation">
+			<view class="goods_navigation_status" :style="{opacity: afterHeaderOpacity,height:status+'px'}"></view>
+			<view class="before" :style="{opacity:beforeHeaderOpacity,zIndex:beforeHeaderzIndex,top:status+'px'}">
+				<view class="before_btn">
+					<image class="btn_img" src="/static/goods/back.png" @tap.stop="$back"/>
+				</view>
+				
+				<view class="before_btn">
+					<image class="btn_img" src="/static/goods/share.png" @tap="showShare($event)" />
+				</view>
+			</view>
+			
+			<view class="after" :style="{opacity:afterHeaderOpacity,zIndex:afterHeaderzIndex,top:status+'px'}">
+				<view class="after_btn">
+					<image class="btn_img" src="/static/goods/back_black.png" @tap.stop="$back"/>
+				</view>
+				
+				<view class="middle">
+					<text class="middle_text" :class="[selectAnchor==index?'middle_text_on':'']" v-for="(anchor,index) in anchorlist" :key="index" >{{anchor.name}}</text>
+				</view>
+				
+				<view class="after_btn">
+					<image class="btn_img" src="/static/goods/share_black.png" @tap="showShare($event)" />
+				</view>
+			</view>
+		</view>
+
+		<view class="goods_header">
+			<view class="goods_banner">
+				<swiper class="goods_swiper" :autoplay="isautoplay" :duration="500" :circular="true" @change="handleChange">
+					<swiper-item v-if="productInfo.videoUrl" >
+						<view>
+							<video class="goods_swiper_list_iav" id='video' @play="play" @pause="pause" :src="productInfo.videoUrl" :poster="productImage[0]" :show-fullscreen-btn='true' :enable-progress-gesture='false' :muted='true' object-fit='cover'></video>
+						</view>
+					</swiper-item>
+					<swiper-item v-for="(item,index) in productImage" :key="index">
+						<view>
+							<image class="goods_swiper_list_iav" :src="item" @tap.stop = "$previewImg(index,productImage)" />
+						</view>
+						
+					</swiper-item>
+				</swiper>
+			</view>
+			<view class="goods_header_indicator">
+				<text class="goods_header_indicator_text goods_header_indicator_fristText">{{selectIndex+1}}</text>
+				<text class="goods_header_indicator_text">/{{productInfo.videoUrl?productImage.length+1:productImage.length}}</text>
+			</view>
+		</view>
+		
+		<view class="goods_info">
+			<view class="info_top">
+				<view class="money" v-if="productInfo.salePrice>=0">
+					<text class="currency">￥</text>
+					<text class="price">{{productInfo.salePrice}}</text>					
+				</view>
+				<view class="money" v-if="productInfo.salePrice<0">
+					<text class="price" style="font-size:36upx;" >价格请联系客服</text>
+				</view>
+				<text class="info_stocks">库存：{{productInfo.inventory}}</text>
+			</view>
+			<text class="info_title">{{productInfo.productName}}</text>
+			<text class="info_subTitle" v-if="productInfo.sellingPoints">{{productInfo.sellingPoints}}</text>
+		</view>
+		
+		<view class="goods_main">
+			<view class="main_list" @tap="showSer($event)">
+				<view>
+					<text class="main_list_left_text">服务说明</text>
+				</view>
+				<view class="main_list_right">
+					<view class="main_list_right_list">
+						<image class="main_list_right_hook" src="/static/goods/hook.png" />
+						<text class="main_list_right_text">无忧退货</text>
+					</view>
+					<view class="main_list_right_list">
+						<image class="main_list_right_hook" src="/static/goods/hook.png" />
+						<text class="main_list_right_text">快速退款</text>
+					</view>
+					<view class="main_list_right_list">
+						<image class="main_list_right_hook" src="/static/goods/hook.png" />
+						<text class="main_list_right_text">免费包邮</text>
+					</view>
+					<image class="main_list_right_go" src="/static/public/go_grey.png"></image>
+				</view>
+			</view>
+			<view class="main_list" @tap="showPara($event)">
+				<view>
+					<text class="main_list_left_text">商品参数</text>
+				</view>
+				<view class="main_list_right">
+					<image class="main_list_right_go" src="/static/public/go_grey.png"></image>
+				</view>
+			</view>
+			
+			<!-- #ifndef H5 -->
+			<view class="main_list" @tap="showFormat($event)" v-if="productInfo.salePrice>=0">
+				<view>
+					<text class="main_list_left_text">选择规格</text>
+				</view>
+				<view class="main_list_right">
+					<image class="main_list_right_go" src="/static/public/go_grey.png"></image>
+				</view>
+			</view>
+			<!-- #endif -->
+			
+			<view class="main_list" @tap="showInt($event)">
+				<view>
+					<text class="main_list_left_text">商品介绍</text>
+				</view>
+				<view class="main_list_right">
+					<image class="main_list_right_go" src="/static/public/go_grey.png"></image>
+				</view>
+			</view>
+		</view>
+		
+		
+		
+		<view id="middle" style="margin-top: 24rpx;">
+		<!--用户评价-->
+			<view class="goods_eva">
+				<view class="goods_hgroup">
+					<view class="hgroup_left">
+						<text class="hgroup_left_text" >用户评价</text>
+						<text class="hgroup_left_subtext">({{productInfo.commentCount}})</text>
+					</view>
+					<view class="hgroup_right" @tap.stop="toEva()" >
+						<text class="hgroup_right_text">查看更多</text>
+						<image class="hgroup_right_img" src="/static/public/go_grey.png" />
+					</view>
+				</view>
+			    <view class="eva_main" v-if="productInfo.productCommentDto && productInfo.commentCount > 0">
+					<view class="eva_top">
+						<image class="eva_top_img" :src="productInfo.productCommentDto.headImage" />
+						<view class="eva_top_right">
+							<text class="eva_top_right_uesrname">{{productInfo.productCommentDto.nickName}}</text>
+							<text class="eva_top_right_date">{{productInfo.productCommentDto.createTime.slice(0,-8)}}</text>
+						</view>
+					</view>
+					<text class="eva_comment_text">{{productInfo.productCommentDto.content}}</text>
+					
+					<view class="comment_img">
+						<view class="comment_item" :class="'comment_item'+index" v-for="(item,index) in productInfo.productCommentDto.image" :key="item">
+							<image class="comment_item_img"  :src=item mode="aspectFill" @tap.stop="$previewImg(index,productInfo.productCommentDto.image)"></image>
+						</view>
+					</view>
+				</view>
+				<view class="noevalute" v-else>
+					<text class="noevalute_text">该商品还没有评价</text>
+				</view>
+			</view>
+			
+			<!--同类推荐-->
+			<view class="goods_rec" v-if="similar.length > 0">
+				<view class="goods_hgroup">
+					<view class="hgroup_left">
+						<text class="hgroup_left_text">同类推荐</text>
+					</view>
+				</view>
+				<view class="rec_main">
+					<scroll-view class="rec_scroll" :scroll-x="true">
+						<view class="rec_list" v-for="(item, index) in similar" :key="index" @tap.stop="$toGoods(item.id)">
+							<view class="rec_item">
+								<image class="rec_item_img" :src="item.imgUrl" />
+								<text class="rec_itme_title">{{item.productName}}</text>
+								<text class="rec_itme_subtitle" :class="item.sellingPoints == null ? ' title_placeholder' : ''">{{item.sellingPoints}}</text>
+								<view class="bot" v-if="item.salePrice>=0">
+									<text class="bot_currency">￥</text>
+									<text class="bot_price">{{item.salePrice}}</text>
+								</view>
+								<view class="bot" v-if="item.salePrice<0">
+									<text class="bot_price">价格请联系客服</text>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+		
+		<view id="bot">
+			<view class="detailsHeader">
+				<view class="goods_hgroup">
+					<view class="hgroup_left">
+						<text class="hgroup_left_text">商品详情</text>
+					</view>
+				</view>
+			</view>
+			<view class="details">
+				<image class="details_img" v-for="(item2,index2) in productInfo.detailImgUrl" :key="index2" :src="item2" mode="widthFix"></image>
+			</view>
+		</view>
+		
+		<!-- #ifndef H5 -->
+		<view class="footer_placeholder"></view>
+		<view class="goods_footer">
+			<view class="footer">
+				<view class="icons">
+					<view class="icon icon1" @tap="toService($event)">
+						<image class="footer_icon_img" src="/static/goods/service.png"></image>
+						<text class="footer_icon_text">客服</text>
+					</view>
+					<view class="icon" @tap="toCart($event)">
+						<image class="footer_icon_img" src="/static/goods/shoppingcart.png"></image>
+						<view class="badge" v-if="cartBadge > 0">
+							<text class="badgeNum">{{cartBadge}}</text>
+						</view>
+						<text class="footer_icon_text">购物车</text>
+					</view>
+					<view class="icon" @tap="cancelFavor($event)" v-if="productInfo.isCollection">
+						<image class="footer_icon_img" src="/static/goods/favor_selected.png"></image>
+						<text class="footer_icon_text">收藏</text>
+					</view>
+					<view class="icon" @tap="addFavor($event)" v-else>
+						<image class="footer_icon_img" src="/static/goods/favor.png"></image>
+						<text class="footer_icon_text">收藏</text>
+					</view>
+				</view>
+				<view class="btns" v-if="productInfo.salePrice>=0">
+					<view class="btn1" @tap="showShopping($event)">
+						<text class="btn_text">加入购物车</text>
+					</view>
+					<view class="btn2" @tap="showNow($event)">
+						<text class="btn_text">立即购买</text>
+					</view>
+				</view>
+				<view class="btns" v-if="productInfo.salePrice<0">
+					<view class="btn1" style="background-color: #E5E5E5;">
+						<text class="btn_text">加入购物车</text>
+					</view>
+					<view class="btn2" style="background-color: #E5E5E5;">
+						<text class="btn_text">立即购买</text>
+					</view>
+				</view>
+			</view>
+			<view class="safety"></view>
+		</view>
+		<!-- #endif -->
+		
+		<!--服务说明弹窗-->
+		<view class="popup" v-if="serShow" @touchmove.stop.prevent @tap.stop="hidePopup()">
+			<view class="layer" @tap="nvueStop($event)">
+				<view class="layer_content">
+					<view class="layer_title">服务说明</view>
+					<view class="ser_list">
+						<image class="ser_list_hook" src="/static/goods/hook.png"></image>
+						<view class="ser_list_right">
+							<text class="ser_list_title">无忧退货</text>
+							<text class="ser_list_details">自收到商品之日起30天内，可在线申请无忧退货服务。</text>
+						</view>
+					</view>
+					<view class="ser_list">
+						<image class="ser_list_hook" src="/static/goods/hook.png"></image>
+						<view class="ser_list_right">
+							<text class="ser_list_title">快速退款</text>
+							<text class="ser_list_details">收到退货包裹并确认无误后，将在48小时内办理退款，退款将原路返回，不同银行处理时间不同，预 计1-5个工作日到账。</text>
+						</view>
+					</view>
+					<view class="ser_list">
+						<image class="ser_list_hook" src="/static/goods/hook.png"></image>
+						<view class="ser_list_right">
+							<text class="ser_list_title">免费包邮</text>
+							<text class="ser_list_details">单笔订单金额(不含运费)满88元可免邮费，不满88 元，单笔订单收取10元邮费。</text>
+						</view>
+					</view>
+				</view>
+				<view class="layer_btns">
+					<view class="layer_btn" @tap.stop="hidePopup()">
+						<text class="layer_btn_text">完成</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<!--商品参数弹窗-->
+		<view class="popup" v-if="paraShow" @touchmove.stop.prevent @tap.stop="hidePopup()">
+			<view class="layer" @tap="nvueStop($event)">
+				<view class="layer_content">
+					<view class="layer_title">商品参数</view>
+					<view class="para_ul">
+						<view class="para_list">
+							<text class="para_list_left">商品编号</text>
+							<text class="para_list_right">{{productInfo.productCode}}</text>
+						</view>
+						<view class="para_list">
+							<text class="para_list_left">物料编码</text>
+							<text class="para_list_right">{{productInfo.nsapCode}}</text>
+						</view>
+						<view class="para_list">
+							<text class="para_list_left">规格</text>
+							<text class="para_list_right">{{productInfo.unit}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="layer_btns">
+					<view class="layer_btn" @tap.stop="hidePopup()">
+						<text class="layer_btn_text">完成</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<!--选择规格弹窗-->
+		<view class="popup" v-if="formatShow" @touchmove.stop.prevent @tap.stop="hidePopup()">
+			<view class="layer format_layer" @tap.stop="nvueStop($event)">
+				<view class="cancel" @tap.stop="hidePopup()">
+					<image class="cancel_img" src="/static/goods/x.png"></image>
+				</view>
+				<view class="format_content">
+					<view class="format_info">
+						<image class="format_info_img" :src="formatImg" @tap="lookFormatImg(formatImg,$event)" />
+						<view>
+							<view class="format_info_money" v-if="formatPrice>=0">
+								<text class="format_info_currency">￥</text>
+								<text class="format_info_price">{{formatPrice}}</text>
+							</view>
+							<view class="format_info_money" v-if="formatPrice<0">
+								<text class="format_info_price">价格请联系客服</text>
+							</view>
+							<text class="format_info_warning">{{warning}}</text>
+						</view>
+					</view>
+					
+					<scroll-view class="format_scroll" scroll-y="true" >
+						<view class="format_list" v-if="relatedProduct.length > 0">
+							<view class="format_list_ul" style="margin-top: 0;">
+								<view class="format_list_item" :class="id==item.id?'format_list_item_act':''" v-for="(item, index) in relatedProduct" :key="index" @tap="tabGoods(item.id,$event)">
+									<text class="format_list_item_text" :class="id==item.id?'format_list_item_text_act':''">{{item.productName}}</text>
+								</view>
+							</view>
+						</view>
+						
+						<view class="format_list" v-for="(item, index) in productSkuData.specsList" :key="'format'+index">
+							<text class="format_list_title">{{item.name}}</text>
+							<view class="format_list_ul">
+								<view class="format_list_item" :class="item.index==index2?'format_list_item_act':''" v-for="(item2, index2) in item.options" :key="index2" @tap="tabFormat(index,index2,$event)">
+									<text class="format_list_item_text" :class="item.index==index2?'format_list_item_text_act':''">{{item2.name}}</text>
+								</view>
+							</view>
+						</view>
+						
+						<view class="format_quantity">
+							<text class="format_list_title">数量</text>
+							
+							<view class="quantity_number">
+								<image class="sub" src="/static/shoppingCart/sub_no.png" v-if="this.quantity <= this.productInfo.moq" />
+								<image class="sub" src="/static/shoppingCart/sub.png" @tap="sub($event)" v-if="this.quantity > this.productInfo.moq" />
+								
+								<input class="format_input" type="number" v-model="quantity"  @blur="inpbl($event)" />
+							
+								<image class="add" src="/static/shoppingCart/add.png" @tap="add($event)" />
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+				
+				<view class="layer_btns" v-if="formatType == 1&&formatPrice>=0">
+					<view class="layer_btn_s" style="background-color: #F75C50;" @tap="joinCart($event)">
+						<text class="layer_btn_text">加入购物车</text>
+					</view>
+					<view class="layer_btn_s" @tap="toConfirmation($event)">
+						<text class="layer_btn_text">立即购买</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 1&&formatPrice<0">
+					<view class="layer_btn_s" style="background-color: #E5E5E5;">
+						<text class="layer_btn_text">加入购物车</text>
+					</view>
+					<view class="layer_btn_s" style="background-color: #E5E5E5;">
+						<text class="layer_btn_text">立即购买</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 2">
+					<view class="layer_btn" style="background-color: #B3B3B3;">
+						<text class="layer_btn_text">已售罄</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 0">
+					<view class="layer_btn" style="background-color: #B3B3B3;">
+						<text class="layer_btn_text">暂不销售</text>
+					</view>
+				</view>
+				
+			</view>
+		</view>
+		
+		<!--选择购物车弹窗-->
+		<view class="popup" v-if="shoppingShow" @touchmove.stop.prevent @tap="hidePopup()">
+			<view class="layer format_layer" @tap.stop="nvueStop($event)">
+				<view class="cancel" @tap.stop="hidePopup()">
+					<image class="cancel_img" src="/static/goods/x.png"></image>
+				</view>
+				<view class="format_content">
+					<view class="format_info">
+						<image class="format_info_img" :src="formatImg" @tap="lookFormatImg(formatImg,$event)" />
+						<view>
+							<view class="format_info_money" v-if="formatPrice>=0">
+								<text class="format_info_currency">￥</text>
+								<text class="format_info_price">{{formatPrice}}</text>
+							</view>
+							<view class="format_info_money" v-if="formatPrice<0">
+								<text class="format_info_price">价格请联系客服</text>
+							</view>
+							<text class="format_info_warning">{{warning}}</text>
+						</view>
+					</view>
+					
+					<scroll-view class="format_scroll" scroll-y="true" >
+						<view class="format_list" v-if="relatedProduct.length > 0">
+							<view class="format_list_ul" style="margin-top: 0;">
+								<view class="format_list" :class="id==item.id?'format_list_item_act':''" v-for="(item, index) in relatedProduct" :key="index" @tap="tabGoods(item.id,$event)">
+									<text class="format_list_item_text" :class="id==item.id?'format_list_item_text_act':''">{{item.productName}}</text>
+								</view>
+							</view>
+						</view>
+						
+						<view class="format_list" v-for="(item, index) in productSkuData.specsList" :key="'format'+index">
+							<text class="format_list_title">{{item.name}}</text>
+							<view class="format_list_ul">
+								<view class="format_list_item" :class="item.index==index2?'format_list_item_act':''" v-for="(item2, index2) in item.options" :key="index2" @tap="tabFormat(index,index2,$event)">
+									<text class="format_list_item_text" :class="item.index==index2?'format_list_item_text_act':''">{{item2.name}}</text>
+								</view>
+							</view>
+						</view>
+						
+						<view class="format_quantity">
+							<text class="format_list_title">数量</text>
+							
+							<view class="quantity_number">
+								<image class="sub" src="/static/shoppingCart/sub_no.png" v-if="this.quantity <= this.productInfo.moq" />
+								<image class="sub" src="/static/shoppingCart/sub.png" @tap="sub($event)" v-if="this.quantity > this.productInfo.moq" />
+								
+								<input class="format_input" type="number" v-model="quantity"  @blur="inpbl($event)" />
+							
+								<image class="add" src="/static/shoppingCart/add.png" @tap="add($event)" />
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+				
+				<view class="layer_btns" v-if="formatType == 1&&formatPrice>=0">
+					<view class="layer_btn" style="background-color: #F75C50;" @tap="joinCart($event)">
+						<text class="layer_btn_text">加入购物车</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 1&&formatPrice<0">
+					<view class="layer_btn" style="background-color: #E5E5E5;">
+						<text class="layer_btn_text">加入购物车</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 2">
+					<view class="layer_btn" style="background-color: #B3B3B3;">
+						<text class="layer_btn_text">已售罄</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 0">
+					<view class="layer_btn" style="background-color: #B3B3B3;">
+						<text class="layer_btn_text">暂不销售</text>
+					</view>
+				</view>
+				
+			</view>
+		</view>
+		
+		<!--选择立即购买弹窗-->
+		<view class="popup" v-if="nowShow" @touchmove.stop.prevent @tap.stop="hidePopup()">
+			<view class="layer format_layer" @tap="nvueStop($event)">
+				<view class="cancel" @tap.stop="hidePopup()">
+					<image class="cancel_img" src="/static/goods/x.png"></image>
+				</view>
+				<view class="format_content">
+					<view class="format_info">
+						<image class="format_info_img" :src="formatImg" @tap="lookFormatImg(formatImg,$event)" />
+						<view>
+							<view class="format_info_money" v-if="formatPrice>=0">
+								<text class="format_info_currency">￥</text>
+								<text class="format_info_price">{{formatPrice}}</text>
+							</view>
+							<view class="format_info_money" v-if="formatPrice<0">
+								<text class="format_info_price">价格请联系客服</text>
+							</view>
+							<text class="format_info_warning">{{warning}}</text>
+						</view>
+					</view>
+					
+					<scroll-view class="format_scroll" scroll-y="true" >
+						<view class="format_list" v-if="relatedProduct.length > 0">
+							<view class="format_list_ul" style="margin-top: 0;">
+								<view class="format_list_item" :class="id==item.id?'format_list_item_act':''" v-for="(item, index) in relatedProduct" :key="index" @tap="tabGoods(item.id,$event)">
+									<text class="format_list_item_text" :class="id==item.id?'format_list_item_text_act':''">{{item.productName}}</text>
+								</view>
+							</view>
+						</view>
+						
+						<view class="format_list" v-for="(item, index) in productSkuData.specsList" :key="'format'+index">
+							<text class="format_list_title">{{item.name}}</text>
+							<view class="format_list_ul">
+								<view class="format_list_item" :class="item.index==index2?'format_list_item_act':''" v-for="(item2, index2) in item.options" :key="index2" @tap="tabFormat(index,index2,$event)">
+									<text class="format_list_item_text" :class="item.index==index2?'format_list_item_text_act':''">{{item2.name}}</text>
+								</view>
+							</view>
+						</view>
+						
+						<view class="format_quantity">
+							<text class="format_list_title">数量</text>
+							
+							<view class="quantity_number">
+								<image class="sub" src="/static/shoppingCart/sub_no.png" v-if="this.quantity <= this.productInfo.moq" />
+								<image class="sub" src="/static/shoppingCart/sub.png" @tap="sub($event)" v-if="this.quantity > this.productInfo.moq" />
+								
+								<input class="format_input" type="number" v-model="quantity"  @blur="inpbl($event)" />
+							
+								<image class="add" src="/static/shoppingCart/add.png" @tap="add($event)" />
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+				
+				<view class="layer_btns" v-if="formatType == 1&&formatPrice>=0">
+					<view class="layer_btn" @tap="toConfirmation($event)">
+						<text class="layer_btn_text">立即购买</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 1&&formatPrice<0">
+					<view class="layer_btn" style="background-color: #E5E5E5;">
+						<text class="layer_btn_text">立即购买</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 2">
+					<view class="layer_btn" style="background-color: #B3B3B3;">
+						<text class="layer_btn_text">已售罄</text>
+					</view>
+				</view>
+				<view class="layer_btns" v-if="formatType == 0">
+					<view class="layer_btn" style="background-color: #B3B3B3;">
+						<text class="layer_btn_text">暂不销售</text>
+					</view>
+				</view>
+				
+			</view>
+		</view>
+		
+		<!--商品介绍弹窗-->
+		<view class="popup" v-if="intShow" @touchmove.stop.prevent @tap="hidePopup()">
+			<view class="layer" @tap="nvueStop($event)">
+				<view class="layer_content">
+					<view class="layer_title">商品介绍</view>
+					<view class="int_ul">
+						<text class="int_list">{{productInfo.description}}</text>
+					</view>
+				</view>
+				<view class="layer_btns">
+					<view class="layer_btn" @tap="hidePopup()">
+						<text class="layer_btn_text">完成</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<!-- #ifdef H5 -->
+		<view class="h5_footer">
+			<view class="footer_left">
+				<image class="footer_image" src="/static/public/floatImg.png" />
+				<text class="footer_left_text">您的好友送您一份新人科研好礼</text>
+			</view>
+			<view class="footer_right" @tap.stop='$downNASA'>
+				<text class="footer_right_text">下载App领取</text>
+			</view>
+		</view>
+		<!-- #endif -->  
+		
+		<!-- #ifdef APP-PLUS -->
+		<view class="share" v-if="shareShow" @touchmove.stop.prevent @tap.stop="hidePopup()">
+			<view class="share_layer" @tap="nvueStop($event)">
+				<view class="share_content">
+					<view class="share_title">
+						分享
+					</view>
+					<view class="shareUl">
+						<view class="shareList" @tap.stop="shareWX(shareObj)">
+							<image class="shareImg" src="/static/public/share/wx.png" />
+							<text class="shareName">微信好友</text>
+						</view>
+						<view class="shareList" @tap.stop="sharePYQ(shareObj)">
+							<image class="shareImg" src="/static/public/share/pyq.png" />
+							<text class="shareName">朋友圈</text>
+						</view>
+						<!-- <view class="shareList" @tap.stop="shareQQ(shareObj)">
+							<image class="shareImg" src="/static/public/share/qq.png" />
+							<text class="shareName">QQ</text>
+						</view> -->
+						<view class="shareList" @tap.stop="shareCopy(shareObj)">
+							<image class="shareImg" src="/static/public/share/copy.png" />
+							<text class="shareName">复制链接</text>
+						</view>
+					</view>
+				</view>
+				<view class="share_btn" @tap.stop="hidePopup()">
+					<text class="share_btn_text">取消</text>
+				</view>
+			</view>
+		</view>
+		<!-- #endif --> 
+	</view>
+</template>
+
+<script>
+	//接口
+	import {url,wss,h5Url} from '@/url.js'
+	// #ifdef  APP-PLUS-NVUE
+	// 路由
+	import {toPath,back,toHome,toGoods,toLogin,to401} from '@/common/router.js'
+	// 请求超时
+	import requestFail from '@/common/requestFail.js'
+	// 获取购物车badge
+	import getCartBadge from '@/common/getCartBadge.js';
+	// 查看图片
+	import previewImg from '@/common/previewImg.js';
+	// #endif
+	export default {
+		data() {
+			return {
+				status:0,
+				$url:'',
+				$h5Url:'',
+				
+				isautoplay:true, // 是
+				selectIndex:0,
+				//商品区
+				id:0,
+				productInfo:{},
+				productImage:[],
+				quantity:1,
+				similar:[],//同类商品
+				cartBadge:"",
+				
+				//渐变控制
+				beforeHeaderzIndex: 99,//层级
+				afterHeaderzIndex: 90,//层级
+				beforeHeaderOpacity: 1,//不透明度
+				afterHeaderOpacity: 0,//不透明度
+				
+				//锚点控制
+				anchorlist:[],//导航条锚点
+				selectAnchor:0,//选中锚点
+				
+				//弹窗区
+				serShow:false,//服务弹窗控制
+				paraShow:false,//参数弹窗控制
+				formatShow:false,//规格弹窗
+				shoppingShow:false,
+				nowShow:false,
+				intShow:false,//介绍弹窗
+					
+				once:false,//多次点击控制
+				
+				//用户区
+				loginType:false,
+				token:"",
+				nickname:'',
+				userUniqueId:'',
+				
+				//分享区
+				shareShow:false,
+				shareObj:{},
+				
+				//规格区
+				formatImg:"",//规格图片
+				formatPrice:0,//规格价格
+				warning:'请选择',//提示
+				productSkuData:{
+					specsList:[]//规格
+				},
+				productSkuDtos:[],//所有sku
+				relatedProduct:[],//关联商品
+				skuArr:[],//sku数组
+				skuStr:'',//sku
+				formatType:1,
+				
+				
+				userId:uni.getStorageSync('onlyID')||0,
+				videoNode:'',
+				
+			};
+		},
+		 onLoad(option) {
+			// 接口
+			this.$url = url
+			this.$h5Url = h5Url
+			// #ifdef  APP-PLUS-NVUE
+			// 路由
+			this.$toPath = toPath
+			this.$back = back,
+			this.$toHome = toHome
+			this.$toGoods = toGoods
+			this.$toLogin = toLogin
+			this.$to401 = to401
+			// 请求超时
+			this.$requestFail = requestFail
+			// 获取购物车badge
+			this.$getCartBadge = getCartBadge
+			// 查看图片
+			this.$previewImg = previewImg
+			// #endif
+			
+			this.status = uni.getSystemInfoSync().statusBarHeight
+			
+			this.id = option.goodsId;
+			this.anchorlist = [];
+			this.getLoadData(1);
+		},
+		onShow() {
+			this.once = false
+			this.token = uni.getStorageSync('token');
+			this.$getCartBadge();
+		},
+		onBackPress(e){
+			if(this.bombFormat==='show'||this.bombShopping==='show'||this.bombNow==='show'){
+				this.hideFormat()
+				return true;
+			}
+		},
+		onPageScroll(e) {
+			//锚点切换
+			this.selectAnchor = e.scrollTop>=this.anchorlist[2].top?2:e.scrollTop>=this.anchorlist[1].top?1:0;
+			//导航栏渐变
+			let tmpY = 250;
+			e.scrollTop = e.scrollTop > tmpY ? 250 : e.scrollTop;
+			this.afterHeaderOpacity = e.scrollTop * (1 / tmpY);
+			this.beforeHeaderOpacity = 1 - this.afterHeaderOpacity;
+			//切换层级
+			this.beforeHeaderzIndex = e.scrollTop > 0 ? 90 : 99;
+			this.afterHeaderzIndex = e.scrollTop > 0 ? 99 : 90;
+		},
+		watch:{
+			skuStr:function(val){
+				if(this.productSkuDtos.length == 0){
+					this.formatImg = this.productImage[0]
+					this.formatPrice = this.productInfo.salePrice
+					this.quantity = parseInt(this.productInfo.moq)
+					this.formatType = 0
+					return false
+				}
+				for(let i=0; i<this.productSkuDtos.length; i++){
+					if(val == this.productSkuDtos[i].sku){
+						this.formatImg = this.productSkuDtos[i].skuImg
+						this.formatPrice = this.productSkuDtos[i].salePrice
+						this.quantity = parseInt(this.productSkuDtos[i].moq)
+						if(this.productSkuDtos[i].inventory >= this.productSkuDtos[i].moq){
+							this.formatType = 1
+						}else{
+							this.formatType = 2
+						}
+						break;
+					}else{
+						this.formatImg = this.productImage[0]
+						this.formatPrice = this.productInfo.salePrice
+						this.quantity = parseInt(this.productInfo.moq)
+						this.formatType = 0
+					}
+				}
+			}
+		},
+		
+		methods: {
+			shareWX(obj){
+				uni.share({
+					provider: "weixin",
+					type: 0,
+					scene: "WXSceneSession",
+					title:obj.title,
+					summary:obj.summary,
+					href:obj.href,
+					imageUrl:obj.imageUrl,
+					complete: (res) => {
+						this.hidePopup()
+					},
+					fail: (err) => {
+						uni.showToast({
+							icon: 'none',
+							position: 'bottom',
+							title: '发生错误请重试'
+						});
+					}
+				});
+			},
+			sharePYQ(obj){
+				uni.share({
+					provider: "weixin",
+					type: 0,
+					scene: "WXSenceTimeline",
+					title:obj.title,
+					summary:obj.summary,
+					href:obj.href,
+					imageUrl:obj.imageUrl,
+					complete: (res) => {
+						this.hidePopup()
+					},
+					fail: (err) => {
+						uni.showToast({
+							icon: 'none',
+							position: 'bottom',
+							title: '发生错误请重试'
+						});
+					}
+				});
+			},
+			shareQQ(obj){
+				uni.share({
+					provider: "qq",
+					type: 0,
+					title:obj.title,
+					summary:obj.summary,
+					href:obj.href,
+					imageUrl:obj.imageUrl,
+					complete: (res) => {
+						this.hidePopup()
+					},
+					fail: (err) => {
+						uni.showToast({
+							icon: 'none',
+							position: 'bottom',
+							title: '发生错误请重试'
+						});
+					}
+				})
+			},
+			shareCopy(obj){
+				uni.setClipboardData({
+					data:obj.href,
+					complete: (res) => {
+						this.hidePopup()
+					},
+					fail: (err) => {
+						uni.showToast({
+							icon: 'none',
+							position: 'bottom',
+							title: '发生错误请重试'
+						});
+					}
+				})
+			},
+			play(){
+				this.isautoplay = false
+			},
+			pause(){
+				this.isautoplay = true
+			},
+			handleChange(val){
+				this.selectIndex = val.detail.current
+				if(this.productInfo.videoUrl){
+					this.videoNode.pause()
+				}
+			},
+			getLoadData(type){
+				this.productImage = []
+				this.selectIndex = 0
+				uni.showNavigationBarLoading()
+				uni.request({
+				    url: this.$url+'/api/product/same?categoryId='+this.id, 
+					method: "GET",
+				    success: (res) => {
+						if(res.data.success&&res.data.code == 200){
+							this.similar = res.data.data;
+						}
+						uni.request({
+						    url: this.$url+'/api/product/get?productId='+this.id+'&userId='+this.userId, 
+							method: "GET",
+						    
+						    success: (res) => {
+								uni.hideNavigationBarLoading()
+								if(res.data.success&&res.data.code == 200){
+									if(res.data.data.productImage.length > 0){
+										for(let i=0; i<res.data.data.productImage.length; i++){
+											this.productImage.push(res.data.data.productImage[i].url)
+										}
+									}
+									if(type && res.data.data.relatedProduct != null && res.data.data.relatedProduct != [] && res.data.data.relatedProduct != ''){
+										this.relatedProduct = res.data.data.relatedProduct
+										let relatedProduct0 = {
+											id:this.id,
+											productName:res.data.data.productName
+										}
+										this.relatedProduct.unshift(relatedProduct0)
+										// this.id = this.relatedProduct[0].id
+										// this.getLoadData(0);
+									}
+									if(res.data.data.productSkuData == null || res.data.data.productSkuData == ''){
+										res.data.data.productSkuData = {
+											specsList:[]
+										}
+									}
+									if(res.data.data.productSkuDtos == null || res.data.data.productSkuDtos == ''){
+										res.data.data.productSkuDtos = []
+									}
+									this.warning = '请选择'
+									this.skuArr = []
+									if(res.data.data.productSkuData.specsList.length > 0){
+										for(let i=0; i<res.data.data.productSkuData.specsList.length; i++){
+											res.data.data.productSkuData.specsList[i].index = 0
+											this.skuArr.push(res.data.data.productSkuData.specsList[i].code+'-'+res.data.data.productSkuData.specsList[i].options[0].code)
+											this.warning = this.warning+res.data.data.productSkuData.specsList[i].name
+										}
+									}
+									this.productInfo = res.data.data;
+									this.productSkuData = res.data.data.productSkuData
+									this.productSkuDtos = res.data.data.productSkuDtos
+									if(this.productInfo.videoUrl){
+										this.videoNode = uni.createVideoContext('video')
+									}
+									if(this.productSkuData.specsList.length > 0){
+										this.skuStr = this.productInfo.productCode +'-'+ this.skuArr.join('-')
+									}else{
+										this.formatImg = this.productImage[0]
+										this.formatPrice = this.productInfo.salePrice
+										this.quantity = parseInt(this.productInfo.moq)
+										this.formatType = 1
+									}
+									this.shareObj = {
+										title:this.productInfo.productName,
+										summary: "【研选好货】"+this.productInfo.description,
+										href:this.$h5Url+'/pages/sort/goods/goods?goodsId='+this.id,
+										imageUrl:this.productInfo.shareImgUrl,
+									}
+									this.calcAnchor();
+								}else{
+									uni.showToast({
+									    icon: 'none',
+										position: 'bottom',
+									    title: '获取商品失败'
+									});
+									setTimeout(()=>{
+										uni.navigateBack();
+									},1000)
+								}
+						    },
+							fail: (err) => {
+								uni.hideNavigationBarLoading()
+								this.$requestFail()
+							}
+						});
+				    },
+					fail: (err) => {
+						this.$requestFail()
+					}
+				});
+			},
+			
+			// //跳转锚点
+			// toAnchor(index){
+			// 	let indextop = this.anchorlist[index].top
+			// 	console.log(index,indextop)
+			// 	uni.pageScrollTo({scrollTop:indextop});
+			// 	setTimeout(()=>{
+			// 		this.selectAnchor = index;
+			// 	},50)
+			// },
+			//计算锚点高度
+			calcAnchor(){
+				this.anchorlist=[
+					{name:'主图',top:0},
+					{name:'评价',top:0},
+					{name:'详情',top:0},
+				]
+				let middleView = uni.createSelectorQuery().select("#middle");
+				middleView.boundingClientRect((data) => {
+					console.log(data)
+					let statusbarHeight = 0;
+					// #ifdef APP-PLUS
+						statusbarHeight = plus.navigator.getStatusbarHeight()
+					// #endif
+					this.anchorlist[1].top = data.top - 44 - statusbarHeight;
+					
+				}).exec();
+				let botView = uni.createSelectorQuery().select("#bot");
+				botView.boundingClientRect((data) => {
+					let statusbarHeight = 0;
+					// #ifdef APP-PLUS
+						statusbarHeight = plus.navigator.getStatusbarHeight()
+					// #endif
+					this.anchorlist[2].top = data.top - 44 - statusbarHeight;
+					
+				}).exec();
+			},
+			
+			//打开弹窗
+			showSer(e) {
+				e.stopPropagation();
+				this.serShow=true
+			},
+			showPara(e) {
+				e.stopPropagation();
+				this.paraShow=true
+			},
+			showFormat(e) {
+				e.stopPropagation();
+				this.formatShow=true
+			},
+			showShopping(e) {
+				e.stopPropagation();
+				this.shoppingShow=true
+			},
+			showNow(e) {
+				e.stopPropagation();
+				this.nowShow=true
+			},
+			showInt(e) {
+				e.stopPropagation();
+				this.intShow=true
+			},
+			showShare(e){
+				this.shareShow = true
+			},
+			//关闭弹窗
+			hidePopup() {
+				this.serShow=false
+				this.paraShow=false
+				this.formatShow=false
+				this.shoppingShow=false
+				this.nowShow=false
+				this.intShow=false
+				this.shareShow = false
+			},
+
+			joinCart(e){
+				e.stopPropagation();
+				this.hideFormat();
+				uni.request({
+				    url: this.$url+'/api/shoppingcart/addshoppingcart', 
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					data: {
+					    "productId": this.id,
+						"quantity": this.quantity,
+						"sku": this.skuStr
+					},
+					method: "POST",
+				    
+				    success: (res) => {
+						if(res.data.success&&res.data.code == 200){
+							uni.showToast({title: "已加入购物车",});
+							this.$getCartBadge();
+						}else if(res.data.code == 401){
+							this.$to401()
+						}else{
+							uni.showToast({
+								icon: 'none',
+								position: 'bottom',
+							    title: res.data.message
+							});
+						}
+				    },
+					fail: (err) => {
+						this.$requestFail()
+					}
+				});
+			},
+			//跳转确认订单页面
+			toConfirmation(e){
+				e.stopPropagation();
+				uni.request({
+				    url: this.$url+'/api/appuser/get', 
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+				    
+				    success: (res) => {
+						if(res.data.success&&res.data.code == 200){
+							this.hideFormat();
+							if(this.once){
+								return false;
+							}
+							this.once = true
+							uni.showLoading({
+								title:'订单创建中'
+							});
+							setTimeout(()=>{
+								uni.hideLoading();
+								this.productInfo.quantity = this.quantity
+								this.productInfo.salePrice = this.formatPrice
+								this.productInfo.sku = this.skuStr
+								this.productInfo.skuImg = this.formatImg
+								this.productInfo.skuSpce = []
+								for(let i=0; i<this.productSkuData.specsList.length; i++){
+									this.productInfo.skuSpce.push(this.productSkuData.specsList[i].options[this.productSkuData.specsList[i].index])
+								}
+								uni.setStorage({
+									key:'buylist',
+									data:this.productInfo,
+									success: () => {
+										uni.navigateTo({
+											url:'/pages/order/orderNow'
+										})
+									}
+								})
+							},500)
+						}else if(res.data.code == 401){
+							this.$to401()
+						}else{
+							uni.showToast({
+								icon: 'none',
+								position: 'bottom',
+								title: res.data.message
+							});
+						}
+				    },
+					fail: (err) => {
+						this.hideFormat();
+						this.$requestFail()
+					}
+				});
+			},
+			toService(){
+				uni.request({
+				    url: this.$url+'/api/appuser/get', 
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+					
+				    success: (res) => {
+						if(res.data.success&&res.data.code == 200){
+							this.nickname = res.data.data.nickname
+							this.userUniqueId = res.data.data.userUniqueId
+							uni.navigateTo({
+								url:"/pages/browser/serviceBrowser?page=goods&nickName="+this.nickname+"&clientId="+this.userUniqueId+"&goodsId="+this.id+"&imgUrl="+this.formatImg+"&right1="+this.productInfo.productName+"&right2="+this.productInfo.sellingPoints+"&right3="+this.productInfo.salePrice
+							})
+						}else if(res.data.code == 401){
+							this.$to401()
+						}else{
+							uni.showToast({
+								icon: 'none',
+								position: 'bottom',
+								title: res.data.message
+							});
+						}
+				    },
+					fail: (err) => {
+						this.$requestFail()
+					}
+				});
+			},
+			toCart(){
+				uni.navigateTo({
+					url:'/pages/shoppingCart/shoppingCart'
+				})
+			},
+			toEva(){
+				uni.navigateTo({
+					url:"/pages/evaluate/evaluate?goodsId="+this.id
+				})
+			},
+			
+			sub(e){
+				e.stopPropagation();
+				if(this.quantity<=1){
+					return;
+				}
+				this.quantity--;
+			},
+			
+			add(e){
+				e.stopPropagation();
+				this.quantity++;
+			},
+			
+			inpbl(e){
+				e.stopPropagation();
+				if(this.quantity == ''){
+					uni.showModal({
+						content:"数量不可为0",
+						showCancel:false,
+						success: (res) => {
+							if (res.confirm) {
+								this.quantity = parseInt(this.productInfo.moq)
+							} 
+						}
+					})
+				}else{
+					this.quantity = parseInt(this.quantity)
+					if(this.quantity < this.productInfo.moq){
+						uni.showModal({
+							content:"本商品最小采购量为"+this.productInfo.moq,
+							showCancel:false,
+							success: (res) => {
+								if (res.confirm) {
+									this.quantity = parseInt(this.productInfo.moq)
+								} 
+							}
+						})
+					}
+				}
+			},
+			
+			tabFormat(i,j,e){
+				e.stopPropagation();
+				this.productSkuData.specsList[i].index = j
+				this.skuArr[i] = this.productSkuData.specsList[i].code+'-'+this.productSkuData.specsList[i].options[j].code
+				this.skuStr = this.productInfo.productCode +'-'+ this.skuArr.join('-')
+			},
+			tabGoods(id,e){
+				e.stopPropagation();
+				this.id = id
+				this.getLoadData(0);
+			},
+			lookFormatImg(img,e){
+				e.stopPropagation();
+				let imgs = [img]
+				this.$previewImg(0,imgs)
+			},
+			
+			addFavor(e){
+				e.stopPropagation();
+				if(this.token==''||this.token==null||this.token==undefined){
+					this.$to401()
+					return false
+				}
+				this.productInfo.isCollection = true
+				uni.showToast({title:'收藏成功'})
+				uni.request({
+				    url: this.$url+'/api/collection/productadd?productId='+this.id, 
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "POST",
+				    
+					fail: (err) => {
+						this.$requestFail()
+					}
+				});
+			},
+			cancelFavor(e){
+				e.stopPropagation();
+				this.productInfo.isCollection = false
+				uni.request({
+				    url: this.$url+'/api/collection/productdelete?productId='+this.id, 
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "POST",
+				    
+					fail: (err) => {
+						this.$requestFail()
+					}
+				});
+			},
+			nvueStop(e){
+				e.stopPropagation();
+			},
+		}
+	}
+</script>
+
+<style lang="scss">
+	@import './css/goods_navigation.scss';
+	@import './css/goods_header.scss';
+	@import './css/goods_info.scss';
+	@import './css/goods_main.scss';
+	@import './css/goods_middle.scss';
+	@import './css/goods_footer.scss';
+	@import './css/goods_popup.scss';
+	@import './css/goods_h5_footer.scss';
+	@import './css/goods_share.scss';
+	/* #ifndef APP-PLUS*/    
+	page{
+		background-color: #F5F5F5;
+	}   
+	/* #endif */  
+	.goods_content{
+		background-color: #F5F5F5;
+	}
+	.money{
+		flex-direction: row;
+		align-items: flex-end;
+	}
+	.currency{
+		font-size:24upx;
+		font-family:DINAlternate-Bold,DINAlternate;
+		font-weight:bold;
+		color:#F75C50;
+		line-height:24upx;
+		padding-bottom: 4upx;
+	}
+	.price{
+		font-size:48rpx;
+		font-family:DINAlternate-Bold,DINAlternate;
+		font-weight:bold;
+		color:#F75C50;
+		line-height:48rpx;
+	}
+	
+</style>

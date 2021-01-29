@@ -1,0 +1,57 @@
+.h5_footer{
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	
+	position: fixed;
+	z-index: 50;
+	left: 0;
+	bottom: 0;
+	
+	width:750rpx;
+	height:128rpx;
+	padding: 0 32rpx 16rpx 16rpx;
+	background-color:rgba(0,0,0,0.49);
+	box-shadow:0 -2rpx 20rpx rupx rgba(0,0,0,0.05);
+	
+	
+	
+	
+}
+.footer_left{
+	flex-direction: row;
+	align-items: center;
+}
+.footer_image{
+	width: 104rpx;
+	height: 90rpx;
+	margin-right: 4rpx;
+	position: relative;
+	top:-10rpx
+}
+.footer_left_text{
+	width: 224rpx;
+	font-size:28rpx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(255,255,255,1);
+	line-height:34rpx;
+}
+.footer_right{
+	justify-content: center;
+	align-items: center;
+	
+	width:174rpx;
+	height:60rpx;
+	border-radius:32rpx;
+	border-width: 2rpx;
+	border-style: solid;
+	border-color: rgba(255,255,255,1);
+}
+.footer_right_text{
+	font-size:24upx;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(255,255,255,1);
+	line-height:24upx;
+}

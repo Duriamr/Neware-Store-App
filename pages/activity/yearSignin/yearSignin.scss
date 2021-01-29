@@ -1,0 +1,133 @@
+/*  #ifndef APP-PLUS-NVUE  */
+page{
+	background-color: #F5F5F5;
+}
+/*  #endif  */
+
+.yearSignin_content{
+	align-items: center;
+}
+.map_box{
+	width: 718rpx;
+	margin: 16rpx;
+	background-color: #FFFFFF;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+}
+.map{
+	width: 718rpx;
+	height: 520rpx;
+}
+.locationInfo{
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 718rpx;
+	padding: 32rpx 24rpx;
+}
+.info_left{
+	flex-direction: row;
+	align-items: center;
+}
+.info_left_img{
+	width: 32rpx;
+	height: 32rpx;
+	margin-right: 8rpx;
+}
+.info_left_text{
+	width: 460rpx;
+	font-size: 32rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #333333;
+	line-height: 34rpx;
+}
+.info_left_text_red{
+	width: 460rpx;
+	font-size: 32rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #F75C50;
+	line-height: 34rpx;
+}
+.info_right{
+	flex-direction: row;
+	align-items: center;
+	margin-top: 4rpx;
+}
+.info_right_img{
+	width: 26rpx;
+	height: 24rpx;
+	margin-right: 8rpx;
+}
+.info_right_text{
+	font-size: 24rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #F8B500;
+	line-height: 24rpx;
+}
+
+.input_box{
+	align-items: center;
+	width: 718rpx;
+	background-color: #FFFFFF;
+	border-radius: 12px;
+}
+.input_list{
+	flex-direction: row;
+	align-items: center;
+	width: 686rpx;
+	height: 98rpx;
+	padding: 0 8rpx;
+}
+.input_list_one{
+	border-bottom-width: 1rpx;
+	border-style: solid;
+	border-color: #F5F5F5;
+}
+.input_list_name{
+	width: 160rpx;
+	font-size: 32rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #666666;
+	line-height: 32rpx;
+}
+.input{
+	width: 510rpx;
+	height: 96rpx;
+	font-size: 32rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 32rpx;
+}
+.input-placeholde{
+	font-size: 32rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #E5E5E5;
+	line-height: 32rpx;
+}
+
+.btn_box{
+	align-items: center;
+	position: fixed;
+	left: 25rpx;
+	bottom: 80rpx;
+	width: 700rpx;
+	height: 96rpx;
+	background-color: #F8B500;
+	border-radius: 12px;
+}
+.gray{
+	background-color: #B3B3B3;
+}
+.btn_text{
+	font-size: 32rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFFFFF;
+	line-height: 96rpx;
+}

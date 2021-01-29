@@ -1,0 +1,1471 @@
+{
+	"condition":{
+		"current":1,
+		"list":[{
+			"name":"yearSignin",
+			"path":"pages/activity/yearSignin/yearSignin"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "新威研选",
+		"backgroundColor": "#FFFFFF"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// #ifdef APP-PLUS
+		{
+		    "path" : "pages/home/startup",
+			"style": {
+				"navigationBarTitleText": "启动页",
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+			}
+		},
+		{
+		    "path" : "pages/home/guide",
+			"style": {
+				"navigationBarTitleText": "引导页",
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+			}
+		},
+		// #endif 
+		{
+		    "path" : "pages/home/video",
+		    "style" : {
+				"navigationBarTitleText": "首页视频",
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+		    }
+		    
+		},
+		{
+			"path": "pages/tabBar/home/home",
+			"style": {
+				"navigationBarTextStyle": "white",
+				// #ifndef MP
+				"navigationBarTitleText": "新威研选",
+				// #endif 
+				// #ifdef MP
+				"navigationBarTitleText": "研选",
+				// #endif 
+				// "enablePullDownRefresh":true,
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+			}
+		}
+		,{
+		    "path" : "pages/tabBar/sort/sort",
+		    "style" : {
+				"navigationBarTitleText": "分类",
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+			}
+		}
+		,{
+		    "path" : "pages/tabBar/studyEnjoy/studyEnjoy",
+		    "style" : {
+				"navigationBarTitleText": "研享",
+				"enablePullDownRefresh":true,
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"softinputNavBar": "none",
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+			}
+		}
+		,{
+		    "path" : "pages/tabBar/shoppingCart/shoppingCart",
+		    "style" : {
+				"navigationBarTitleText": "购物车",
+				// "navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				}
+			}
+		}
+		,{
+		    "path" : "pages/tabBar/my/my",
+		    "style" : {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor":"#F8B500",
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "custom",
+				"app-plus": {
+					// "titleNView": false,//禁用原生导航栏
+					"bounce":"none",
+					"scrollIndicator": "none"
+				},
+				"mp-weixin":{
+					"titleNView":{
+						"titleText":""
+					}
+				}
+			}
+		}
+    ],
+
+	"subPackages":[
+		{
+			"root":"pages/home",
+			"pages":[
+				{
+					"path":"kingkong/NewRecommend/NewRecommend",
+					"style" : {
+						"navigationBarTitleText": "新品推荐",
+						"navigationBarBackgroundColor":"#91D6EF",
+						"navigationBarTextStyle": "white",
+						"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"kingkong/EquipmentTop/EquipmentTop",
+					"style" : {
+						"navigationBarTitleText": "设备榜单",
+						"navigationBarBackgroundColor":"#CBAB76",
+						"navigationBarTextStyle": "white",
+						"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"kingkong/ExperimentMaterial/ExperimentMaterial",
+					"style" : {
+						"navigationBarTitleText": "实验耗材",
+						"navigationBarBackgroundColor":"#DCE1FA",
+						"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+				    "path" : "kingkong/ProductPackage/ProductPackage",
+				    "style" : {
+				    	"navigationBarTitleText": "精品套餐",
+				    	"navigationBarBackgroundColor":"#4AB1D5",
+				    	"navigationBarTextStyle": "white",
+				    	"app-plus":{
+				    		"titleNView":{
+				    			"autoBackButton":"true",
+				    			"type":"transparent"
+				    		},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "kingkong/NewareAround/NewareAround",
+				    "style" : {
+						"navigationBarTitleText": "新威周边",
+						"navigationBarBackgroundColor":"#F89A86",
+						"navigationBarTextStyle": "white",
+						"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"kingkong/AmbientDevice/AmbientDevice",
+					"style" : {
+						"navigationBarTitleText": "环境设备",
+						"navigationBarBackgroundColor":"#F44934",
+						"navigationBarTextStyle": "white",
+						"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+				    "path" : "kingkong/TestingEquipment/TestingEquipment",
+				    "style" : {
+				    	"navigationBarTitleText": "检测设备",
+				    	"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "kingkong/NanometerMaterial/NanometerMaterial",
+				    "style" : {
+				    	"navigationBarTitleText": "纳米材料",
+				    	"navigationBarBackgroundColor":"#135EAE",
+				    	"navigationBarTextStyle": "white",
+				    	"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "kingkong/OfficialFitting/OfficialFitting",
+				    "style" : {
+				    	"navigationBarTitleText": "官方配件",
+				    	"app-plus":{
+							"titleNView":{
+								"type":"transparent"
+							},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+			]
+		}
+		,{
+			"root":"pages/activity",
+			"pages":[
+				{
+				    "path" : "lottery/verify/verify",
+				    "style": {
+				    	"navigationBarTitleText": "中奖核销",
+				    	"navigationBarBackgroundColor":"#F2F3F5",
+				    	"app-plus": {
+				    		"titleNView":{
+								"titleText":" "
+				    		},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "lottery/lottery/phone",
+				    "style": {
+				    	"navigationBarTitleText": "研选幸运锦鲤",
+				    	"app-plus": {
+				    		// "titleNView":{
+				    		// 	"type":"transparent"
+				    		// },
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "discount/discount11",
+				    "style" : {
+						"navigationBarTitleText": "11.11大狂欢",
+						"enablePullDownRefresh": true,
+						"app-plus":{
+								"titleNView":{
+									"buttons":[{
+										"type":"share",
+										"background": "rgba(0,0,0,0.5)",
+										"float": "right"
+									}],
+									"type":"transparent"
+								},
+								"bounce":"none",
+								"scrollIndicator": "none"
+							},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+				,{
+				    "path" : "discount/discount12",
+				    "style" : {
+						"navigationBarTitleText": "12.12大狂欢",
+						"enablePullDownRefresh": true,
+						"app-plus":{
+								"titleNView":{
+									"buttons":[{
+										"type":"share",
+										"background": "rgba(0,0,0,0.5)",
+										"float": "right"
+									}],
+									"type":"transparent"
+								},
+								"bounce":"none",
+								"scrollIndicator": "none"
+							},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+				,{
+				    "path" : "keyword/keyword",
+				    "style" : {
+						"navigationBarTitleText": "年度关键词",
+						"enablePullDownRefresh": false,
+						"app-plus":{
+								"titleNView":{
+									"buttons":[{
+										"type":"share",
+										"background": "rgba(0,0,0,0.5)",
+										"float": "right"
+									}],
+									"type":"transparent"
+								},
+								"bounce":"none",
+								"scrollIndicator": "none"
+							},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+				,{
+				    "path" : "poster/poster",
+				    "style" : {
+						"navigationBarTitleText": "预热海报",
+						"enablePullDownRefresh": false,
+						"app-plus":{
+								"titleNView":{
+									"buttons":[{
+										"type":"share",
+										"background": "rgba(0,0,0,0.5)",
+										"float": "right"
+									}],
+									"type":"transparent"
+								},
+								"bounce":"none",
+								"scrollIndicator": "none"
+							},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+				,{
+				    "path" : "discount/helpdetails/helpdetails",
+				    "style" : {
+						"navigationBarTitleText": "助力详情",
+						"enablePullDownRefresh": true,
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				} ,{
+				    "path" : "discount/productDetaile/productDetaile",
+				    "style" : {
+						"navigationBarTitleText": "商品详情图",
+						"enablePullDownRefresh": false,
+						"app-plus":{
+								"titleNView":{
+									"type":"transparent"
+								},
+								"bounce":"none",
+								"scrollIndicator": "none"
+							}
+						// "h5":{
+						// 	"titleNView": false//禁用原生导航栏
+						// }
+					}
+				},{
+				    "path" : "discount/helpdetailsh5/helpdetailsh5",
+				    "style" : {
+						"navigationBarTitleText": "科研青年神助攻",
+						"enablePullDownRefresh": true,
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+				,{
+					"path":"discount/order/order",
+					"style" : {
+						"navigationBarTitleText": "填写订单",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"discount/order/pay/pay",
+					"style" : {
+						"navigationBarTitleText": "严选收银台",
+						"navigationBarBackgroundColor":"#F5F5F5",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"discount/order/orderOver/orderOver",
+					"style":{
+						"navigationBarTitleText": "订单提交审核",
+						"navigationBarBackgroundColor":"#FF5F3F",
+						"navigationBarTextStyle": "white",
+						"app-plus": {
+							"titleNView": false,
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+                    "path" : "purchase/purchase",
+                    "style" : {
+                    	"navigationBarTitleText": "采购有礼",
+                    	"navigationBarBackgroundColor":"#fa9c66",
+                    	"navigationBarTextStyle": "white",
+                    	"app-plus":{
+							"titleNView":{									"buttons":[{										"type":"share",										"background": "rgba(0,0,0,0.5)",										"float": "right"									}],									"type":"transparent"								},
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+                    }
+                }
+				,{
+					"path":"paper/paper",
+					"style" : {
+						"navigationBarTitleText": "论文评选",
+						"app-plus":{
+							"titleNView":{
+								"buttons":[{
+									"type":"share",
+									"background": "rgba(0,0,0,0.5)",
+									"float": "right"
+								}],
+								"type":"transparent"
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+				,{
+				    "path" : "paper/all/all",
+				    "style" : {
+				    	"navigationBarTitleText": "论文评选",
+				    	"app-plus":{
+							"titleNView": false,//禁用原生导航栏
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+					"path":"paper/paperList/paperList",
+					"style" : {
+						"navigationBarTitleText": "我的评选",
+						"app-plus":{
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"paper/paperDetails/paperDetails",
+					"style" : {
+						"navigationBarTitleText": "报名信息",
+						"app-plus":{
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+				    "path" : "paper/receive/receive",
+				    "style" : {
+				    	"navigationBarTitleText": "论文评选领奖",
+				    	"app-plus":{
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "paper/receive/success/success",
+				    "style" : {
+				    	"navigationBarTitleText": "提交成功",
+				    	"app-plus":{
+							"bounce":"none",
+							"scrollIndicator": "none"
+				    	}
+				    }
+				}
+                ,{
+                    "path" : "live/live",
+                    "style" : {
+                    	"navigationBarTitleText": "直播",
+                    	"app-plus":{
+                    		"titleNView":{ 
+                    			"buttons":[{
+                    				"type":"share",
+                    				"background": "rgba(0,0,0,0.5)",
+                    				"float": "right"
+                    			}],
+                    			"type":"transparent"
+                    		},
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	},
+                    	"h5":{
+                    		"titleNView": false//禁用原生导航栏
+                    	}
+                    }
+                }
+				,{
+				    "path" : "live/offline",
+				    "style" : {
+				    	"navigationBarTitleText": "直播",
+				    	"app-plus":{
+				    		"titleNView":{ 
+				    			"type":"transparent"
+				    		},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "live/signup",
+				    "style" : {
+				    	"navigationBarTitleText": "签到",
+				    	"app-plus":{
+				    		"titleNView":{ 
+				    			"type":"transparent"
+				    		},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	},
+				    	"h5":{
+				    		"titleNView": false//禁用原生导航栏
+				    	}
+				    }
+				}
+				,{
+				    "path" : "registration/registrationActivities",
+				    "style" : {
+				    	"navigationBarTitleText": "报名活动",
+				    	"app-plus":{
+				    		"titleNView":{ 
+				    			"buttons":[{
+				    				"type":"share",
+				    				"background": "rgba(0,0,0,0.5)",
+				    				"float": "right"
+				    			}],
+				    			"type":"transparent"
+				    		},
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	},
+				    	"h5":{
+				    		"titleNView": false//禁用原生导航栏
+				    	}
+				    }
+				}
+				,{
+				    "path" : "registration/submit/submit",
+				    "style" : {
+				    	"navigationBarTitleText": "提交报名",
+				    	"app-plus":{
+							"titleNView": false//禁用原生导航栏
+				    	}
+				    }
+				}
+				,{
+				    "path" : "registration/success/success",
+				    "style" : {
+				    	"navigationBarTitleText": "报名成功",
+				    	"app-plus":{
+							"bounce":"none",
+							"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "authorization/authorization",
+				    "style": {
+				    	"navigationBarTitleText": "授权登录",
+				    	"app-plus": {
+				    		// "titleNView": false,//禁用原生导航栏
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+                ,{
+                    "path" : "signin/signin",
+                    "style" : {
+						"navigationBarTitleText": "每日签到",
+						"app-plus": {
+							"titleNView":{
+								"buttons":[{
+									"color":"#666666",
+									"float": "right",
+									"fontSize": "28upx",
+									"text": "活动规则",
+									"width":"146upx"
+								}]
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+                }
+                ,{
+                    "path" : "signin/sigAddress/sigAddress",
+                    "style" : {
+						"navigationBarTitleText": "填写地址",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+                }
+                ,{
+                    "path" : "signin/sigAddress/sigSuccess",
+                    "style" : {
+						"navigationBarTitleText": "领取成功",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+                }
+                ,{
+                    "path" : "signin/sigRecord/sigRecord",
+                    "style" : {
+                    	"navigationBarTitleText": "兑换记录",
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+                ,{
+                    "path" : "signin/sigRecord/sigLogistics",
+                    "style" : {
+                    	"navigationBarTitleText": "物流信息",
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+                ,{
+                    "path" : "signin/signinList/signinList",
+                    "style" : {
+                    	"navigationBarTitleText": "签到排名",
+                    	"navigationBarTextStyle": "white",
+                    	"app-plus": {
+                    		"titleNView": false,//禁用原生导航栏
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+                ,{
+                    "path" : "quest/quest",
+                    "style" : {
+                    	"navigationBarTitleText": "调查问卷",
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                
+                }
+                ,{
+                    "path" : "yearSignin/yearSignin",
+                    "style" : {
+						"navigationBarTitleText": "签到",
+						"app-plus": {
+							"backgroundColor":"#F5F5F5",
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+                }
+            ]
+		}
+		,{
+			"root":"pages/search",
+			"pages":[
+				{
+					"path":"search",
+					"style" : {
+						"navigationBarTitleText": "搜索",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none",
+							"softinputMode": "adjustResize"
+						}
+					}
+				}
+				,{
+					"path":"searchERP",
+					"style" : {
+						"navigationBarTitleText": "ERP订单搜索",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none",
+							"softinputMode": "adjustResize"
+						}
+					}
+				}
+            ]
+		}
+		,{
+			"root":"pages/sort",
+			"pages":[
+				{
+					"path":"sort2/sort2",
+					"style" : {
+						"navigationBarTitleText": "分类",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"sort2/sort3",
+					"style" : {
+						"navigationBarTitleText": "分类",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"goods/goods",
+					"style" : {
+						"navigationBarTitleText": "商品详情",
+						"navigationBarBackgroundColor":"#F5F5F5",
+						"app-plus": {
+							"backgroundColor":"#F5F5F5",
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+				    "path" : "wantBuy/wantBuy",
+				    "style": {
+				    	"navigationBarTitleText": "发起求购",
+				    	"app-plus": {
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "wantBuy/successfulpurchase",
+				    "style": {
+				    	"navigationBarTitleText": "",
+				    	"app-plus": {
+				    		"titleNView":false
+				    	}
+				    }
+				}
+			]
+		}
+		,{
+			"root":"pages/order",
+			"pages":[
+				{
+					"path":"order",
+					"style" : {
+						"navigationBarTitleText": "填写订单",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"orderNow",
+					"style" : {
+						"navigationBarTitleText": "填写订单",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"myOrder/myOrder",
+					"style" : {
+						"navigationBarTitleText": "我的订单",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"address/address",
+					"style" : {
+						"navigationBarTitleText": "收货地址",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"address/addedit/addedit",
+					"style" : {
+						"navigationBarTitleText": "新增收货地址",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"orderOver/orderOver",
+					"style":{
+						"navigationBarTitleText": "订单提交审核",
+						"navigationBarBackgroundColor":"#F8B500",
+						"navigationBarTextStyle": "white",
+						"app-plus": {
+							"titleNView": false,
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"orderDetails/orderDetails",
+					"style" : {
+						"navigationBarTitleText": "订单详情",
+						"navigationBarBackgroundColor":"#F8B500",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh":true,
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"orderDetails/logistics/logistics",
+					"style" : {
+						"navigationBarTitleText": "物流信息",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"pay/pay",
+					"style" : {
+						"navigationBarTitleText": "严选收银台",
+						"navigationBarBackgroundColor":"#F5F5F5",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+			    ,{
+                    "path" : "invoice/invoice",
+                    "style" : {
+                    	"navigationBarTitleText": "填写发票信息",
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+                ,{
+                    "path" : "invoice/invoiceDetails/invoiceDetails",
+                    "style" : {
+                    	"navigationBarTitleText": "发票信息",
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+            ]
+		}
+		,{
+			"root":"pages/ERP",
+			"pages":[
+				{
+					"path":"myERP/myERP",
+					"style" : {
+						"navigationBarTitleText": "订单进度",
+						"app-plus": {
+							"titleNView":{
+								
+								"buttons":[{
+									"color": "#333333",
+									"fontSize": "24",
+									"fontSrc":"/static/ttf/search.ttf",
+									"text": "\ue601",
+									"width":"32px"
+								}]
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"ERPDetails/ERPDetails",
+					"style" : {
+						"navigationBarTitleText": "订单详情",
+						"navigationBarBackgroundColor":"#F8B500",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh":true,
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"ERPDetails/logistics/logistics",
+					"style" : {
+						"navigationBarTitleText": "物流信息",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+			    ,{
+                    "path" : "ERPDetails/progress/progress",
+                    "style" : {
+                    	"navigationBarTitleText": "进度详情",
+						"enablePullDownRefresh":true,
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+            ]
+		}
+		,{
+			"root":"pages/evaluate",
+			"pages":[
+				{
+					"path":"evaluate",
+					"style" : {
+						"navigationBarTitleText": "用户评价",
+						"enablePullDownRefresh":true,
+						"app-plus":{
+							"bounce":"none"
+						}
+					}
+				}
+				,{
+					"path":"myEvaluate/myEvaluate",
+					"style" : {
+						"navigationBarTitleText": "待评价",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+				    "path" : "orderEvaluate/orderEvaluate",
+				    "style" : {
+						"navigationBarTitleText": "发表评价",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+				    "path" : "comment/comment",
+				    "style" : {
+						"navigationBarTitleText": "发表评价",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none",
+							"softinputMode": "adjustResize"
+						}
+					}
+				}
+			]
+		}
+		,{
+			"root":"pages/studyEnjoy",
+			"pages":[
+				{
+					"path":"article/article",
+					"style" : {
+						"navigationBarTitleText": "文章详情",
+						"enablePullDownRefresh":true,
+						"app-plus": {
+							"titleNView":{
+								"buttons":[{
+									"type":"share",
+									"background": "rgba(0,0,0,0)",
+									"float": "right"
+								}]
+							},
+							"softinputNavBar": "none",
+							"bounce":"none",
+							"scrollIndicator": "none"
+						},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+					}
+				}
+			    ,{
+                    "path" : "QaVaL/QaV",
+                    "style" : {
+                    	"navigationBarTitleText": "设备手册",
+                    	"app-plus": {
+                    		"titleNView": false,//禁用原生导航栏
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+                ,{
+                    "path" : "QaVaL/Learning",
+                    "style" : {
+                    	"navigationBarTitleText": "学术博览",
+                    	"app-plus": {
+                    		// "titleNView": false,//禁用原生导航栏
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+				,{
+				    "path" : "circle/topic/topic",
+				   "style" : {
+				   	"navigationBarTitleText": "话题详情",
+					"enablePullDownRefresh":true,
+				   	"app-plus": {
+				   		"titleNView": false,//禁用原生导航栏
+				   		"softinputNavBar": "none",
+				   		"bounce":"none",
+				   		"scrollIndicator": "none"
+				   	}
+				   }
+				}
+				,{
+				    "path" : "circle/circlePage/circlePage",
+				    "style" : {
+				    	"navigationBarTitleText": "个人主页",
+						"enablePullDownRefresh":true,
+				    	"app-plus": {
+				    		"titleNView": false,//禁用原生导航栏
+							"softinputNavBar": "none",
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "circle/circleFriend/circleFriend",
+				    "style" : {
+				    	"navigationBarTitleText": "关注和粉丝",
+				    	"app-plus": {
+				    		// "titleNView": false,//禁用原生导航栏
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "circle/circle",
+				    "style" : {
+				    	"navigationBarTitleText": "动态详情",
+						"enablePullDownRefresh":true,
+				    	"app-plus": {
+				    		// "titleNView": false,//禁用原生导航栏
+							"softinputNavBar": "none",
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	},
+						"h5":{
+							"titleNView": false//禁用原生导航栏
+						}
+				    }
+				}
+                ,{
+                    "path" : "circle/release/release",
+                    "style" : {
+                    	"navigationBarTitleText": "发布",
+                    	"app-plus": {
+							"softinputMode": "adjustResize",
+                    		"titleNView": false,//禁用原生导航栏
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+                ,{
+                    "path" : "circle/report/report",
+                    "style" : {
+                    	"navigationBarTitleText": "举报",
+                    	"app-plus": {
+                    		"titleNView": false,//禁用原生导航栏
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+            ]
+		}
+		,{
+			"root":"pages/shoppingCart",
+			"pages":[
+				{
+					"path":"shoppingCart",
+					"style" : {
+						"navigationBarTitleText": "购物车",
+						// "navigationStyle": "custom",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+			]
+		}
+		,{
+			"root":"pages/my",
+			"pages":[
+				{
+				    "path" : "myHelp/myHelp",
+					"style" : {
+						"navigationBarTitleText": "我的助力",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"login/login",
+					"style" : {
+						"navigationBarTitleText": "登录",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"login/password/forget",
+					"style": {
+						"navigationBarTitleText": "忘记密码",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"login/password/change",
+					"style": {
+						"navigationBarTitleText": "修改密码",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"setting/setting",
+					"style" : {
+						"navigationBarTitleText": "系统设置",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"setting/about/about",
+					"style" : {
+						"navigationBarTitleText": "关于我们",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"setting/feedback/feedback",
+					"style" : {
+						"navigationBarTitleText": "意见反馈",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"user/user",
+					"style" : {
+						"navigationBarTitleText": "个人资料",
+						"app-plus": {
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+            ]
+		}
+		,{
+			"root":"pages/favorites",
+			"pages":[
+				{
+					"path":"favorites",
+					"style" : {
+						"navigationBarTitleText": "收藏中心",
+						"app-plus": {
+							"titleNView": false,
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+			]
+		}
+		,{
+			"root":"pages/notice",
+			"pages":[
+				{
+                    "path" : "notice",
+                    "style" : {
+                    	"navigationBarTitleText": "通知中心",
+                    	"app-plus": {
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+				,{
+				    "path" : "message/message",
+				    "style" : {
+				    	"navigationBarTitleText": "消息通知",
+				    	"app-plus": {
+				    		// "titleNView": false,//禁用原生导航栏
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+            ]
+		}
+		,{
+			"root": "pages/agreement",
+			"pages":[
+				{
+					"path":"registrationAgreement",
+					"style" : {
+						"navigationBarTitleText": "用户服务协议",
+						"app-plus":{
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+				,{
+					"path":"privacyAgreement",
+					"style" : {
+						"navigationBarTitleText": "用户隐私协议",
+						"app-plus":{
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+			]
+		}
+		,{
+			"root": "pages/browser",
+			"pages":[
+				{
+                    "path" : "browser",
+                    "style" : {
+                    	"navigationBarTitleText": "",
+                    	"app-plus":{
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }  
+                }
+				,{
+				    "path" : "browser1",
+				    "style" : {
+				    	"navigationBarTitleText": "",
+				    	"app-plus":{
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }  
+				}
+				,{
+				    "path" : "browser2",
+				    "style" : {
+				    	"navigationBarTitleText": "",
+				    	"app-plus":{
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+				,{
+				    "path" : "liveBrowser",
+				    "style" : {
+				    	"navigationBarTitleText": "",
+				    	"app-plus":{
+				    		"bounce":"none",
+				    		"scrollIndicator": "none"
+				    	}
+				    }
+				}
+                ,{
+                    "path" : "serviceBrowser",
+                    "style" : {
+                    	"navigationBarTitleText": "",
+                    	"app-plus":{
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+            ]
+		}
+		,{
+			"root": "pages/expect",
+			"pages":[
+				{
+					"path":"expect",
+					"style" : {
+						"navigationBarTitleText": " ",
+						"app-plus": {
+							// "titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
+					}
+				}
+			    ,{
+                    "path" : "notNet",
+                    "style" : {
+                    	"navigationBarTitleText": "无网络",
+                    	"app-plus": {
+                    		"titleNView": false,//禁用原生导航栏
+                    		"bounce":"none",
+                    		"scrollIndicator": "none"
+                    	}
+                    }
+                }
+            ]
+		}
+	],
+	
+	"tabBar": {
+	    "color": "#999999",
+	    "selectedColor": "#F4B200",
+	    "borderStyle": "black",
+		// #ifdef APP-PLUS   
+		"borderStyle": "#e5e5e5",
+		// #endif  
+	    "backgroundColor": "#ffffff",
+		"iconWidth": "24px",
+		"fontSize": "11px",
+	    "list": [{
+	        "pagePath": "pages/tabBar/home/home",
+			"iconPath": "static/tabBar/home.png",
+			"selectedIconPath": "static/tabBar/home_selected.png",
+	        "text": "首页"
+	    }, 
+		{
+			"pagePath": "pages/tabBar/sort/sort",
+			"iconPath": "static/tabBar/sort.png",
+			"selectedIconPath": "static/tabBar/sort_selected.png",
+	        "text": "分类"
+	    },
+		{
+			"pagePath": "pages/tabBar/studyEnjoy/studyEnjoy",
+			"iconPath": "static/tabBar/studyEnjoy.png",
+			"selectedIconPath": "static/tabBar/studyEnjoy_selected.png",
+		    "text": "研享"
+		},
+		{
+			"pagePath": "pages/tabBar/shoppingCart/shoppingCart",
+			"iconPath": "static/tabBar/shoppingCart.png",
+			"selectedIconPath": "static/tabBar/shoppingCart_selected.png",
+		    "text": "购物车"
+		},
+		{
+			"pagePath": "pages/tabBar/my/my",
+			"iconPath": "static/tabBar/my.png",
+			"selectedIconPath": "static/tabBar/my_selected.png",
+		    "text": "我的"
+		}]
+	}
+}

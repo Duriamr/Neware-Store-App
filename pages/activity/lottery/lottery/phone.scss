@@ -1,0 +1,74 @@
+page{
+	background: linear-gradient(150deg, #F23759, #FA3047);
+}
+.lottery_content{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+.header{
+	width: 100%;
+}
+.main{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 35upx 100upx;
+	margin-top: 18upx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	image{
+		width: 100%;
+	}
+	text{
+		position: absolute;
+		top: 170upx;
+		font-size: 59upx;
+		font-family: DIN Alternate;
+		font-weight: bold;
+		color: #2E343C;
+		line-height: 59upx;
+	}
+	.btn{
+		width: calc(100% - 40upx);
+		height: 80upx;
+		background: linear-gradient(180deg, #FFC839, #FF8E25);
+		border-radius: 40upx;
+		margin-top: 45upx;
+		font-size: 30upx;
+		font-family: Source Han Sans CN;
+		font-weight: bold;
+		color: #FFFFFF;
+		line-height: 35upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.tips{
+		width: 100%;
+		margin-top: 39upx;
+		font-size: 24upx;
+		font-family: Source Han Sans CN;
+		font-weight: 400;
+		color: #FFFFFF;
+		line-height: 36upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+.round1,
+.round2{
+	position: absolute;
+	right: 0;
+}
+.round1{
+	top: 631upx;
+	width: 54upx;
+}
+.round2{
+	top: 1330upx;
+	width: 71upx;
+}

@@ -1,0 +1,231 @@
+page{
+	background-color: #FFFFFF;
+}
+.signin_content{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+}
+image{
+	display: block;
+}
+.top{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 50upx 24upx 32upx;
+	border-bottom: 16upx solid #F5F5F5;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	.signinList{
+		position: absolute;
+		top:34upx;
+		right: 0;
+		padding: 20upx;
+		background:rgba(245,245,245,1);
+		border-radius:376upx 0px 0px 376upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.list_text{
+			font-size:24upx;
+			font-family:PingFangSC-Light,PingFang SC;
+			font-weight:300;
+			line-height:24upx;
+		}
+		.list_num{
+			font-size:32upx;
+			font-family:DINMittelschriftStd;
+			font-weight:800;
+			line-height:32upx;
+		}
+	}
+	.num{
+		font-size:112upx;
+		font-family:DINMittelschriftStd;
+		font-weight:800;
+		line-height:112upx;
+		margin-bottom: 16upx;
+	}
+	.text{
+		font-size:24upx;
+		line-height:24upx;
+		margin-bottom: 48upx;
+	}
+	.progress{
+		width: 100%;
+		height:144upx;
+		background:rgba(245,245,245,1);
+		border-radius: 16upx;
+		box-sizing: border-box;
+		padding: 0 18upx 24upx 24upx;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin-bottom: 24upx;
+		.big{
+			width: 80upx;
+			height: 92upx;
+		}
+		.progress_bar{
+			width: calc(100% - 80upx - 36upx);
+			height:16upx;
+			border-radius:8upx;
+			position: relative;
+			.progress_bar_content{
+				width: calc(100% - 18upx);
+				height:16upx;
+				background:rgba(255,255,255,1);
+				border-radius:8upx;
+				position: relative;
+				overflow:hidden;
+				.progress_bar_main{
+					height: 16upx;
+					background:rgba(247,92,80,1);
+					border-radius:8upx;
+					position: relative;
+					z-index: 3;
+				}
+			}
+			.day{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				position: absolute;
+				z-index: 2;
+				bottom: 2upx;
+				text{
+					font-size:22upx;
+					color:rgba(102,102,102,1);
+					line-height:22upx;
+				}
+				.small{
+					width: 50upx;
+					height: 54upx;
+					margin-bottom: 6upx;
+				}
+				.dot{
+					width:12upx;
+					height:12upx;
+					background:rgba(245,245,245,1);
+					border-radius:100%;
+				}
+			}
+		}
+	}
+	.btn{
+		width:100%;
+		height:88upx;
+		background:rgba(247,92,80,1);
+		border-radius:44upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size:32upx;
+		font-family:PingFangSC-Medium,PingFang SC;
+		font-weight:500;
+		color:rgba(255,255,255,1);
+		line-height:32upx;
+	}
+}
+
+.bot{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 24upx;
+	display: flex;
+	flex-direction: column;
+	.modular_title{
+		width: 100%;
+		padding: 24upx 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.left{
+			font-size:32upx;
+			font-family:PingFangSC-Medium,PingFang SC;
+			font-weight:500;
+			line-height:32upx;
+		}
+		.right{
+			display: flex;
+			align-items: center;
+			font-size:24upx;
+			color:rgba(179,179,179,1);
+			line-height:24upx;
+			image{
+				width: 10upx;
+				margin-left: 4upx;
+			}
+		}
+	}
+	.product_ul{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		.product_list{
+			width: 100%;
+			padding: 24upx 0;
+			border-top: 1upx solid #F5F5F5;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			.left{
+				display: flex;
+				align-items: center;
+				font-size:28upx;
+				line-height:28upx;
+				.productImg{
+					width: 160upx;
+					height: 160upx;
+					margin-right: 16upx;
+				}
+			}
+			.right{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				.r_top{
+					display: flex;
+					align-items: center;
+					font-size:24upx;
+					color:#666666;
+					line-height:24upx;
+					margin-bottom: 16upx;
+					.dot{
+						width:10upx;
+						height:10upx;
+						background:rgba(247,92,80,1);
+						border-radius: 100%;
+						margin-right: 6upx;
+					}
+				}
+				.r_bot{
+					width:160upx;
+					height:60upx;
+					border-radius:32upx;
+					font-size:28upx;
+					font-family:PingFangSC-Medium,PingFang SC;
+					line-height:28upx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+	}
+}
+.tips{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 24upx;
+	font-size:22upx;
+	color:rgba(179,179,179,1);
+	line-height:30upx;
+	letter-spacing:-1upx
+}

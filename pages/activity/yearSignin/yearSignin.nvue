@@ -1,0 +1,260 @@
+<template>
+	<view class="yearSignin_content">
+		<view class="map_box">
+			<map class="map" id="map" :latitude="latitude" :longitude="longitude" :markers="markers" v-if="mapShow"></map>
+			<map class="map" :latitude="latitude" :longitude="longitude" v-else></map>
+			<view class="locationInfo">
+				<view class="info_left">
+					<template v-if="!locationOff">
+						<image class="info_left_img" src="../../../static/map/danger.png"></image>
+						<text class="info_left_text_red">获取定位失败，请开启定位权限</text>
+					</template>
+					<template v-else>
+						<text class="info_left_text">{{address}}</text>
+					</template>
+				</view>
+				<view class="info_right" @tap="getLocation()">
+					<image class="info_right_img" src="../../../static/map/ref.png"></image>
+					<text class="info_right_text">刷新定位</text>
+				</view>
+			</view>
+		</view>
+		
+		<view class="input_box">
+			<view class="input_list input_list_one">
+				<text class="input_list_name">签到人员</text>
+				<input class="input" disabled v-model="name" type="text" placeholder="未知您的真实姓名" />
+			</view>
+			<view class="input_list">
+				<text class="input_list_name">所在部门</text>
+				<input class="input" disabled v-model="department" type="text" placeholder="未知您所在的部门" />
+			</view>
+		</view>
+		
+		<view class="btn_box" v-if="signinOff" @tap="signin()">
+			<text class="btn_text">签到 {{hh>9?hh:'0'+hh}}:{{mm>9?mm:'0'+mm}}:{{ss>9?ss:'0'+ss}}</text>
+		</view>
+		<view class="btn_box gray" v-else>
+			<text class="btn_text">签到 {{hh>9?hh:'0'+hh}}:{{mm>9?mm:'0'+mm}}:{{ss>9?ss:'0'+ss}}</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	// #ifdef  APP-PLUS-NVUE
+	import {toPath,back,toHome,toGoods,toLogin,to401} from '@/common/router.js';
+	import requestFail from '@/common/requestFail.js';
+	// #endif
+	export default {
+		data() {
+			return {
+				token:uni.getStorageSync('token'),
+				
+				rid:0,//抽奖ID
+				pid:0,//直播ID
+				
+				latitude : 22.543527000000005,//维度
+				longitude : 114.057939,//经度
+				address:'',
+				
+				mapShow:true,
+				markers:[],
+				
+				locationOff:true,//定位开关
+				signinOff:false,//打卡开关
+				
+				name:'',
+				department:'',
+				
+				intervalID:'',
+				hh:'00',
+				mm:'00',
+				ss:'00'
+			};
+		},
+		onLoad(options) {
+			this.rid = options.rid
+			this.pid = options.pid
+			
+			// #ifdef  APP-PLUS-NVUE
+			this.$toPath = toPath
+			this.$back = back,
+			this.$toHome = toHome
+			this.$toGoods = toGoods
+			this.$toLogin = toLogin
+			this.$to401 = to401
+			this.$requestFail = requestFail
+			this.url = "https://shop.neware.com.cn",
+			this.url = "http://192.168.99.66:8081",
+			// #endif
+			// #ifndef  APP-PLUS-NVUE
+			this.url = this.$url
+			// #endif
+			this.setDate()
+			this.getLocation()
+			this.getMyInfo()
+		},
+		onUnload(){
+			clearInterval(this.intervalID)
+		},
+		watch:{
+			locationOff(val){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined){
+					this.signinOff = true
+				}else{
+					this.signinOff = false
+				}
+			},
+			name(val){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined){
+					this.signinOff = true
+				}else{
+					this.signinOff = false
+				}
+			},
+			department(val){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined){
+					this.signinOff = true
+				}else{
+					this.signinOff = false
+				}
+			}
+		},
+		methods:{
+			getLocation(){
+				uni.showLoading()
+				uni.getLocation({
+				    type: 'gcj02', //返回可以用于uni.openLocation的经纬度
+					geocode:true,
+				    success: (res)=> {
+						this.latitude = res.latitude;
+						this.longitude = res.longitude;
+						this.address =  this.toStr(res.address.province)+ this.toStr(res.address.city)+ this.toStr(res.address.district)+ this.toStr(res.address.street)+ this.toStr(res.address.streetNum)+this.toStr(res.address.poiName)
+						this.locationOff = true
+						let marker = {
+							id:1,
+							latitude:res.latitude,
+							longitude:res.longitude,
+							iconPath:'../../../static/map/coordinate.png',
+							width:40,
+							height:40,
+							callout:{
+								content:res.address.poiName,
+								color:'#333333',
+								fontSize:14,
+								borderRadius:8,
+								bgColor:'#ffffff',
+								padding:8,
+								display:'ALWAYS',
+								textAlign:'center',
+							},
+						}
+						this.markers = []
+						this.markers.push(marker)
+						this.mapShow = false
+						setTimeout(() => {
+							uni.hideLoading()
+							this.mapShow = true;
+						}, 100);
+						// let map = uni.createMapContext("map",this)
+						// map.translateMarker({
+						// 	markerId:1,
+						// 	destination:{
+						// 		latitude: this.markers[0].latitude,
+						// 		longitude: this.markers[0].longitude,
+						// 	}
+						// })
+						
+				    },
+					fail: (fail) => {
+						this.locationOff = false
+						uni.hideLoading()
+						uni.showToast({
+							title:"获取定位失败，请开启定位权限",
+							icon:'none'
+						})
+					}
+				});
+			},
+			openLocation(){
+				uni.openLocation({
+					latitude: this.latitude,
+					longitude: this.longitude,
+				});
+			},
+			searchLocation(){
+				uni.chooseLocation({
+					success:(res)=>{
+						
+					}
+				})
+			},
+			toStr(data){
+				if(data==''||data==null||data==undefined||data==NaN){
+					data = ''
+				}
+				return data
+			},
+			getMyInfo(){
+				uni.request({
+					url: this.url+'/api/annualmeeting/allowlive',
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+					success: (res) => {
+						uni.hideLoading()
+						console.log(res.data)
+						if(res.data.success&&res.data.code == 200){
+							if(res.data.data!=null){
+								this.name = res.data.data.name
+								this.department = res.data.datadepartment
+							}else{
+								
+							}
+						}
+					}
+				})
+			},
+			signin(){
+				uni.showLoading({title:"正在签到..."})
+				uni.request({
+					url: this.url+'/api/annualmeeting/signin',
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "POST",
+					data:{
+						"rid": this.rid,
+						"pid": this.pid,
+						"longitude": this.longitude,
+						"latitude": this.latitude,
+						"address": this.address
+					},
+					success: (res) => {
+						uni.hideLoading()
+						if(res.data.success&&res.data.code == 200){
+							
+						}
+					}
+				})
+			},
+			setDate(){
+				this.getNowDate()
+				this.intervalID = setInterval(()=>{
+					this.getNowDate()
+				},1000)
+			},
+			getNowDate(){
+				let now = new Date();
+				this.hh = now.getHours();
+				this.mm = now.getMinutes();
+				this.ss = now.getSeconds();
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	@import "./yearSignin.scss"
+</style>

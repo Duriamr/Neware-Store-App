@@ -1,0 +1,143 @@
+page{
+		background-color:#FFFFFF ;
+		height: 100%;
+}
+.line{
+	width: 100%;
+	height: 1upx;
+	background:#F5F5F5;
+}
+.center{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 248upx;
+	margin: auto;
+	font-size:28upx;
+	text-align: center;
+	font-family:PingFangSC-Regular,PingFang SC;
+	font-weight:400;
+	color:rgba(179,179,179,1);
+	image{
+		width: 220upx;
+		height: 220upx;
+	}
+}
+.eva_content{
+	// border-top: 1upx solid rgba(229,229,229,1);
+	height: 100%;
+	.queryType{
+		padding: 24upx 26upx;
+		background: white;
+		margin-bottom: 24upx;
+		.title{
+			width:128upx;
+			height:48upx;
+			text-align: center;
+			line-height: 48upx;
+			display: inline-block;
+			text-align:center;
+			border-radius:24upx;
+			font-size:24upx;
+			border:1px solid rgba(151,151,151,1);
+			font-family:PingFangSC-Regular,PingFang SC;
+			font-weight:500;
+			color:rgba(102,102,102,1);
+			margin-right: 24upx;
+		}
+		.active{
+			color:rgba(248,181,0,1);
+			border:1upx solid rgba(248,181,0,1);
+			background:rgba(248,181,0,0.1);
+		}
+	}
+	.commentWarp{
+		padding: 24upx;
+		box-sizing: border-box;
+		background: white;
+		.commentList{
+			padding-top: 24upx;
+			display: flex;
+			.eva_top_img{
+				width:64upx;
+				height:64upx;
+				border-radius: 100%;
+				margin-right: 8upx;
+			}
+			.eva_main{
+					width: calc(100% - 64upx - 8upx);
+					// height: 368upx;
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					border-bottom: 1upx solid #F5F5F5;
+					padding-bottom: 24upx;
+					.eva_top{
+						display: flex;
+						align-items: center;
+						margin-bottom: 22upx;
+						.eva_top_right{
+							margin-left: 8upx;
+							display: flex;
+							flex-direction: column;
+							justify-content: space-between;
+							.uesrname{
+								font-size:24upx;
+								color:#666666;
+							}
+							.date{
+								font-size:22upx;
+								color:#B3B3B3;
+							}
+						}
+					}
+					.eva_bot{
+						// height: 224upx;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						.comment{
+							font-size:24upx;
+							font-family:PingFangSC-Regular,PingFang SC;
+							font-weight:400;
+							color:rgba(51,51,51,1);
+							line-height:30upx;
+							.open{
+								font-size:24upx;
+								font-family:PingFangSC-Regular,PingFang SC;
+								font-weight:400;
+								color:rgba(248,181,0,1);
+							}
+						}
+						.comment_img{
+							margin-top: 24upx;
+							display: flex;
+							flex-wrap: wrap;
+							.comment_item{
+								width: 200upx;
+								height: 200upx;
+								display: inline-block;
+								margin-right: 16upx;
+								margin-bottom: 16upx;
+								.comment_item_img{
+									width: 100%;
+									height: 100%;
+									border-radius:16upx;
+								}
+							}
+							.comment_item:nth-of-type(3),
+							.comment_item:nth-of-type(6),
+							.comment_item:nth-of-type(9){
+								margin-right: 0;
+							}
+						}
+					}
+				}
+			
+		}
+		
+	}
+}
