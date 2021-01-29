@@ -2,8 +2,8 @@
     "name" : "新威研选",
     "appid" : "__UNI__D8076F6",
     "description" : "科研无忧 采购无虑",
-    "versionName" : "2.7.8",
-    "versionCode" : 200781,
+    "versionName" : "2.7.9",
+    "versionCode" : 200790,
     "transformPx" : false,
     "networkTimeout" : {
         "request" : 4000
@@ -275,6 +275,7 @@
         "title" : "新威研选",
         "sdkConfigs" : {
             "maps" : {}
-        }
+        },
+        "template" : "template.h5.html"
     }
 }
