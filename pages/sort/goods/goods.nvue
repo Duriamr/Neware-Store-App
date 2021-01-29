@@ -621,9 +621,16 @@
 	export default {
 		data() {
 			return {
-				status:0,
 				$url:'',
 				$h5Url:'',
+				
+				//用户区
+				loginType:false,
+				token:"",
+				nickname:'',
+				userUniqueId:'',
+				
+				status:0,
 				
 				isautoplay:true, // 是
 				selectIndex:0,
@@ -654,12 +661,6 @@
 				intShow:false,//介绍弹窗
 					
 				once:false,//多次点击控制
-				
-				//用户区
-				loginType:false,
-				token:"",
-				nickname:'',
-				userUniqueId:'',
 				
 				//分享区
 				shareShow:false,

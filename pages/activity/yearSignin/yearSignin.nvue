@@ -41,13 +41,18 @@
 </template>
 
 <script>
+	//接口
+	import {url,wss,h5Url} from '@/url.js';
 	// #ifdef  APP-PLUS-NVUE
+	// 路由
 	import {toPath,back,toHome,toGoods,toLogin,to401} from '@/common/router.js';
+	// 请求超时
 	import requestFail from '@/common/requestFail.js';
 	// #endif
 	export default {
 		data() {
 			return {
+				$url:'',
 				token:uni.getStorageSync('token'),
 				
 				rid:0,//抽奖ID
@@ -73,23 +78,23 @@
 			};
 		},
 		onLoad(options) {
-			this.rid = options.rid
-			this.pid = options.pid
-			
+			// 接口
+			this.$url = url
 			// #ifdef  APP-PLUS-NVUE
+			// 路由
 			this.$toPath = toPath
 			this.$back = back,
 			this.$toHome = toHome
 			this.$toGoods = toGoods
 			this.$toLogin = toLogin
 			this.$to401 = to401
+			// 请求超时
 			this.$requestFail = requestFail
-			this.url = "https://shop.neware.com.cn",
-			this.url = "http://192.168.99.66:8081",
 			// #endif
-			// #ifndef  APP-PLUS-NVUE
-			this.url = this.$url
-			// #endif
+			
+			this.rid = options.rid
+			this.pid = options.pid
+			
 			this.setDate()
 			this.getLocation()
 			this.getMyInfo()
