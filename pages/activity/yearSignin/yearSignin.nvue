@@ -1,5 +1,8 @@
 <template>
 	<view class="yearSignin_content">
+		<image v-if="successShow" class="toastImg" src="/static/map/success.png" mode="widthFix"></image>
+		<image v-if="failShow" class="toastImg" src="/static/map/fail.png" mode="widthFix"></image>
+		
 		<view class="map_box">
 			<map class="map" id="map" :latitude="latitude" :longitude="longitude" :markers="markers" v-if="mapShow"></map>
 			<map class="map" :latitude="latitude" :longitude="longitude" v-else></map>
@@ -74,7 +77,10 @@
 				intervalID:'',
 				hh:'00',
 				mm:'00',
-				ss:'00'
+				ss:'00',
+				
+				successShow:false,
+				failShow:false,
 			};
 		},
 		onLoad(options) {
@@ -202,21 +208,45 @@
 			},
 			getMyInfo(){
 				uni.request({
-					url: this.url+'/api/annualmeeting/allowlive',
+					url: this.$url+'/api/annualmeeting/allowlive',
 					header:{
 						Authorization:'Bearer '+this.token
 					},
 					method: "GET",
 					success: (res) => {
-						uni.hideLoading()
-						console.log(res.data)
 						if(res.data.success&&res.data.code == 200){
 							if(res.data.data!=null){
 								this.name = res.data.data.name
-								this.department = res.data.datadepartment
+								this.department = res.data.data.department
+								this.issignin()
 							}else{
-								
+								uni.showToast({
+									title:"无此权限",
+									icon:"none"
+								})
+								setTimeout(()=>{
+									this.$back()
+								},500)
 							}
+						}else if(res.data.code == 401){
+							this.$to401()
+						}
+					}
+				})
+			},
+			issignin(){
+				uni.request({
+					url: this.$url+'/api/annualmeeting/issignin?id='+this.rid,
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+					success: (res) => {
+						if(res.data.data){
+							uni.hideLoading()
+							uni.redirectTo({
+								url:'/pages/activity/live/live?id='+this.pid
+							})
 						}
 					}
 				})
@@ -224,7 +254,7 @@
 			signin(){
 				uni.showLoading({title:"正在签到..."})
 				uni.request({
-					url: this.url+'/api/annualmeeting/signin',
+					url: this.$url+'/api/annualmeeting/signin',
 					header:{
 						Authorization:'Bearer '+this.token
 					},
@@ -239,8 +269,25 @@
 					success: (res) => {
 						uni.hideLoading()
 						if(res.data.success&&res.data.code == 200){
-							
+							this.successShow = true
+							setTimeout(()=>{
+								uni.redirectTo({
+									url:'/pages/activity/live/live?id='+this.pid
+								})
+							},500)
+						}else if(res.data.code == 401){
+							this.$to401()
+						}else{
+							this.failShow = true
+							uni.showToast({
+								icon: 'none',
+								position:'center',
+								title: res.data.message
+							})
 						}
+					},
+					fail: () => {
+						this.$requestFail()
 					}
 				})
 			},

@@ -131,3 +131,17 @@ page{
 	color: #FFFFFF;
 	line-height: 96rpx;
 }
+.toastImg{
+	position: fixed;
+	top:16rpx;
+	/*  #ifdef  H5  */
+	top:104rpx;
+	/*  #endif  */
+	left: 16rpx;
+	z-index: 10;
+	
+	width: 718rpx;
+	background-color: #FFFFFF;
+	box-shadow: 0px 18rpx 56rpx 16rpx rgba(0, 0, 0, 0.05), 0rpx 12rpx 32rpx 0rpx rgba(0, 0, 0, 0.08), 0rpx 6rpx 12rpx -8rpx rgba(0, 0, 0, 0.12);
+	border-radius: 8px;
+}

@@ -262,12 +262,14 @@
 		methods:{
 			//跳转 / banner点击量
 			toPath(item){
-				uni.navigateTo({
-					url:item.linkUrl
-				})
+				if(item.linkUrl.startsWith('/pages/activity/yearSignin/yearSignin')){
+					this.getYearSignin(item.linkUrl)
+					return false
+				}
+				this.$toPath(item.linkUrl)
 				uni.request({
 					url:this.$url+'/api/home/banner-hits?id='+item.id,
-					method:'post'
+					method:'POST'
 				})
 			},
 			getMask(){
@@ -493,6 +495,24 @@
 			toQuest(){
 				uni.navigateTo({
 					url:"/pages/activity/quest/quest?id="+this.questID
+				})
+			},
+			getYearSignin(path){
+				uni.request({
+					url: this.$url+'/api/annualmeeting/allowlive',
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+					success: (res) => {
+						if(res.data.success&&res.data.code == 200){
+							if(res.data.data!=null){
+								this.$toPath(path)
+							}
+						}else if(res.data.code == 401){
+							this.$to401()
+						}
+					}
 				})
 			},
 			// #ifdef APP-PLUS
