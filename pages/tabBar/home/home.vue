@@ -263,7 +263,9 @@
 			//跳转 / banner点击量
 			toPath(item){
 				if(item.linkUrl.startsWith('/pages/activity/yearSignin/yearSignin')){
+					// #ifndef H5
 					this.getYearSignin(item.linkUrl)
+					// #endif
 					return false
 				}
 				this.$toPath(item.linkUrl)
@@ -507,10 +509,26 @@
 					success: (res) => {
 						if(res.data.success&&res.data.code == 200){
 							if(res.data.data!=null){
-								this.$toPath(path)
+								this.issignin(path)
 							}
 						}else if(res.data.code == 401){
 							this.$to401()
+						}
+					}
+				})
+			},
+			issignin(path){
+				uni.request({
+					url: this.$url+'/api/annualmeeting/issignin?id='+this.parseUrl(path).rid,
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+					success: (res) => {
+						if(res.data.data){
+							this.$toPath('/pages/activity/live/live?id='+this.parseUrl(path).pid)
+						}else{
+							this.$toPath(path)
 						}
 					}
 				})
@@ -544,6 +562,14 @@
 				}
 			},
 			// #endif 
+			parseUrl(query){
+				const reg = /([^?=&]+)[=\s]([^=&?]+)/g
+				const obj = {}
+				while (reg.exec(query)) {
+				obj[RegExp.$1] = RegExp.$2;
+				}
+				return obj;
+			}
 		},
 	}
 </script>

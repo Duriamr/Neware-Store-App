@@ -133,7 +133,7 @@
 		},
 		methods:{
 			getLocation(){
-				uni.showLoading()
+				uni.showLoading({title:"定位中..."})
 				uni.getLocation({
 				    type: 'gcj02', //返回可以用于uni.openLocation的经纬度
 					geocode:true,
@@ -142,6 +142,7 @@
 						this.longitude = res.longitude;
 						this.address =  this.toStr(res.address.province)+ this.toStr(res.address.city)+ this.toStr(res.address.district)+ this.toStr(res.address.street)+ this.toStr(res.address.streetNum)+this.toStr(res.address.poiName)
 						this.locationOff = true
+						
 						let marker = {
 							id:1,
 							latitude:res.latitude,
@@ -178,8 +179,8 @@
 						
 				    },
 					fail: (fail) => {
-						this.locationOff = false
 						uni.hideLoading()
+						this.locationOff = false
 						uni.showToast({
 							title:"获取定位失败，请开启定位权限",
 							icon:'none'
@@ -279,6 +280,9 @@
 							this.$to401()
 						}else{
 							this.failShow = true
+							setTimeout(()=>{
+								this.failShow = false
+							},5000)
 							uni.showToast({
 								icon: 'none',
 								position:'center',
