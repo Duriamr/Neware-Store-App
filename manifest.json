@@ -3,7 +3,7 @@
     "appid" : "__UNI__D8076F6",
     "description" : "科研无忧 采购无虑",
     "versionName" : "2.7.9",
-    "versionCode" : 200790,
+    "versionCode" : 200791,
     "transformPx" : false,
     "networkTimeout" : {
         "request" : 4000

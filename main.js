@@ -60,7 +60,7 @@ Vue.prototype.$isObject = isObject
 Vue.prototype.$isArray = isArray
 
 // 极光验证
-import aurora from '@/common/aurora.js'
+import aurora from './common/aurora.js'
 Vue.prototype.$aurora = aurora
 
 // GoEasy

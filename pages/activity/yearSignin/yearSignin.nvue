@@ -102,34 +102,43 @@
 			this.pid = options.pid
 			
 			this.setDate()
-			this.getLocation()
 			this.getMyInfo()
+		},
+		onReady() {
+			this.getLocation()
 		},
 		onUnload(){
 			clearInterval(this.intervalID)
 		},
 		watch:{
 			locationOff(val){
-				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined&&this.address!=''&&this.address!=null&&this.address!=undefined){
 					this.signinOff = true
 				}else{
 					this.signinOff = false
 				}
 			},
 			name(val){
-				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined&&this.address!=''&&this.address!=null&&this.address!=undefined){
 					this.signinOff = true
 				}else{
 					this.signinOff = false
 				}
 			},
 			department(val){
-				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined&&this.address!=''&&this.address!=null&&this.address!=undefined){
 					this.signinOff = true
 				}else{
 					this.signinOff = false
 				}
-			}
+			},
+			address(val){
+				if(this.locationOff&&this.name!=''&&this.name!=null&&this.name!=undefined&&this.department!=''&&this.department!=null&&this.department!=undefined&&this.address!=''&&this.address!=null&&this.address!=undefined){
+					this.signinOff = true
+				}else{
+					this.signinOff = false
+				}
+			},
 		},
 		methods:{
 			getLocation(){
@@ -138,11 +147,16 @@
 				    type: 'gcj02', //返回可以用于uni.openLocation的经纬度
 					geocode:true,
 				    success: (res)=> {
+						uni.hideLoading()
 						this.latitude = res.latitude;
 						this.longitude = res.longitude;
-						this.address =  this.toStr(res.address.province)+ this.toStr(res.address.city)+ this.toStr(res.address.district)+ this.toStr(res.address.street)+ this.toStr(res.address.streetNum)+this.toStr(res.address.poiName)
+						if(res.address){
+							this.address =  this.toStr(res.address.province)+ this.toStr(res.address.city)+ this.toStr(res.address.district)+ this.toStr(res.address.street)+ this.toStr(res.address.streetNum)+this.toStr(res.address.poiName)
+						}else{
+							this.getLocation()
+							return false
+						}						
 						this.locationOff = true
-						
 						let marker = {
 							id:1,
 							latitude:res.latitude,
@@ -165,7 +179,6 @@
 						this.markers.push(marker)
 						this.mapShow = false
 						setTimeout(() => {
-							uni.hideLoading()
 							this.mapShow = true;
 						}, 100);
 						// let map = uni.createMapContext("map",this)
@@ -180,6 +193,7 @@
 				    },
 					fail: (fail) => {
 						uni.hideLoading()
+						this.address = ''
 						this.locationOff = false
 						uni.showToast({
 							title:"获取定位失败，请开启定位权限",
