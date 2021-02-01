@@ -58,65 +58,65 @@
 					}
 			    }
 			});
-			let myID = uni.getStorageSync('myID')
-			if(myID != ''){
-				this.$goEasy.connect({
-					userId: myID,
-				    onSuccess: function () {  //连接成功
-				        console.log("GoEasy successfully") //连接成功
-				    },
-				    onFailed: function (error) { //连接失败
-				        console.log("Failed to connect GoEasy, code:"+error.code+ ",error:"+error.content);
-				    },
-				    onProgress:function(attempts) { //连接或自动重连中
-				        console.log("GoEasy is connecting", attempts);    
-				    }
-				});
-				this.$goEasy.subscribe({
-				    channel: "App",//替换为您自己的channel
-				    onMessage: function (message) {
-				        console.log("Channel:" + message.channel + " content:" + message.content);
-				    },
-				    onSuccess: function () {
-				        console.log("Channel订阅成功。");
-				    },
-				    onFailed: function (error) {
-				        console.log("Channel订阅失败, 错误编码：" + error.code + " 错误信息：" + error.content)
-				    }
-				});
-				this.$goEasy.subscribePresence({
-					channel: "App",
-					onPresence: function(presenceEvents){
-						console.log(presenceEvents);
-					}
-				});
-				this.$goEasy.hereNow({
-				        channels: ["App"],
-				        includeUsers: true, //可选项，是否返回用户列表，默认false
-				        distinct: true //可选项，相同userId的客户端，列表中只保留一个，默认false
-				    },function(response) {
-				        console.log(response);//json格式的response           
-				    });
+			// let myID = uni.getStorageSync('myID')
+			// if(myID != ''){
+			// 	this.$goEasy.connect({
+			// 		userId: myID,
+			// 	    onSuccess: function () {  //连接成功
+			// 	        console.log("GoEasy successfully") //连接成功
+			// 	    },
+			// 	    onFailed: function (error) { //连接失败
+			// 	        console.log("Failed to connect GoEasy, code:"+error.code+ ",error:"+error.content);
+			// 	    },
+			// 	    onProgress:function(attempts) { //连接或自动重连中
+			// 	        console.log("GoEasy is connecting", attempts);    
+			// 	    }
+			// 	});
+			// 	this.$goEasy.subscribe({
+			// 	    channel: "App",//替换为您自己的channel
+			// 	    onMessage: function (message) {
+			// 	        console.log("Channel:" + message.channel + " content:" + message.content);
+			// 	    },
+			// 	    onSuccess: function () {
+			// 	        console.log("Channel订阅成功。");
+			// 	    },
+			// 	    onFailed: function (error) {
+			// 	        console.log("Channel订阅失败, 错误编码：" + error.code + " 错误信息：" + error.content)
+			// 	    }
+			// 	});
+			// 	this.$goEasy.subscribePresence({
+			// 		channel: "App",
+			// 		onPresence: function(presenceEvents){
+			// 			console.log(presenceEvents);
+			// 		}
+			// 	});
+			// 	this.$goEasy.hereNow({
+			// 	        channels: ["App"],
+			// 	        includeUsers: true, //可选项，是否返回用户列表，默认false
+			// 	        distinct: true //可选项，相同userId的客户端，列表中只保留一个，默认false
+			// 	    },function(response) {
+			// 	        console.log(response);//json格式的response           
+			// 	    });
 					
-				this.$goEasy.hereNowByUserIds({
-					userIds: [myID]
-				},function(response) {
-					console.log(response)
-				});
+			// 	this.$goEasy.hereNowByUserIds({
+			// 		userIds: [myID]
+			// 	},function(response) {
+			// 		console.log(response)
+			// 	});
 
-			}else{
-				this.$goEasy.connect({
-				    onSuccess: function () {  //连接成功
-				        console.log("GoEasy successfully") //连接成功
-				    },
-				    onFailed: function (error) { //连接失败
-				        console.log("Failed to connect GoEasy, code:"+error.code+ ",error:"+error.content);
-				    },
-				    onProgress:function(attempts) { //连接或自动重连中
-				        console.log("GoEasy is connecting", attempts);    
-				    }
-				});
-			}
+			// }else{
+			// 	this.$goEasy.connect({
+			// 	    onSuccess: function () {  //连接成功
+			// 	        console.log("GoEasy successfully") //连接成功
+			// 	    },
+			// 	    onFailed: function (error) { //连接失败
+			// 	        console.log("Failed to connect GoEasy, code:"+error.code+ ",error:"+error.content);
+			// 	    },
+			// 	    onProgress:function(attempts) { //连接或自动重连中
+			// 	        console.log("GoEasy is connecting", attempts);    
+			// 	    }
+			// 	});
+			// }
 			
 			// #ifdef APP-PLUS  
 			let UserUniqueId = uni.getStorageSync('myID')

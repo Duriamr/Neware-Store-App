@@ -45,7 +45,7 @@
 
 <script>
 	//接口
-	import {url,wss,h5Url} from '@/url.js';
+	import {url,wss,h5Url} from '@/common/url.js';
 	// #ifdef  APP-PLUS-NVUE
 	// 路由
 	import {toPath,back,toHome,toGoods,toLogin,to401} from '@/common/router.js';

@@ -409,7 +409,7 @@
 					<scroll-view class="format_scroll" scroll-y="true" >
 						<view class="format_list" v-if="relatedProduct.length > 0">
 							<view class="format_list_ul" style="margin-top: 0;">
-								<view class="format_list" :class="id==item.id?'format_list_item_act':''" v-for="(item, index) in relatedProduct" :key="index" @tap="tabGoods(item.id,$event)">
+								<view class="format_list_item" :class="id==item.id?'format_list_item_act':''" v-for="(item, index) in relatedProduct" :key="index" @tap="tabGoods(item.id,$event)">
 									<text class="format_list_item_text" :class="id==item.id?'format_list_item_text_act':''">{{item.productName}}</text>
 								</view>
 							</view>
@@ -607,7 +607,7 @@
 
 <script>
 	//接口
-	import {url,wss,h5Url} from '@/url.js'
+	import {url,wss,h5Url} from '@/common/url.js'
 	// #ifdef  APP-PLUS-NVUE
 	// 路由
 	import {toPath,back,toHome,toGoods,toLogin,to401} from '@/common/router.js'
@@ -718,7 +718,7 @@
 		},
 		onBackPress(e){
 			if(this.bombFormat==='show'||this.bombShopping==='show'||this.bombNow==='show'){
-				this.hideFormat()
+				this.hidePopup()
 				return true;
 			}
 		},
@@ -1025,8 +1025,7 @@
 			},
 
 			joinCart(e){
-				e.stopPropagation();
-				this.hideFormat();
+				this.hidePopup();
 				uni.request({
 				    url: this.$url+'/api/shoppingcart/addshoppingcart', 
 					header:{
@@ -1061,6 +1060,7 @@
 			//跳转确认订单页面
 			toConfirmation(e){
 				e.stopPropagation();
+				this.hidePopup();
 				uni.request({
 				    url: this.$url+'/api/appuser/get', 
 					header:{
@@ -1070,7 +1070,6 @@
 				    
 				    success: (res) => {
 						if(res.data.success&&res.data.code == 200){
-							this.hideFormat();
 							if(this.once){
 								return false;
 							}
@@ -1109,7 +1108,6 @@
 						}
 				    },
 					fail: (err) => {
-						this.hideFormat();
 						this.$requestFail()
 					}
 				});

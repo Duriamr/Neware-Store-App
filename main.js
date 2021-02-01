@@ -4,7 +4,7 @@ import store from './store'
 Vue.prototype.$store = store
 
 //接口
-import {url,wss,h5Url} from '@/url.js'
+import {url,wss,h5Url} from '@/common/url.js'
 Vue.prototype.$url = url
 Vue.prototype.$wss = wss
 Vue.prototype.$h5Url = h5Url
@@ -64,12 +64,12 @@ import aurora from './common/aurora.js'
 Vue.prototype.$aurora = aurora
 
 // GoEasy
-import GoEasy from '@/common/goeasy-1.2.0.js'
-Vue.prototype.$goEasy = GoEasy.getInstance({
-	host:'hangzhou.goeasy.io',
-	appkey: "BC-2b09390cf01940ffa828268ac310f5ed",
-	allowNotification:true,
-}); 
+// import GoEasy from '@/common/goeasy-1.2.0.js'
+// Vue.prototype.$goEasy = GoEasy.getInstance({
+// 	host:'hangzhou.goeasy.io',
+// 	appkey: "BC-2b09390cf01940ffa828268ac310f5ed",
+// 	allowNotification:true,
+// }); 
 
 // 登录验证key
 Vue.prototype.$signKey = '567bcc7f346c8ce22e1893cee0f43a3a'
