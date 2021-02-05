@@ -32,7 +32,7 @@
 				<swiper class="goods_swiper" :autoplay="isautoplay" :duration="500" :circular="true" @change="handleChange">
 					<swiper-item v-if="productInfo.videoUrl" >
 						<view>
-							<video class="goods_swiper_list_iav" id='video' @play="play" @pause="pause" :src="productInfo.videoUrl" :poster="productImage[0]" :show-fullscreen-btn='true' :enable-progress-gesture='false' :muted='true' object-fit='cover'></video>
+							<video class="goods_swiper_list_iav" id='video' @play="play" @pause="pause" :src="productInfo.videoUrl" :poster="productImage[0]" :show-fullscreen-btn='true' :enable-progress-gesture='false' object-fit='cover'></video>
 						</view>
 					</swiper-item>
 					<swiper-item v-for="(item,index) in productImage" :key="index">
