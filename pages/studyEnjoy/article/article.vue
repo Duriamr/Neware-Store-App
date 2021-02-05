@@ -26,7 +26,7 @@
 				</view>
 			</view>
 			
-			<parser class="richText" :html="articleInfo.content" />
+			<parser class="richText" selectable="true" :html="articleInfo.content" />
 			
 			<view class="vote" v-if="articleInfo.articleVoteDto!=null&&articleInfo.articleVoteDto!={}&&$isObject(articleInfo.articleVoteDto)">
 				<view class="vote_title">

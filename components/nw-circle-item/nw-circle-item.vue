@@ -45,14 +45,14 @@
 			</view>
 			
 			<block v-if="item.customerType">
-				<text class="text" v-if="item.content!=''&&item.content!=null&&item.content!=undefined">
+				<text class="text" selectable="true" v-if="item.content!=''&&item.content!=null&&item.content!=undefined">
 					{{item.content}}
 				</text>
 				<text class="text" style="color: #999999;margin-top: 0" v-if="item.content.length > 58">查看全文</text>
 			</block>
 			
 			<block v-if="!item.customerType">
-				<text class="text" v-if="item.title!=''&&item.title!=null&&item.title!=undefined">
+				<text class="text" selectable="true" v-if="item.title!=''&&item.title!=null&&item.title!=undefined">
 					{{item.title}}
 				</text>
 				<text class="text" style="color: #999999;margin-top: 0;">查看全文</text>
