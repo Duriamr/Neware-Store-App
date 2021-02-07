@@ -27,7 +27,7 @@
 		</view>
 		
 		<!-- #ifdef H5 -->
-		<h5Footer />
+		<h5Footer :salserNo='salserNo' />
 		<!-- #endif -->   
 	</view>
 </template>
@@ -46,6 +46,7 @@
 		},
 		data() {
 			return {
+				salserNo:'',
 				learning:[],
 				learningTop:[],
 				learningTopImageUrl:'',
@@ -57,7 +58,10 @@
 				learningSearchShow:false,
 			};
 		},
-		onLoad() {
+		onLoad(option) {
+			if(option.salserNo){
+				this.salserNo = option.salserNo
+			}
 			this.getLearningType();
 			this.getTopImage();
 		},

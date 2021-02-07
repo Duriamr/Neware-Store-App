@@ -5,7 +5,10 @@
 				<image class="footer_image" src="/static/public/floatImg.png" />
 				<text class="footer_text">您的好友送您一份新人科研好礼</text>
 			</view>
-			<view class="footer_right" @tap.stop='$downNASA'>
+			<view class="footer_right" v-if="!salserNo" @tap.stop='$downNASA'>
+				下载App领取
+			</view>
+			<view class="footer_right" v-if="salserNo" @tap.stop='downNASA'>
 				下载App领取
 			</view>
 		</view>
@@ -18,6 +21,17 @@
 			return {
 				
 			};
+		},
+		props:{
+			salserNo:{
+				type: String,
+				default: ''
+			},
+		},
+		methods:{
+			downNASA(){
+				window.open('https://shop.neware.com.cn/GoStore/#/pages/down?salserNo='+this.salserNo)
+			}
 		}
 	}
 </script>

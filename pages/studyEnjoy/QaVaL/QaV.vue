@@ -76,7 +76,7 @@
 		</view>
 		
 		<!-- #ifdef H5 -->
-		<h5Footer />
+		<h5Footer :salserNo='salserNo' />
 		<!-- #endif -->   
 	</view>
 </template>
@@ -99,6 +99,7 @@
 		},
 		data() {
 			return {
+				salserNo:'',
 				headerIndex:0,
 				
 				qa:[],
@@ -120,7 +121,11 @@
 			};
 		},
 		onLoad(option) {
+			if(option.salserNo){
+				this.salserNo = option.salserNo
+			}
 			this.headerIndex = parseInt(option.index)
+			
 			this.getQaType();
 			this.getVideoType();
 			this.getTopImage();

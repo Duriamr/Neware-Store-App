@@ -2,8 +2,8 @@
     "name" : "新威研选",
     "appid" : "__UNI__D8076F6",
     "description" : "科研无忧 采购无虑",
-    "versionName" : "2.8.0",
-    "versionCode" : 200800,
+    "versionName" : "2.8.1",
+    "versionCode" : 200810,
     "transformPx" : false,
     "networkTimeout" : {
         "request" : 4000
@@ -166,11 +166,11 @@
                 }
             },
             "splashscreen" : {
-				"android" : {
-				    "hdpi" : "启动页/startPage/Android/480x762.9.png",
-				    "xhdpi" : "启动页/startPage/Android/720x1242.9.png",
-				    "xxhdpi" : "启动页/startPage/Android/1080x1882.9.png"
-				},
+                "android" : {
+                    "hdpi" : "启动页/startPage/Android/480x762.9.png",
+                    "xhdpi" : "启动页/startPage/Android/720x1242.9.png",
+                    "xxhdpi" : "启动页/startPage/Android/1080x1882.9.png"
+                },
                 "ios" : {
                     "iphone" : {
                         "portrait-896h@3x" : "",
