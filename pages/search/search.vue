@@ -130,6 +130,20 @@
 								<image src="/static/public/go_yellow.png" />
 							</view>
 						</view>
+						
+						<view class="module_content" v-if="searchLive.length > 0">
+							<view class="header">
+								热门直播
+							</view>
+							<nw-live-item v-for="(item,index) in searchLive" :key="index" :item="item" />
+							<view class="footer" @tap.stop="tab(5)">
+								<view class="left">
+									<image src="/static/search/search_y.png" />
+									<text>查看更多热门直播</text>
+								</view>
+								<image src="/static/public/go_yellow.png" />
+							</view>
+						</view>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -177,6 +191,16 @@
 					</view>
 				</scroll-view>
 			</swiper-item>
+			
+			<swiper-item>
+				<scroll-view class="scroll" scroll-y="true">
+					<view class="search_ul"  v-if="tabIndex==5">
+						<empty marginTop="272upx" src="/static/expect/not_Search.png" text="没有找到相关结果" v-if="!liveList.length" />
+						<nw-live-item v-for="(item,index) in liveList" :key="index"
+						:item="item" />
+					</view>
+				</scroll-view>
+			</swiper-item>
 		</swiper>
 	</view>
 </template>
@@ -203,7 +227,24 @@
 				placeholder:"",
 				cancelShow:false,
 				
-				tabList:[],
+				tabList:[{
+					value:"全部"
+				},
+				{
+					value:"商品"
+				},
+				{
+					value:"设备解说"
+				},
+				{
+					value:"学术博览"
+				},
+				{
+					value:"基础解答"
+				},
+				{
+					value:"热门直播"
+				}],
 				tabIndex:0,
 				
 				hotList:[],
@@ -217,11 +258,13 @@
 				searchVideo:[],
 				searchLearning:[],
 				searchGoods:[],
+				searchLive:[],
 				emptyShow:false,
 				qa:[],
 				video:[],
 				learning:[],
 				goodsList:[],
+				liveList:[],
 				
 				focus:false
 			};
@@ -231,7 +274,6 @@
 			// setTimeout(()=>{
 			// 	this.focus = true
 			// },1000)
-			this.getTabList()
 			this.getHotList();
 			this.getPlaceholder();
 			if(options.type=='auto'){
@@ -260,7 +302,7 @@
 				if(val == null){
 					this.searchQA = []
 				}
-				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length){
+				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length&&!this.searchLive.length){
 					this.emptyShow = true
 				}else{
 					this.emptyShow = false
@@ -270,7 +312,7 @@
 				if(val == null){
 					this.searchVideo = []
 				}
-				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length){
+				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length&&!this.searchLive.length){
 					this.emptyShow = true
 				}else{
 					this.emptyShow = false
@@ -280,7 +322,7 @@
 				if(val == null){
 					this.searchLearning = []
 				}
-				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length){
+				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length&&!this.searchLive.length){
 					this.emptyShow = true
 				}else{
 					this.emptyShow = false
@@ -290,7 +332,17 @@
 				if(val == null){
 					this.searchGoods = []
 				}
-				if(!this.searchQA &&!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length){
+				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length&&!this.searchLive.length){
+					this.emptyShow = true
+				}else{
+					this.emptyShow = false
+				}
+			},
+			searchLive:function(val){
+				if(val == null){
+					this.searchLive = []
+				}
+				if(!this.searchQA.length&&!this.searchVideo.length&&!this.searchLearning.length&&!this.searchGoods.length&&!this.searchLive.length){
 					this.emptyShow = true
 				}else{
 					this.emptyShow = false
@@ -303,37 +355,6 @@
 			},
 			tab(key){
 				this.tabIndex = key
-			},
-			getTabList(){
-				uni.request({
-				    url: this.$url+'/api/articlev2/articlesearchtype', 
-					method: "GET",
-				    
-				    success: (res) => {
-						if(res.data.success&&res.data.code == 200){
-							// this.tabList = res.data.data;
-							let tabList = [{
-								value:"全部"
-							},
-							{
-								value:"商品"
-							},
-							{
-								value:"设备解说"
-							},
-							{
-								value:"学术博览"
-							},
-							{
-								value:"基础解答"
-							}]
-							this.tabList = tabList
-						}
-				    },
-					fail: (err) => {
-						this.$requestFail()
-					}
-				});
 			},
 			getHotList(){
 				uni.request({
@@ -451,6 +472,7 @@
 				this.getQa(null,this.searchText);
 				this.getVideo('默认排序',this.searchText);
 				this.getLearning('推荐',this.searchText);
+				this.getLive(this.searchText)
 				setTimeout(() => {
 					this.setHistoryList()
 				},300)
@@ -515,23 +537,59 @@
 						if(res.data.success&&res.data.code == 200){
 							this.searchGoods = []
 							let len = res.data.data.length
-							if(len==1){
-								this.searchGoods = res.data.data
-							}else if(len==2||len==3){
-								for(let i=0;i<len;i++){
-									this.searchGoods.push(res.data.data[i])
-								}
-							}else if(len>3){
-								for(let i=0;i<3;i++){
-									this.searchGoods.push(res.data.data[i])
-								}
+							let l
+							if(len<=3){
+								l = len
+							}else{
+								l = 3
 							}
+							for(let i=0;i<l;i++){
+								this.searchGoods.push(res.data.data[i])
+							}
+							// if(len==1){
+							// 	this.searchGoods = res.data.data
+							// }else if(len==2||len==3){
+							// 	for(let i=0;i<len;i++){
+							// 		this.searchGoods.push(res.data.data[i])
+							// 	}
+							// }else if(len>3){
+							// 	for(let i=0;i<3;i++){
+							// 		this.searchGoods.push(res.data.data[i])
+							// 	}
+							// }
 							this.goodsList = res.data.data
 						}
 				    }
 				});
 			},
-			
+			getLive(keyWord){
+				uni.request({
+				    url: this.$url+'/api/liveuser/live',
+				    data:{
+				    	"keyWord": keyWord,
+				    	"pageIndex": 1,
+				    	"pageSize": 999,
+				    },
+				    method: "POST",
+				    
+				    success: (res) => {
+						if(res.data.success&&res.data.code == 200){
+							this.searchLive = []
+							let len = res.data.data.length
+							let l
+							if(len<=3){
+								l = len
+							}else{
+								l = 3
+							}
+							for(let i=0;i<l;i++){
+								this.searchLive.push(res.data.data.items[i])
+							}
+							this.liveList = res.data.data.items
+						}
+				    }
+				});
+			},
 			clickItem(item){
 				this.searchText = item;
 				this.searchStart();

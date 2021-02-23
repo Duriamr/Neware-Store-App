@@ -26,7 +26,12 @@
 				</view>
 			</view>
 			
+			<!--  #ifndef  H5 -->
 			<parser class="richText" selectable="true" :html="articleInfo.content" />
+			<!--  #endif -->
+			<!--  #ifdef  H5 -->
+			<parser class="richText" :html="articleInfo.content" />
+			<!--  #endif -->
 			
 			<view class="vote" v-if="articleInfo.articleVoteDto!=null&&articleInfo.articleVoteDto!={}&&$isObject(articleInfo.articleVoteDto)">
 				<view class="vote_title">

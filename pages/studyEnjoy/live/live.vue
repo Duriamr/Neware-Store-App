@@ -1,64 +1,9 @@
 <template>
 	<view class="live_contact">
 		<view class="live_ul">
-			<view class="live_list">
-				<view class="list_left">
-					<text class="left_title">锂离子电池设计的基本原理</text>
-					<view class="left_bot">
-						<text>孙安涛</text>
-						<text class="time"></text>
-					</view>
-				</view>
-				<view class="list_right">
-					<view class="img_box">
-						<image class="image" src=""></image>
-					</view>
-					<text>477人报名</text>
-				</view>
-			</view>
-			<view class="live_list">
-				<view class="list_left">
-					<text class="left_title">X射线光电子能谱原理及技术 特点</text>
-					<view class="left_bot">
-						<text>孙安涛</text>
-					</view>
-				</view>
-				<view class="list_right">
-					<view class="img_box">
-						<image class="image" src=""></image>
-					</view>
-					<text>477人报名</text>
-				</view>
-			</view>
-			<view class="live_list">
-				<view class="list_left">
-					<text class="left_title">X射线光电子能谱原理及技术 特点X射线光电子能谱原理及技术 特点X射线光电子能谱原理及技术 特点X射线光电子能谱原理及技术 特点</text>
-					<view class="left_bot">
-						<text>孙安涛</text>
-						<text class="time">2021-01-01 17:00</text>
-					</view>
-				</view>
-				<view class="list_right">
-					<view class="img_box">
-						<image class="image" src=""></image>
-					</view>
-					<text>477人报名</text>
-				</view>
-			</view>
-			<view class="live_list">
-				<view class="list_left">
-					<text class="left_title">X射线光电子能谱原理及技术 特点</text>
-					<view class="left_bot">
-						<text>孙安涛</text>
-					</view>
-				</view>
-				<view class="list_right">
-					<view class="img_box">
-						<image class="image" src=""></image>
-					</view>
-					<text>477人播放</text>
-				</view>
-			</view>
+			<nw-live-item v-for="(item,index) in liveArr" :key="index" 
+			:item="item" />
+			<text class="baseline" v-if="baselineShow">- 我是有底线的 -</text>
 		</view>
 	</view>
 </template>
@@ -67,8 +12,79 @@
 	export default {
 		data() {
 			return {
+				pageIndex:1,
+				pageSize:10,
+				baselineShow:false,
 				
+				liveArr:[],
 			};
+		},
+		onLoad() {
+			uni.startPullDownRefresh()
+		},
+		onPullDownRefresh(){
+			this.getLiveArr()
+		},
+		onReachBottom(){
+			this.addLiveArr()
+		},
+		onNavigationBarButtonTap(e){
+			if(e.index==0){
+				this.$toPath('/pages/search/searchLive')
+			}
+		},
+		methods:{
+			getLiveArr(){
+				uni.request({
+				    url: this.$url+'/api/liveuser/live', 
+					data:{
+						"keyWord": "",
+						"pageIndex": 1,
+						"pageSize": this.pageSize,
+					},
+					method: "POST",
+					
+				    success: (res) => {
+						uni.stopPullDownRefresh()
+						if(res.data.success&&res.data.code == 200){
+							this.liveArr = res.data.data.items
+							this.pageIndex = 1
+							this.baselineShow = false
+						}
+				    },
+					fail: (err) => {
+						uni.stopPullDownRefresh()
+						this.$requestFail()
+					}
+				});
+			},
+			addLiveArr(){
+				uni.showLoading({ title: '加载更多'});
+				uni.request({
+				    url: this.$url+'/api/liveuser/live', 
+					data:{
+						"keyWord": "",
+						"pageIndex": ++this.pageIndex,
+						"pageSize": this.pageSize,
+					},
+					method: "POST",
+					
+				    success: (res) => {
+						uni.hideLoading()
+						if(res.data.success&&res.data.code == 200){
+							if(res.data.data.items.length > 0 && res.data.data.items != null){
+								this.baselineShow = false
+								for(let item of res.data.data.items){
+									this.liveArr.push(item)
+								}
+							}else{
+								this.pageIndex--
+								this.baselineShow = true
+							}
+						}
+				    }
+				});
+			}
 		}
 	}
 </script>

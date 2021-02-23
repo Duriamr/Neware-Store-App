@@ -178,10 +178,6 @@
 				type: Number,
 				default: 0
 			},
-			circleIdx:{
-				type: Number,
-				default: 0
-			},
 			oid:{
 				type: Number,
 				default: 0

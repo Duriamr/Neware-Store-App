@@ -1,11 +1,11 @@
 {
-	// "condition":{
-	// 	"current":1,
-	// 	"list":[{
-	// 		"name":"yearSignin",
-	// 		"path":"pages/activity/yearSignin/yearSignin"
-	// 	}]
-	// },
+	"condition":{
+		"current":1,
+		"list":[{
+			"name":"searchLive",
+			"path":"pages/studyEnjoy/live/live"
+		}]
+	},
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"navigationBarTextStyle": "black",
@@ -339,7 +339,6 @@
 				    "path" : "keyword/keyword",
 				    "style" : {
 						"navigationBarTitleText": "年度关键词",
-						"enablePullDownRefresh": false,
 						"app-plus":{
 								"titleNView":{
 									"buttons":[{
@@ -361,7 +360,6 @@
 				    "path" : "poster/poster",
 				    "style" : {
 						"navigationBarTitleText": "预热海报",
-						"enablePullDownRefresh": false,
 						"app-plus":{
 								"titleNView":{
 									"buttons":[{
@@ -392,7 +390,6 @@
 				    "path" : "discount/productDetaile/productDetaile",
 				    "style" : {
 						"navigationBarTitleText": "商品详情图",
-						"enablePullDownRefresh": false,
 						"app-plus":{
 								"titleNView":{
 									"type":"transparent"
@@ -752,6 +749,18 @@
 					"path":"searchERP",
 					"style" : {
 						"navigationBarTitleText": "ERP订单搜索",
+						"app-plus": {
+							"titleNView": false,//禁用原生导航栏
+							"bounce":"none",
+							"scrollIndicator": "none",
+							"softinputMode": "adjustResize"
+						}
+					}
+				}
+				,{
+					"path":"searchLive",
+					"style" : {
+						"navigationBarTitleText": "直播搜索",
 						"app-plus": {
 							"titleNView": false,//禁用原生导航栏
 							"bounce":"none",
@@ -1174,12 +1183,26 @@
                 ,{
                     "path" : "live/live",
                     "style" : {
-                    "navigationBarTitleText": "直播"
+						"navigationBarTitleText": "直播",
+						"enablePullDownRefresh": true,
+						"app-plus": {
+							"titleNView":{
+								"buttons":[{
+									"color": "#333333",
+									"fontSize": "24",
+									"fontSrc":"/static/ttf/search.ttf",
+									"text": "\ue601",
+									"width":"32px"
+								}]
+							},
+							"bounce":"none",
+							"scrollIndicator": "none"
+						}
 					}
                 
                 }
                 ,{
-                    "path" : "liveDetails/liveDetails",
+                    "path" : "live/liveDetails/liveDetails",
                     "style" : {
                     	"navigationBarTitleText": "直播",
                     	"app-plus":{

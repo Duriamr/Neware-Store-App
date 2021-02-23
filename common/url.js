@@ -13,8 +13,8 @@ let h5Url = "https://shoph5.neware.work/#"
 // h5Url = "http://28a165k844.qicp.vip/#"
 
 // IP测试接口
-// url = "http://192.168.99.66:8081"
-// wss = "ws://192.168.99.66:8081"
-// h5Url = "http://192.168.99.66:8089/#"
+url = "http://192.168.99.66:8081"
+wss = "ws://192.168.99.66:8081"
+h5Url = "http://192.168.99.66:8089/#"
 
 export {url,wss,h5Url}
