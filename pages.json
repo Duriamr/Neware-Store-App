@@ -1,11 +1,11 @@
 {
-	"condition":{
-		"current":1,
-		"list":[{
-			"name":"searchLive",
-			"path":"pages/studyEnjoy/live/live"
-		}]
-	},
+	// "condition":{
+	// 	"current":1,
+	// 	"list":[{
+	// 		"name":"searchLive",
+	// 		"path":"pages/studyEnjoy/live/live"
+	// 	}]
+	// },
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"navigationBarTextStyle": "black",

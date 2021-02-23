@@ -1,6 +1,6 @@
 <template>
 	<view class="se_content">
-		<view class="guide_content" @touchmove.stop.prevent v-if="guideShow">
+		<!-- <view class="guide_content" @touchmove.stop.prevent v-if="guideShow">
 			<view class="kingkong">
 				<view class="kingkong_list"></view>
 				<view class="kingkong_list">
@@ -25,7 +25,7 @@
 			<view class="btn" v-if="guideShow==1" @tap.stop="tabGuideShow(2)"><text>下一步</text></view>
 			<view class="btn" v-if="guideShow==2" @tap.stop="tabGuideShow(3)"><text>下一步</text></view>
 			<view class="btn" v-if="guideShow==3" @tap.stop="tabGuideShow(0)"><text>我知道啦</text></view>
-		</view>
+		</view> -->
 		<view class="se_header" @touchmove.stop.prevent>
 			<view class="status"></view>
 			<view class="header">
@@ -81,6 +81,10 @@
 			<view class="kingkong_list" @tap.stop="$toPath('/pages/activity/paper/all/all')">
 				<image src="/static/studyEnjoy/kingkong/paper.png" />
 				<text>论文评选</text>
+			</view>
+			<view class="kingkong_list" @tap.stop="$toPath('/pages/studyEnjoy/live/live')">
+				<image src="/static/studyEnjoy/kingkong/live.webp" />
+				<text>热门直播</text>
 			</view>
 		</view>
 		
@@ -309,14 +313,14 @@
 				    success: (res) => {
 						if(res.data.success&&res.data.code == 200){
 							this.bannerArr = res.data.data
-							if(this.$isArray(this.bannerArr)&&this.bannerArr!=[]){
-								let guide = uni.getStorageSync('se_guide')
-								if(!guide){
-									this.guideShow = 1
-								}else{
-									this.guideShow = false
-								}
-							}
+							// if(this.$isArray(this.bannerArr)&&this.bannerArr!=[]){
+							// 	let guide = uni.getStorageSync('se_guide')
+							// 	if(!guide){
+							// 		this.guideShow = 1
+							// 	}else{
+							// 		this.guideShow = false
+							// 	}
+							// }
 						}
 				    }
 				});
