@@ -323,6 +323,7 @@
 					method: "GET",
 				    
 				    success: (res) => {
+						console.log(res.data)
 						for(let i=0; i<res.data.data.length; i++){
 							if(res.data.data[i].region == 1){
 								this.titleNViewBackground = res.data.data[i].bannerImg[0].color;

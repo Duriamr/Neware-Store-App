@@ -15,7 +15,7 @@
 			<view class="footer" style="background-color:#F75C50;bottom:88upx" @tap.stop="toLive">
 				观 看 直 播
 			</view>
-			<view class="footer" @tap.stop="copyLive" v-if="liveShow">
+			<view class="footer" @tap.stop="copyLive">
 				电脑浏览器观看(点击复制链接)
 			</view>
 		</block>

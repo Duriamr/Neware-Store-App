@@ -47,7 +47,6 @@
 					
 				    success: (res) => {
 						uni.stopPullDownRefresh()
-						console.log(1)
 						if(res.data.success&&res.data.code == 200){
 							this.liveArr = res.data.data.items
 							this.pageIndex = 1

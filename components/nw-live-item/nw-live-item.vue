@@ -1,6 +1,6 @@
 <template>
 	<view class="live_content">
-		<view class="live_list">
+		<view class="live_list" @tap.stop="$toPath('/pages/studyEnjoy/live/liveDetails/liveDetails?id='+item.id)">
 			<view class="list_left">
 				<text class="left_title">{{item.name}}</text>
 				<view class="left_bot">
