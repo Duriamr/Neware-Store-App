@@ -270,6 +270,9 @@ page{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	&:last-of-type{
+		margin-bottom: 40rpx;
+	}
 	.header{
 		width: calc(100% - 64upx);
 		height: 87upx;

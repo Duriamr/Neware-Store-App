@@ -51,7 +51,7 @@
 		data() {
 			return {
 				
-				placeholder:"",
+				placeholder:"请输入直播标题或主讲人姓名",
 				cancelShow:false,
 				
 				

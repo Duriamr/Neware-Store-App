@@ -292,7 +292,6 @@
 				    success: (res) => {
 						uni.hideLoading()
 						if(res.data.success&&res.data.code == 200){
-							console.log(res.data.data)
 							this.detail = res.data.data
 							if(this.detail.pptUrl){
 								let arr = this.detail.pptUrl.split("/")
@@ -360,7 +359,6 @@
 					method: "GET",
 				    
 				    success: (res) => {
-						console.log(res.data)
 						if(res.data.success&&res.data.code == 200){
 							this.isSignup = res.data.data
 							this.getGuideShow()
@@ -656,13 +654,16 @@
 				if(this.videoOneTap){
 					return false
 				}
-				this.this.videoOneTap = true
+				this.videoOneTap = true
 				uni.request({
 				    url: this.$url+'/api/liveuser/playbacknumber?id='+this.id, 
 					header:{
 						Authorization:'Bearer '+this.token
 					},
 					method: "GET",
+					success: (res) => {
+						console.log(res.data)
+					}
 				});
 			},
 		}
