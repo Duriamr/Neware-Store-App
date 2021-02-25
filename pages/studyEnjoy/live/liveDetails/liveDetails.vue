@@ -627,28 +627,42 @@
 			},
 			
 			lookPdf(){
-				uni.showLoading({
-				    title: '正在打开...'
-				});
-				uni.downloadFile({
-					url: this.detail.pptUrl,
-					success:(res) => {
-						uni.openDocument({
-							filePath: res.tempFilePath,
-							success:(res)=>{
-								uni.hideLoading()
-							}
-						});
-					},
-					fail:()=>{
-						uni.hideLoading()
-						uni.showToast({
-						    icon: 'none',
-							position: 'bottom',
-						    title: '打开失败'
-						});
+				// #ifndef APP-PLUS
+				this.$downNASA();
+				return false;
+				// #endif
+				uni.getSystemInfo({
+					success: (res) => {
+						if(res.platform == 'ios'){
+							uni.navigateTo({
+								url:'/pages/browser/browser?src='+this.detail.pptUrl
+							})
+						}else{
+							uni.showLoading({
+							    title: '正在打开...'
+							});
+							uni.downloadFile({
+								url: this.detail.pptUrl,
+								success:(res) => {
+									uni.openDocument({
+										filePath: res.tempFilePath,
+										success:(res)=>{
+											uni.hideLoading()
+										}
+									});
+								},
+								fail:()=>{
+									uni.hideLoading()
+									uni.showToast({
+									    icon: 'none',
+										position: 'bottom',
+									    title: '打开失败'
+									});
+								}
+							});
+						}
 					}
-				});
+				})
 			},
 			playbacknumber(){
 				if(this.videoOneTap){

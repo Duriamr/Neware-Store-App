@@ -575,7 +575,7 @@
 				    success: (res) => {
 						if(res.data.success&&res.data.code == 200){
 							this.searchLive = []
-							let len = res.data.data.length
+							let len = res.data.data.items.length
 							let l
 							if(len<=3){
 								l = len
