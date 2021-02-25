@@ -22,7 +22,7 @@
 						</view>
 					</template>
 					<template v-if="isLogin">
-						<video class="video" :src="detail.playBackUrl" :poster="detail.guideImageUrl" controls object-fit="cover"></video>
+						<video class="video" :src="detail.playBackUrl" :poster="detail.guideImageUrl" controls object-fit="cover" @play="playbacknumber()"></video>
 					</template>
 				</template>
 			</template>
@@ -64,7 +64,7 @@
 		<view class="info_box">
 			<view class="top">
 				<text class="title">{{detail.name}}</text>
-				<text v-if="detail.status==2">{{detail.playBackNumber}}人播放</text>
+				<text v-if="detail.status==2">{{detail.playBackNumber}}次播放</text>
 				<text v-else>{{detail.virtualPeopleNumber}}人报名</text>
 			</view>
 			<text class="details">{{detail.description}}</text>
@@ -106,13 +106,24 @@
 					</view>
 					
 					<template v-if="isSignup">
-						<view class="copy_box" @tap.stop="copyLive()">
-							<image src="/static/studyEnjoy/live/copy.png"></image>
-							<text>复制链接</text>
-						</view>
-						<view class="btn_small" @tap.stop="toLive()">
-							<text>立即观看</text>
-						</view>
+						<template v-if="detail.status==0">
+							<view class="copy_box" @tap.stop="copyLive()">
+								<image src="/static/studyEnjoy/live/copy.png"></image>
+								<text>复制链接</text>
+							</view>
+							<view class="btn_small"  @tap.stop="toLive()">
+								<text>立即观看</text>
+							</view>
+						</template>
+						<template v-if="detail.status==1">
+							<view class="copy_box" @tap.stop="noLive()">
+								<image src="/static/studyEnjoy/live/copy.png"></image>
+								<text>复制链接</text>
+							</view>
+							<view class="btn_small" style="background: #B3B3B3;" @tap.stop="noLive()">
+								<text>立即观看</text>
+							</view>
+						</template>
 					</template>
 				</view>
 				<view class="safety"></view>
@@ -171,7 +182,15 @@
 		<!-- #endif -->  
 		
 		<!-- #ifdef APP-PLUS -->
-		<share :shareShow="shareShow" :shareObj="shareObj" @hideShare="$hideShare()" />
+		<view class="guide_content" @touchmove.stop.prevent v-if="guideShow">
+			<view class="btn" @tap.stop="hideGuideShow()">
+				<text>我知道啦</text>
+			</view>
+			<image class="text" src="/static/studyEnjoy/live/text.png" mode="widthFix"></image>
+			<image class="icon" src="/static/studyEnjoy/live/icon.png" mode="widthFix"></image>
+		</view>
+		
+		<share :shareShow="shareShow" :shareObj="shareObj" @hideShare="$hideShare()"/>
 		<!-- #endif --> 
 	</view>
 </template>
@@ -218,6 +237,7 @@
 				//点击区
 				signupOneTap:false,
 				liveOneTap:false,
+				videoOneTap:false,
 				
 				signupShow:false,//显示报名
 				//报名区
@@ -239,6 +259,8 @@
 				mm:"00",
 				ss:"00",
 				timeoutID:'',
+				
+				guideShow:false,
 			};
 		},
 		onLoad(options){
@@ -279,6 +301,13 @@
 							if(this.detail.status==1){
 								this.setCountDown(this.detail.startTimeStamp)
 							}
+							let title = this.detail.name
+							if(title.length>10){
+								title = title.substr(0,9)+'...'
+							}
+							uni.setNavigationBarTitle({
+								title:title
+							})
 							this.shareObj = {
 								title:this.detail.name,
 								summary:this.detail.shareContent,
@@ -324,23 +353,38 @@
 			//是否已报名
 			getSignup(){
 				uni.request({
-				    url: this.$url+'/api/live/issignupv2?promotionalActivityId='+this.id, 
+				    url: this.$url+'/api/liveuser/issignup?id='+this.id, 
 					header:{
 						Authorization:'Bearer '+this.token
 					},
 					method: "GET",
 				    
 				    success: (res) => {
+						console.log(res.data)
 						if(res.data.success&&res.data.code == 200){
 							this.isSignup = res.data.data
+							this.getGuideShow()
 						}
 				    }
 				});
 			},
-			
+			getGuideShow(){
+				if(this.isSignup&&this.detail.status!=2){
+					let guide = uni.getStorageSync('live_guide')
+					if(!guide){
+						this.guideShow = true
+					}else{
+						this.guideShow = false
+					}
+				}
+			},
+			hideGuideShow(){
+				this.guideShow = false
+				uni.setStorageSync('live_guide',true);
+			},
 			getUser(){
 				uni.request({
-				    url: this.$url+'/api/appuser/get', 
+				    url: this.$url+'/api/liveuser/liveuserinfo', 
 					header:{
 						Authorization:'Bearer '+this.token
 					},
@@ -349,6 +393,8 @@
 				    success: (res) => {
 						if(res.data.success&&res.data.code == 200){
 							this.isLogin = true
+							this.name = res.data.data.name
+							this.school = res.data.data.institutionName
 							this.phone = res.data.data.phone
 							if(this.phone != "" && this.phone != null && this.phone != undefined){
 								this.phoneDisabled = true
@@ -440,14 +486,18 @@
 				    success: (res) => {
 						uni.hideLoading()
 						if(res.data.success&&res.data.code == 200){
+							this.hideSignup()
 							uni.showToast({
 								icon: 'success',
 								position: 'cSignup',
 								title: '报名成功！'
 							});
-							setTimeout(() => {
-								this.toLive();
-							},500)
+							this.isSignup = true
+							this.detail.virtualPeopleNumber++
+							this.getGuideShow()
+							// setTimeout(() => {
+							// 	this.toLive();
+							// },500)
 						}else if(res.data.code == 401){
 							this.signupOneTap = false
 							this.$to401()
@@ -506,6 +556,12 @@
 						uni.hideLoading()
 						this.$requestFail()
 					}
+				});
+			},
+			noLive(){
+				uni.showToast({
+					icon: 'none',
+					title: '直播还未开始'
 				});
 			},
 			copyLive(){
@@ -595,7 +651,20 @@
 						});
 					}
 				});
-			}
+			},
+			playbacknumber(){
+				if(this.videoOneTap){
+					return false
+				}
+				this.this.videoOneTap = true
+				uni.request({
+				    url: this.$url+'/api/liveuser/playbacknumber?id='+this.id, 
+					header:{
+						Authorization:'Bearer '+this.token
+					},
+					method: "GET",
+				});
+			},
 		}
 	}
 </script>

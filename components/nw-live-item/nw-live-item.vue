@@ -16,7 +16,7 @@
 						<text>LIVE</text>
 					</view>
 				</view>
-				<text v-if="item.status==2">{{item.playBackNumber}}人播放</text>
+				<text v-if="item.status==2">{{item.playBackNumber}}次播放</text>
 				<text v-else>{{item.virtualPeopleNumber}}人报名</text>
 			</view>
 		</view>
@@ -64,6 +64,7 @@
 			width: 418rpx;
 			height: 100%;
 			.left_title{
+				margin-top: 8rpx;
 				font-size: 32rpx;
 				font-family: PingFangSC-Medium, PingFang SC;
 				font-weight: 500;

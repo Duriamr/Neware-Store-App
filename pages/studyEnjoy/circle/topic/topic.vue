@@ -935,26 +935,42 @@
 					shareUrl = this.$h5Url+"/pages/studyEnjoy/circle/circle?id="
 					shareSummary = content
 					tt = "发现了有意思的动态！"
+					if(shareType){
+						this.shareObj = {
+							title:"@"+this.nickname+tt,
+							summary:shareSummary,
+							href:shareUrl+articleId,
+							imageUrl:shareImg,
+						}
+					}else{
+						this.shareObj = {
+							title:"@"+this.nickname+"邀请你参与话题！",
+							summary: this.topicInfo.content,
+							href:this.$h5Url+"/pages/studyEnjoy/circle/topic/topic?publishingTypeId="+this.publishingTypeId,
+							imageUrl:this.topicInfo.imageUrl,
+						}
+					}
 				}else{
 					shareUrl = this.$h5Url+"/pages/studyEnjoy/article/article?id="
 					shareSummary = title
 					tt = "发现了有意思的文章！"
-				}
-				if(shareType){
-					this.shareObj = {
-						title:"@"+this.nickname+tt,
-						summary:shareSummary,
-						href:shareUrl+articleId,
-						imageUrl:shareImg,
+					if(shareType){
+						this.shareObj = {
+							title:shareSummary,
+							summary:"@"+this.nickname+tt,
+							href:shareUrl+articleId,
+							imageUrl:shareImg,
+						}
+					}else{
+						this.shareObj = {
+							title:"@"+this.nickname+"邀请你参与话题！",
+							summary: this.topicInfo.content,
+							href:this.$h5Url+"/pages/studyEnjoy/circle/topic/topic?publishingTypeId="+this.publishingTypeId,
+							imageUrl:this.topicInfo.imageUrl,
+						}
 					}
-				}else{
-					this.shareObj = {
-						title:"@"+this.nickname+"邀请你参与话题！",
-						summary: this.topicInfo.content,
-						href:this.$h5Url+"/pages/studyEnjoy/circle/topic/topic?publishingTypeId="+this.publishingTypeId,
-						imageUrl:this.topicInfo.imageUrl,
-					}
 				}
+				
 				this.shareShow = 'show';
 			},
 			

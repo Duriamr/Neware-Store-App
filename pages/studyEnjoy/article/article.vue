@@ -312,8 +312,8 @@
 							res.data.data.commentText = ''
 							this.articleInfo = res.data.data
 							this.shareObj = {
-								title:"@"+this.nickname+"发现了有意思的文章！",
-								summary:this.articleInfo.title,
+								title:this.articleInfo.title,
+								summary:"@"+this.nickname+"发现了有意思的文章！",
 								href:this.$h5Url+"/pages/studyEnjoy/article/article?id="+this.articleId,
 								imageUrl:this.articleInfo.authorImage,
 							}

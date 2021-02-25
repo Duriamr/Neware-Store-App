@@ -692,17 +692,24 @@
 					shareUrl = this.$h5Url+"/pages/studyEnjoy/circle/circle?id="
 					shareSummary = content
 					tt = "发现了有意思的动态！"
+					this.shareObj = {
+						title:"@"+this.nickname+tt,
+						summary:shareSummary,
+						href:shareUrl+articleId,
+						imageUrl:shareImg,
+					}
 				}else{
 					shareUrl = this.$h5Url+"/pages/studyEnjoy/article/article?id="
 					shareSummary = title
 					tt = "发现了有意思的文章！"
+					this.shareObj = {
+						title:shareSummary,
+						summary:"@"+this.nickname+tt,
+						href:shareUrl+articleId,
+						imageUrl:shareImg,
+					}
 				}
-				this.shareObj = {
-					title:"@"+this.nickname+tt,
-					summary:shareSummary,
-					href:shareUrl+articleId,
-					imageUrl:shareImg,
-				}
+				
 				this.shareShow = 'show';
 			},
 			previewImg(index,imgs){

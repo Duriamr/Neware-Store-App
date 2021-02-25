@@ -1,6 +1,6 @@
 <template>
 	<view class="se_content">
-		<!-- <view class="guide_content" @touchmove.stop.prevent v-if="guideShow">
+		<view class="guide_content" @touchmove.stop.prevent v-if="guideShow">
 			<view class="kingkong">
 				<view class="kingkong_list"></view>
 				<view class="kingkong_list">
@@ -21,11 +21,18 @@
 						<image class="guide_text text3" src="/static/studyEnjoy/guide/3/text.png" mode="widthFix" />
 					</block>
 				</view>
+				<view class="kingkong_list">
+					<block v-if="guideShow==4">
+						<image class="guide_img" src="/static/studyEnjoy/guide/4/icon.png" />
+						<image class="guide_text text4" src="/static/studyEnjoy/guide/4/text.png" mode="widthFix" />
+					</block>
+				</view>
 			</view>
 			<view class="btn" v-if="guideShow==1" @tap.stop="tabGuideShow(2)"><text>下一步</text></view>
 			<view class="btn" v-if="guideShow==2" @tap.stop="tabGuideShow(3)"><text>下一步</text></view>
-			<view class="btn" v-if="guideShow==3" @tap.stop="tabGuideShow(0)"><text>我知道啦</text></view>
-		</view> -->
+			<view class="btn" v-if="guideShow==3" @tap.stop="tabGuideShow(4)"><text>下一步</text></view>
+			<view class="btn" v-if="guideShow==4" @tap.stop="tabGuideShow(0)"><text>我知道啦</text></view>
+		</view>
 		<view class="se_header" @touchmove.stop.prevent>
 			<view class="status"></view>
 			<view class="header">
@@ -66,23 +73,23 @@
 		<image class="banner" :src="item.url" mode="widthFix" v-for="(item, index) in bannerArr" :key="'banner'+index" v-if="index==0" @tap.stop="$toPath(item.linkUrl)" />
 		
 		<view class="kingkong">
-			<view class="kingkong_list" @tap.stop="$toPath('/pages/studyEnjoy/QaVaL/QaV?index=0')">
+			<view class="kingkong_list" @tap.stop="toKingkong('/pages/studyEnjoy/QaVaL/QaV?index=0',1)">
 				<image src="/static/studyEnjoy/kingkong/QA.png" />
 				<text>基础问答</text>
 			</view>
-			<view class="kingkong_list" @tap.stop="$toPath('/pages/studyEnjoy/QaVaL/QaV?index=1')">
+			<view class="kingkong_list" @tap.stop="toKingkong('/pages/studyEnjoy/QaVaL/QaV?index=1',2)">
 				<image src="/static/studyEnjoy/kingkong/video.png" />
 				<text>设备解说</text>
 			</view>
-			<view class="kingkong_list" @tap.stop="$toPath('/pages/studyEnjoy/QaVaL/Learning')">
+			<view class="kingkong_list" @tap.stop="toKingkong('/pages/studyEnjoy/QaVaL/Learning',3)">
 				<image src="/static/studyEnjoy/kingkong/learning.png" />
 				<text>学术博览</text>
 			</view>
-			<view class="kingkong_list" @tap.stop="$toPath('/pages/activity/paper/all/all')">
+			<view class="kingkong_list" @tap.stop="toKingkong('/pages/activity/paper/all/all',4)">
 				<image src="/static/studyEnjoy/kingkong/paper.png" />
 				<text>论文评选</text>
 			</view>
-			<view class="kingkong_list" @tap.stop="$toPath('/pages/studyEnjoy/live/live')">
+			<view class="kingkong_list" @tap.stop="toKingkong('/pages/studyEnjoy/live/live',5)">
 				<image src="/static/studyEnjoy/kingkong/live.webp" />
 				<text>热门直播</text>
 			</view>
@@ -313,14 +320,14 @@
 				    success: (res) => {
 						if(res.data.success&&res.data.code == 200){
 							this.bannerArr = res.data.data
-							// if(this.$isArray(this.bannerArr)&&this.bannerArr!=[]){
-							// 	let guide = uni.getStorageSync('se_guide')
-							// 	if(!guide){
-							// 		this.guideShow = 1
-							// 	}else{
-							// 		this.guideShow = false
-							// 	}
-							// }
+							if(this.$isArray(this.bannerArr)&&this.bannerArr!=[]){
+								let guide = uni.getStorageSync('se_guide2')
+								if(!guide){
+									this.guideShow = 1
+								}else{
+									this.guideShow = false
+								}
+							}
 						}
 				    }
 				});
@@ -328,7 +335,7 @@
 			tabGuideShow(type){
 				if(!type){
 					this.guideShow = false
-					uni.setStorageSync('se_guide', true);
+					uni.setStorageSync('se_guide2',true);
 				}else{
 					this.guideShow = type
 				}
@@ -1046,17 +1053,24 @@
 					shareUrl = this.$h5Url+"/pages/studyEnjoy/circle/circle?id="
 					shareSummary = content
 					tt = "发现了有意思的动态！"
+					this.shareObj = {
+						title:"@"+this.nickname+tt,
+						summary:shareSummary,
+						href:shareUrl+articleId,
+						imageUrl:shareImg,
+					}
 				}else{
 					shareUrl = this.$h5Url+"/pages/studyEnjoy/article/article?id="
 					shareSummary = title
 					tt = "发现了有意思的文章！"
+					this.shareObj = {
+						title:shareSummary,
+						summary:"@"+this.nickname+tt,
+						href:shareUrl+articleId,
+						imageUrl:shareImg,
+					}
 				}
-				this.shareObj = {
-					title:"@"+this.nickname+tt,
-					summary:shareSummary,
-					href:shareUrl+articleId,
-					imageUrl:shareImg,
-				}
+				
 				this.shareShow = 'show';
 			},
 			hideShare(){
@@ -1076,6 +1090,15 @@
 					url:"/pages/studyEnjoy/circle/release/release"
 				})
 			},
+			toKingkong(path,i){
+				uni.request({
+				    url: this.$url+'/api/liveuser/researchnumber?id='+i, 
+					method: "GET",
+				});
+				uni.navigateTo({
+					url:path
+				})
+			}
 		}
 	}
 </script>

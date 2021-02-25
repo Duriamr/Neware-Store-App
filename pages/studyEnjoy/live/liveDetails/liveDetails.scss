@@ -375,3 +375,41 @@ page{
 		}
 	}
 }
+.guide_content{
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	bottom: 0;
+	z-index: 500;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgba(0,0,0,0.5);
+	.btn{
+		position: absolute;
+		bottom: 364rpx;
+		width: 210rpx;
+		height: 80rpx;
+		border-radius: 21.5px;
+		border: 2rpx solid #FFFFFF;
+		
+		text-align: center;
+		font-size: 28rpx;
+		font-family: PingFangSC-Medium, PingFang SC;
+		font-weight: 500;
+		color: #FFFFFF;
+		line-height: 80rpx;
+	}
+	.text{
+		position: absolute;
+		left: 32rpx;
+		bottom: 176rpx;
+		width: 370rpx;
+	}
+	.icon{
+		position: absolute;
+		left: 23rpx;
+		bottom: 30rpx;
+		width: 116rpx;
+	}
+}
