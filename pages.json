@@ -1216,10 +1216,10 @@
                     		},
                     		"bounce":"none",
                     		"scrollIndicator": "none"
+                    	},
+                    	"h5":{
+                    		"titleNView": false//禁用原生导航栏
                     	}
-                    	// "h5":{
-                    	// 	"titleNView": false//禁用原生导航栏
-                    	// }
                     }
                 }
             ]
